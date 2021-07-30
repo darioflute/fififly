@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<FlightPlan Id="202105_FI_MAXINE"
+  DepartureAirport="KPMD"
+  DepartureRunway="25"
+  LegCount="10"
+  Mach="0.85"
+  DepartureTime="2021-06-05T03:45:00Z"
+  ObsTime="05:54:00"
+  FltTime="08:26:53"
+  ArrivalTime="2021-06-05T12:11:52Z"
+  ArrivalAirport="KPMD (Approach via ETHER)"
+>
+
+<SunSetRise>
+  <Sunset>03:02:06</Sunset>
+  <SunsetAz>298</SunsetAz>
+  <Sunrise>12:39:30</Sunrise>
+  <SunriseAz>61</SunriseAz>
+</SunSetRise>
+
+<Comment>
+enters OCEANIC
+triggers Rule 12
+</Comment>
+
+<Legs>
+
+<Leg id="1" type="Departure">
+  <Name>Departure</Name>
+  <Start>03:45:00</Start>
+  <Duration>00:02:19</Duration>
+  <Alt>10000 ft</Alt>
+  <Mach>0.85</Mach>
+
+  <Runway>25</Runway>
+  <Loiter>0.0</Loiter>
+  <EndLat>N34 37.9</EndLat>
+  <EndLon>W118 04.8</EndLon>
+  <Sunset>03:02:06</Sunset>
+  <SunsetAz>298</SunsetAz>
+
+  <SunAzDelta>-128</SunAzDelta>
+
+  <WayPoints>
+    <WayPoint UTC="03:45:00" MHdg="254.4" THdg="266.2" Latitude="N34 37.9" Longitude="W118 04.3" 
+    WindDirSpeed="234/007" Temp="27" LST="12:47:54" Elev="N/A" ROF="N/A" ROFrt="N/A" 
+    LosWV="N/A" SunEl="-8.3" SunHA="-6.6" Status="TURN" />
+    <WayPoint UTC="03:47:15" MHdg="255.0" THdg="266.8" Latitude="N34 37.9" Longitude="W118 04.3" 
+    WindDirSpeed="257/007" Temp="24" LST="12:50:09" Elev="N/A" ROF="N/A" ROFrt="N/A" 
+    LosWV="N/A" SunEl="-8.7" SunHA="-6.6" />
+    <WayPoint UTC="03:47:19" MHdg="254.2" THdg="266.0" Latitude="N34 37.9" Longitude="W118 04.8" 
+    WindDirSpeed="208/004" Temp="13" LST="12:50:12" Elev="N/A" ROF="N/A" ROFrt="N/A" 
+    LosWV="N/A" SunEl="-8.7" SunHA="-6.1" />
+  </WayPoints>
+</Leg>
+
+
+<Leg id="2" type="Absolute">
+  <Name>SXC</Name>
+  <Start>03:48:46</Start>
+  <Duration>00:08:45</Duration>
+  <Alt>35000 ft</Alt>
+  <Mach>0.85</Mach>
+
+  <EndLat>N33 22.5</EndLat>
+  <EndLon>W118 25.2</EndLon>
+  <Comment>Waypoint SXC</Comment>
+
+  <WayPoints>
+    <WayPoint UTC="03:48:46" MHdg="177.5" THdg="189.3" Latitude="N34 33.1" Longitude="W118 11.5" 
+    WindDirSpeed="161/007" Temp="-49" LST="12:51:12" Elev="N/A" ROF="N/A" ROFrt="N/A" 
+    LosWV="N/A" SunEl="-8.9" SunHA="-4.8" />
+    <WayPoint UTC="03:57:31" MHdg="177.8" THdg="189.4" Latitude="N33 22.5" Longitude="W118 25.2" 
+    WindDirSpeed="217/005" Temp="-49" LST="12:59:03" Elev="N/A" ROF="N/A" ROFrt="N/A" 
+    LosWV="N/A" SunEl="-10.9" SunHA="-6.8" />
+  </WayPoints>
+</Leg>
+
+
+<Leg id="3" type="Absolute">
+  <Name>ROSIN</Name>
+  <Start>03:58:38</Start>
+  <Duration>00:14:47</Duration>
+  <Alt>36000 ft</Alt>
+  <Mach>0.85</Mach>
+
+  <EndLat>N31 56.4</EndLat>
+  <EndLon>W120 16.2</EndLon>
+  <Comment>Waypoint ROSIN</Comment>
+
+  <WayPoints>
+    <WayPoint UTC="03:58:38" MHdg="217.6" THdg="229.2" Latitude="N33 14.6" Longitude="W118 30.4" 
+    WindDirSpeed="225/006" Temp="-51" LST="12:59:50" Elev="N/A" ROF="N/A" ROFrt="N/A" 
+    LosWV="N/A" SunEl="-11.2" SunHA="-7.0" />
+    <WayPoint UTC="04:13:25" MHdg="218.0" THdg="229.7" Latitude="N31 56.3" Longitude="W120 16.2" 
+    WindDirSpeed="262/021" Temp="-51" LST="13:07:37" Elev="N/A" ROF="N/A" ROFrt="N/A" 
+    LosWV="N/A" SunEl="-13.2" SunHA="-9.0" />
+  </WayPoints>
+</Leg>
+
+
+<Leg id="4" type="Observation">
+  <Name>Setup</Name>
+  <Start>04:14:20</Start>
+  <Duration>00:30:00</Duration>
+  <Alt>38000 ft</Alt>
+  <Mach>0.85</Mach>
+
+  <ObsPlanID></ObsPlanID>
+  <ObsBlkID></ObsBlkID>
+  <Priority>D</Priority>
+  <ObsDur>00:00:00</ObsDur>
+
+  <Target>HIP 67153</Target>
+  <RA>13h45m41.24s</RA>
+  <Dec>-33d02m37.4s</Dec>
+  <Equinox>J2000.0</Equinox>
+
+  <Elev start="24.3" end="25.0"/>
+  <ROF start="353.7" end="356.5"/>
+  <ROFRT start="+0.09" end="+0.10" unit="deg/min"/>
+  <GuideStar>FPI:0</GuideStar>
+
+  <MoonAngle>149</MoonAngle>
+  <MoonIllum>23%</MoonIllum>
+  <THdg start="262.2" end="265.0"/>
+  <THdgRT start="+0.09" end="+0.10" unit="deg/min"/>
+
+  <Comment>HIP 67153 Vmag: 4.23 B-V: 0.42&lt;br&gt;Nearby stars:&lt;br&gt;HIP 67457 Vmag: 4.15 B-V: 1.52&lt;br&gt;HIP 67669 Vmag: 4.50 B-V: -0.12&lt;br&gt;Sun elev. at start -15.4 deg</Comment>
+
+  <WayPoints>
+    <WayPoint UTC="04:14:20" MHdg="250.5" THdg="262.2" Latitude="N31 53.4" Longitude="W120 23.6" 
+    WindDirSpeed="262/025" Temp="-55" LST="13:08:01" Elev="24.3" ROF="353.7" ROFrt="N/A" 
+    LosWV="106.1" SunEl="-13.3" SunHA="-9.0" />
+    <WayPoint UTC="04:19:20" MHdg="250.9" THdg="262.7" Latitude="N31 48.4" Longitude="W121 08.4" 
+    WindDirSpeed="259/029" Temp="-55" LST="13:10:03" Elev="24.4" ROF="354.1" ROFrt="+0.09" 
+    LosWV="113.0" SunEl="-13.7" SunHA="-9.4" />
+    <WayPoint UTC="04:24:20" MHdg="251.3" THdg="263.1" Latitude="N31 44.0" Longitude="W121 52.8" 
+    WindDirSpeed="253/033" Temp="-55" LST="13:12:06" Elev="24.6" ROF="354.6" ROFrt="+0.09" 
+    LosWV="117.8" SunEl="-14.1" SunHA="-9.8" />
+    <WayPoint UTC="04:29:20" MHdg="251.6" THdg="263.6" Latitude="N31 40.2" Longitude="W122 37.0" 
+    WindDirSpeed="248/036" Temp="-56" LST="13:14:11" Elev="24.7" ROF="355.1" ROFrt="+0.09" 
+    LosWV="122.2" SunEl="-14.5" SunHA="-10.2" />
+    <WayPoint UTC="04:34:20" MHdg="252.0" THdg="264.1" Latitude="N31 37.1" Longitude="W123 21.0" 
+    WindDirSpeed="243/039" Temp="-56" LST="13:16:15" Elev="24.8" ROF="355.6" ROFrt="+0.10" 
+    LosWV="126.2" SunEl="-14.9" SunHA="-10.6" />
+    <WayPoint UTC="04:39:20" MHdg="252.4" THdg="264.6" Latitude="N31 34.8" Longitude="W124 04.9" 
+    WindDirSpeed="238/042" Temp="-56" LST="13:18:20" Elev="24.9" ROF="356.0" ROFrt="+0.10" 
+    LosWV="129.7" SunEl="-15.2" SunHA="-10.9" />
+    <WayPoint UTC="04:44:20" MHdg="252.8" THdg="265.0" Latitude="N31 33.2" Longitude="W124 48.9" 
+    WindDirSpeed="233/045" Temp="-56" LST="13:20:26" Elev="25.0" ROF="356.5" ROFrt="+0.10" 
+    LosWV="130.1" SunEl="-15.6" SunHA="-11.3" />
+  </WayPoints>
+</Leg>
+
+
+<Leg id="5" type="Observation">
+  <Name>m83-1</Name>
+  <Start>04:44:23</Start>
+  <Duration>00:53:00</Duration>
+  <Alt>39000 ft</Alt>
+  <Mach>0.85</Mach>
+
+  <ObsPlanID>70_0808</ObsPlanID>
+  <ObsBlkID>OB_70_0808_02</ObsBlkID>
+  <Priority>C</Priority>
+  <ObsDur>00:48:00</ObsDur>
+
+  <Target>m83-1</Target>
+  <RA>13h37m00.95s</RA>
+  <Dec>-29d51m55.5s</Dec>
+  <Equinox>J2000.0</Equinox>
+
+  <Elev start="28.3" end="28.4"/>
+  <ROF start="358.5" end="3.6"/>
+  <ROFRT start="+0.10" end="+0.09" unit="deg/min"/>
+  <GuideStar>FPI:4</GuideStar>
+
+  <MoonAngle>153</MoonAngle>
+  <MoonIllum>23%</MoonIllum>
+  <THdg start="267.0" end="272.1"/>
+  <THdgRT start="+0.10" end="+0.09" unit="deg/min"/>
+
+  <Comment># 122 minutes requested in DCS&lt;br&gt;# 120 minutes planned in DCS&lt;br&gt;# 54 of 120 minutes in this series&lt;br&gt;# 66 on MARIO&lt;br&gt;# 54 on MAXINE (this flight)</Comment>
+
+  <WayPoints>
+    <WayPoint UTC="04:44:23" MHdg="254.8" THdg="267.0" Latitude="N31 33.2" Longitude="W124 49.3" 
+    WindDirSpeed="233/045" Temp="-57" LST="13:20:27" Elev="28.3" ROF="358.5" ROFrt="N/A" 
+    LosWV="86.3" SunEl="-15.6" SunHA="-11.3" />
+    <WayPoint UTC="04:49:23" MHdg="255.2" THdg="267.5" Latitude="N31 33.6" Longitude="W125 33.2" 
+    WindDirSpeed="229/047" Temp="-57" LST="13:22:32" Elev="28.3" ROF="359.0" ROFrt="+0.10" 
+    LosWV="84.0" SunEl="-15.9" SunHA="-11.6" />
+    <WayPoint UTC="04:54:23" MHdg="255.6" THdg="268.0" Latitude="N31 34.7" Longitude="W126 17.2" 
+    WindDirSpeed="226/047" Temp="-57" LST="13:24:37" Elev="28.3" ROF="359.5" ROFrt="+0.10" 
+    LosWV="80.5" SunEl="-16.3" SunHA="-11.9" />
+    <WayPoint UTC="04:59:23" MHdg="256.1" THdg="268.5" Latitude="N31 36.2" Longitude="W127 01.5" 
+    WindDirSpeed="223/046" Temp="-56" LST="13:26:41" Elev="28.3" ROF="0.0" ROFrt="+0.10" 
+    LosWV="76.4" SunEl="-16.6" SunHA="-12.2" />
+    <WayPoint UTC="05:04:23" MHdg="256.5" THdg="269.0" Latitude="N31 38.0" Longitude="W127 46.1" 
+    WindDirSpeed="224/042" Temp="-55" LST="13:28:43" Elev="28.3" ROF="0.5" ROFrt="+0.10" 
+    LosWV="69.9" SunEl="-16.9" SunHA="-12.5" />
+    <WayPoint UTC="05:09:23" MHdg="256.9" THdg="269.5" Latitude="N31 39.8" Longitude="W128 31.1" 
+    WindDirSpeed="227/035" Temp="-54" LST="13:30:44" Elev="28.3" ROF="1.0" ROFrt="+0.10" 
+    LosWV="61.8" SunEl="-17.2" SunHA="-12.8" />
+    <WayPoint UTC="05:14:23" MHdg="257.4" THdg="270.0" Latitude="N31 41.2" Longitude="W129 16.6" 
+    WindDirSpeed="239/026" Temp="-54" LST="13:32:43" Elev="28.3" ROF="1.5" ROFrt="+0.10" 
+    LosWV="53.8" SunEl="-17.5" SunHA="-13.1" />
+    <WayPoint UTC="05:19:23" MHdg="257.8" THdg="270.5" Latitude="N31 41.9" Longitude="W130 02.5" 
+    WindDirSpeed="271/018" Temp="-53" LST="13:34:40" Elev="28.3" ROF="2.0" ROFrt="+0.09" 
+    LosWV="52.0" SunEl="-17.8" SunHA="-13.4" />
+    <WayPoint UTC="05:24:23" MHdg="258.3" THdg="270.9" Latitude="N31 41.7" Longitude="W130 48.9" 
+    WindDirSpeed="319/019" Temp="-54" LST="13:36:35" Elev="28.3" ROF="2.4" ROFrt="+0.09" 
+    LosWV="56.0" SunEl="-18.1" SunHA="-13.7" />
+    <WayPoint UTC="05:29:23" MHdg="258.7" THdg="271.4" Latitude="N31 40.8" Longitude="W131 35.7" 
+    WindDirSpeed="343/028" Temp="-54" LST="13:38:29" Elev="28.3" ROF="2.9" ROFrt="+0.09" 
+    LosWV="60.8" SunEl="-18.4" SunHA="-14.0" />
+    <WayPoint UTC="05:34:23" MHdg="259.2" THdg="271.9" Latitude="N31 39.3" Longitude="W132 22.9" 
+    WindDirSpeed="355/036" Temp="-54" LST="13:40:21" Elev="28.3" ROF="3.4" ROFrt="+0.09" 
+    LosWV="66.8" SunEl="-18.7" SunHA="-14.3" />
+    <WayPoint UTC="05:37:23" MHdg="259.4" THdg="272.1" Latitude="N31 38.4" Longitude="W132 51.4" 
+    WindDirSpeed="359/038" Temp="-55" LST="13:41:27" Elev="28.4" ROF="3.6" ROFrt="+0.09" 
+    LosWV="72.0" SunEl="-18.9" SunHA="-14.5" />
+  </WayPoints>
+</Leg>
+
+
+<Leg id="6" type="Observation">
+  <Name>IRAS 12112+0305</Name>
+  <Start>05:38:31</Start>
+  <Duration>01:17:00</Duration>
+  <Alt>39000/35/41000 ft</Alt>
+  <Mach>0.85</Mach>
+
+  <ObsPlanID>08_0095</ObsPlanID>
+  <ObsBlkID>OB_08_0095_07</ObsBlkID>
+  <Priority>C</Priority>
+  <ObsDur>01:12:00</ObsDur>
+
+  <Target>IRAS 12112+0305</Target>
+  <RA>12h13m46.00s</RA>
+  <Dec>02d48m38.0s</Dec>
+  <Equinox>J2000.0</Equinox>
+
+  <Elev start="54.4" end="43.4"/>
+  <ROF start="37.2" end="38.6"/>
+  <ROFRT start="+0.05" end="-0.00" unit="deg/min"/>
+  <GuideStar>FPI:4</GuideStar>
+
+  <MoonAngle>164</MoonAngle>
+  <MoonIllum>22%</MoonIllum>
+  <THdg start="313.1" end="319.8"/>
+  <THdgRT start="+0.10" end="+0.08" unit="deg/min"/>
+
+  <Comment># 70 minutes requested in DCS&lt;br&gt;# 70 minutes planned in DCS&lt;br&gt;# 70 of 70 minutes in this series</Comment>
+
+  <WayPoints>
+    <WayPoint UTC="05:38:31" MHdg="300.4" THdg="313.1" Latitude="N31 41.1" Longitude="W133 01.2" 
+    WindDirSpeed="000/040" Temp="-55" LST="13:41:56" Elev="54.4" ROF="37.2" ROFrt="N/A" 
+    LosWV="42.9" SunEl="-18.9" SunHA="-14.6" />
+    <WayPoint UTC="05:43:31" MHdg="300.8" THdg="313.6" Latitude="N32 05.6" Longitude="W133 36.2" 
+    WindDirSpeed="006/043" Temp="-55" LST="13:44:38" Elev="53.7" ROF="37.4" ROFrt="+0.05" 
+    LosWV="46.1" SunEl="-19.0" SunHA="-14.7" />
+    <WayPoint UTC="05:48:31" MHdg="301.2" THdg="314.1" Latitude="N32 30.3" Longitude="W134 11.3" 
+    WindDirSpeed="010/043" Temp="-56" LST="13:47:18" Elev="53.1" ROF="37.6" ROFrt="+0.04" 
+    LosWV="49.6" SunEl="-19.1" SunHA="-14.8" />
+    <WayPoint UTC="05:53:31" MHdg="301.6" THdg="314.6" Latitude="N32 55.4" Longitude="W134 46.6" 
+    WindDirSpeed="013/040" Temp="-56" LST="13:49:58" Elev="52.4" ROF="37.8" ROFrt="+0.04" 
+    LosWV="50.0" SunEl="-19.2" SunHA="-14.9" />
+    <WayPoint UTC="05:58:31" MHdg="302.0" THdg="315.1" Latitude="N33 21.0" Longitude="W135 21.7" 
+    WindDirSpeed="015/036" Temp="-56" LST="13:52:38" Elev="51.7" ROF="38.0" ROFrt="+0.03" 
+    LosWV="50.2" SunEl="-19.3" SunHA="-15.0" />
+    <WayPoint UTC="06:03:31" MHdg="302.3" THdg="315.5" Latitude="N33 47.2" Longitude="W135 56.8" 
+    WindDirSpeed="016/031" Temp="-56" LST="13:55:18" Elev="51.0" ROF="38.1" ROFrt="+0.03" 
+    LosWV="50.3" SunEl="-19.4" SunHA="-15.1" />
+    <WayPoint UTC="06:08:31" MHdg="302.7" THdg="315.9" Latitude="N34 14.0" Longitude="W136 31.7" 
+    WindDirSpeed="015/027" Temp="-56" LST="13:58:00" Elev="50.3" ROF="38.2" ROFrt="+0.02" 
+    LosWV="52.7" SunEl="-19.4" SunHA="-15.1" />
+    <WayPoint UTC="06:13:31" MHdg="303.0" THdg="316.4" Latitude="N34 41.2" Longitude="W137 06.2" 
+    WindDirSpeed="015/022" Temp="-59" LST="14:00:42" Elev="49.6" ROF="38.3" ROFrt="+0.02" 
+    LosWV="45.9" SunEl="-19.5" SunHA="-15.1" />
+    <WayPoint UTC="06:18:31" MHdg="303.4" THdg="316.8" Latitude="N35 08.9" Longitude="W137 40.4" 
+    WindDirSpeed="009/020" Temp="-59" LST="14:03:26" Elev="48.9" ROF="38.4" ROFrt="+0.02" 
+    LosWV="47.7" SunEl="-19.5" SunHA="-15.1" />
+    <WayPoint UTC="06:23:31" MHdg="303.7" THdg="317.2" Latitude="N35 36.9" Longitude="W138 14.3" 
+    WindDirSpeed="001/017" Temp="-59" LST="14:06:12" Elev="48.1" ROF="38.5" ROFrt="+0.01" 
+    LosWV="49.1" SunEl="-19.5" SunHA="-15.1" />
+    <WayPoint UTC="06:28:31" MHdg="304.1" THdg="317.6" Latitude="N36 05.3" Longitude="W138 47.7" 
+    WindDirSpeed="350/015" Temp="-59" LST="14:08:59" Elev="47.4" ROF="38.5" ROFrt="+0.01" 
+    LosWV="49.8" SunEl="-19.5" SunHA="-15.1" />
+    <WayPoint UTC="06:33:31" MHdg="304.4" THdg="318.0" Latitude="N36 34.1" Longitude="W139 20.8" 
+    WindDirSpeed="337/015" Temp="-59" LST="14:11:47" Elev="46.7" ROF="38.5" ROFrt="+0.01" 
+    LosWV="50.4" SunEl="-19.5" SunHA="-15.1" />
+    <WayPoint UTC="06:38:31" MHdg="304.8" THdg="318.4" Latitude="N37 03.1" Longitude="W139 53.5" 
+    WindDirSpeed="325/015" Temp="-59" LST="14:14:37" Elev="45.9" ROF="38.6" ROFrt="+0.01" 
+    LosWV="51.2" SunEl="-19.5" SunHA="-15.1" />
+    <WayPoint UTC="06:43:31" MHdg="305.1" THdg="318.8" Latitude="N37 32.4" Longitude="W140 25.7" 
+    WindDirSpeed="314/017" Temp="-59" LST="14:17:29" Elev="45.2" ROF="38.6" ROFrt="+0.00" 
+    LosWV="51.9" SunEl="-19.5" SunHA="-15.1" />
+    <WayPoint UTC="06:48:31" MHdg="305.5" THdg="319.3" Latitude="N38 01.8" Longitude="W140 57.6" 
+    WindDirSpeed="305/020" Temp="-60" LST="14:20:23" Elev="44.4" ROF="38.6" ROFrt="+0.00" 
+    LosWV="52.4" SunEl="-19.4" SunHA="-15.0" />
+    <WayPoint UTC="06:53:31" MHdg="305.9" THdg="319.7" Latitude="N38 31.5" Longitude="W141 28.9" 
+    WindDirSpeed="299/022" Temp="-60" LST="14:23:18" Elev="43.7" ROF="38.6" ROFrt="-0.00" 
+    LosWV="53.7" SunEl="-19.4" SunHA="-15.0" />
+    <WayPoint UTC="06:55:31" MHdg="306.0" THdg="319.8" Latitude="N38 43.5" Longitude="W141 41.4" 
+    WindDirSpeed="297/023" Temp="-60" LST="14:24:29" Elev="43.4" ROF="38.6" ROFrt="-0.00" 
+    LosWV="54.2" SunEl="-19.4" SunHA="-14.9" />
+  </WayPoints>
+</Leg>
+
+
+<Leg id="7" type="Observation">
+  <Name>NGC6946_Nuc</Name>
+  <Start>07:00:08</Start>
+  <Duration>01:45:00</Duration>
+  <Alt>41000/75/43000 ft</Alt>
+  <Mach>0.85</Mach>
+
+  <ObsPlanID>09_0198</ObsPlanID>
+  <ObsBlkID>OB_09_0198_01</ObsBlkID>
+  <Priority>B</Priority>
+  <ObsDur>01:40:00</ObsDur>
+
+  <Target>NGC6946_Nuc</Target>
+  <RA>20h34m59.37s</RA>
+  <Dec>60d10m25.1s</Dec>
+  <Equinox>J2000.0</Equinox>
+
+  <Elev start="32.6" end="44.5"/>
+  <ROF start="295.8" end="255.1"/>
+  <ROFRT start="-0.35" end="-0.44" unit="deg/min"/>
+  <GuideStar>FPI:5</GuideStar>
+
+  <MoonAngle>77</MoonAngle>
+  <MoonIllum>22%</MoonIllum>
+  <THdg start="127.7" end="125.3"/>
+  <THdgRT start="+0.06" end="-0.11" unit="deg/min"/>
+
+  <Comment># 711 minutes requested in DCS&lt;br&gt;# 406 minutes planned in DCS&lt;br&gt;# 100 of 245 minutes in this series&lt;br&gt;# 50 on MADDILYN&lt;br&gt;# 50 on MATTHEW&lt;br&gt;# 100 on MAXINE (this flight)&lt;br&gt;# 45 on MIRIAM</Comment>
+
+  <WayPoints>
+    <WayPoint UTC="07:00:08" MHdg="113.7" THdg="127.7" Latitude="N39 01.0" Longitude="W141 16.9" 
+    WindDirSpeed="295/024" Temp="-60" LST="14:30:44" Elev="32.6" ROF="295.8" ROFrt="N/A" 
+    LosWV="70.8" SunEl="-19.8" SunHA="-15.4" />
+    <WayPoint UTC="07:05:08" MHdg="114.1" THdg="128.0" Latitude="N38 35.5" Longitude="W140 34.1" 
+    WindDirSpeed="299/021" Temp="-60" LST="14:38:36" Elev="33.1" ROF="294.0" ROFrt="-0.35" 
+    LosWV="69.2" SunEl="-21.1" SunHA="-16.6" />
+    <WayPoint UTC="07:10:08" MHdg="114.4" THdg="128.2" Latitude="N38 09.7" Longitude="W139 52.1" 
+    WindDirSpeed="306/018" Temp="-60" LST="14:46:25" Elev="33.7" ROF="292.2" ROFrt="-0.35" 
+    LosWV="67.9" SunEl="-22.2" SunHA="-17.8" />
+    <WayPoint UTC="07:15:08" MHdg="114.6" THdg="128.5" Latitude="N37 43.8" Longitude="W139 10.8" 
+    WindDirSpeed="316/016" Temp="-59" LST="14:54:11" Elev="34.2" ROF="290.5" ROFrt="-0.35" 
+    LosWV="67.1" SunEl="-23.4" SunHA="-19.0" />
+    <WayPoint UTC="07:20:08" MHdg="114.9" THdg="128.7" Latitude="N37 17.6" Longitude="W138 30.2" 
+    WindDirSpeed="328/015" Temp="-59" LST="15:01:54" Elev="34.8" ROF="288.7" ROFrt="-0.36" 
+    LosWV="66.9" SunEl="-24.5" SunHA="-20.1" />
+    <WayPoint UTC="07:25:08" MHdg="115.1" THdg="128.8" Latitude="N36 51.2" Longitude="W137 50.3" 
+    WindDirSpeed="342/016" Temp="-59" LST="15:09:34" Elev="35.4" ROF="286.9" ROFrt="-0.36" 
+    LosWV="66.1" SunEl="-25.6" SunHA="-21.2" />
+    <WayPoint UTC="07:30:08" MHdg="115.2" THdg="128.9" Latitude="N36 24.6" Longitude="W137 11.0" 
+    WindDirSpeed="355/017" Temp="-59" LST="15:17:12" Elev="36.0" ROF="285.1" ROFrt="-0.36" 
+    LosWV="64.4" SunEl="-26.7" SunHA="-22.3" />
+    <WayPoint UTC="07:35:08" MHdg="115.4" THdg="129.0" Latitude="N35 57.6" Longitude="W136 32.3" 
+    WindDirSpeed="006/021" Temp="-59" LST="15:24:48" Elev="36.5" ROF="283.2" ROFrt="-0.37" 
+    LosWV="61.2" SunEl="-27.7" SunHA="-23.3" />
+    <WayPoint UTC="07:40:08" MHdg="115.5" THdg="129.0" Latitude="N35 30.4" Longitude="W135 54.1" 
+    WindDirSpeed="013/024" Temp="-59" LST="15:32:21" Elev="37.1" ROF="281.4" ROFrt="-0.37" 
+    LosWV="57.1" SunEl="-28.8" SunHA="-24.3" />
+    <WayPoint UTC="07:45:08" MHdg="115.5" THdg="129.0" Latitude="N35 02.8" Longitude="W135 16.6" 
+    WindDirSpeed="017/030" Temp="-58" LST="15:39:53" Elev="37.6" ROF="279.5" ROFrt="-0.37" 
+    LosWV="53.1" SunEl="-29.7" SunHA="-25.3" />
+    <WayPoint UTC="07:50:08" MHdg="115.5" THdg="128.9" Latitude="N34 34.8" Longitude="W134 39.4" 
+    WindDirSpeed="019/035" Temp="-58" LST="15:47:22" Elev="38.2" ROF="277.6" ROFrt="-0.38" 
+    LosWV="49.6" SunEl="-30.7" SunHA="-26.2" />
+    <WayPoint UTC="07:55:08" MHdg="115.5" THdg="128.8" Latitude="N34 06.5" Longitude="W134 02.6" 
+    WindDirSpeed="019/040" Temp="-57" LST="15:54:50" Elev="38.7" ROF="275.7" ROFrt="-0.38" 
+    LosWV="46.2" SunEl="-31.6" SunHA="-27.1" />
+    <WayPoint UTC="08:00:08" MHdg="115.5" THdg="128.6" Latitude="N33 37.9" Longitude="W133 26.0" 
+    WindDirSpeed="018/042" Temp="-57" LST="16:02:17" Elev="39.3" ROF="273.8" ROFrt="-0.39" 
+    LosWV="41.7" SunEl="-32.4" SunHA="-28.0" />
+    <WayPoint UTC="08:05:08" MHdg="115.4" THdg="128.4" Latitude="N33 09.2" Longitude="W132 49.3" 
+    WindDirSpeed="015/040" Temp="-56" LST="16:09:45" Elev="39.8" ROF="271.8" ROFrt="-0.39" 
+    LosWV="36.8" SunEl="-33.3" SunHA="-28.8" />
+    <WayPoint UTC="08:10:08" MHdg="115.2" THdg="128.2" Latitude="N32 40.9" Longitude="W132 12.3" 
+    WindDirSpeed="010/035" Temp="-56" LST="16:17:14" Elev="40.4" ROF="269.8" ROFrt="-0.40" 
+    LosWV="32.4" SunEl="-34.0" SunHA="-29.6" />
+    <WayPoint UTC="08:15:08" MHdg="115.1" THdg="127.9" Latitude="N32 13.4" Longitude="W131 34.8" 
+    WindDirSpeed="001/022" Temp="-57" LST="16:24:45" Elev="40.9" ROF="267.8" ROFrt="-0.40" 
+    LosWV="24.1" SunEl="-34.7" SunHA="-30.2" />
+    <WayPoint UTC="08:20:08" MHdg="114.9" THdg="127.6" Latitude="N31 47.1" Longitude="W130 56.8" 
+    WindDirSpeed="334/014" Temp="-57" LST="16:32:17" Elev="41.5" ROF="265.8" ROFrt="-0.41" 
+    LosWV="24.6" SunEl="-35.4" SunHA="-30.9" />
+    <WayPoint UTC="08:25:08" MHdg="114.6" THdg="127.2" Latitude="N31 21.9" Longitude="W130 18.3" 
+    WindDirSpeed="280/013" Temp="-58" LST="16:39:52" Elev="42.1" ROF="263.7" ROFrt="-0.41" 
+    LosWV="26.6" SunEl="-35.9" SunHA="-31.4" />
+    <WayPoint UTC="08:30:08" MHdg="114.3" THdg="126.8" Latitude="N30 57.7" Longitude="W129 39.2" 
+    WindDirSpeed="249/020" Temp="-58" LST="16:47:29" Elev="42.7" ROF="261.6" ROFrt="-0.42" 
+    LosWV="30.1" SunEl="-36.4" SunHA="-31.9" />
+    <WayPoint UTC="08:35:08" MHdg="114.0" THdg="126.4" Latitude="N30 34.5" Longitude="W128 59.6" 
+    WindDirSpeed="238/027" Temp="-59" LST="16:55:08" Elev="43.3" ROF="259.5" ROFrt="-0.42" 
+    LosWV="32.6" SunEl="-36.8" SunHA="-32.3" />
+    <WayPoint UTC="08:40:08" MHdg="113.7" THdg="125.9" Latitude="N30 12.1" Longitude="W128 19.7" 
+    WindDirSpeed="234/033" Temp="-60" LST="17:02:49" Elev="43.9" ROF="257.3" ROFrt="-0.43" 
+    LosWV="34.6" SunEl="-37.2" SunHA="-32.7" />
+    <WayPoint UTC="08:45:08" MHdg="113.2" THdg="125.3" Latitude="N29 50.4" Longitude="W127 39.3" 
+    WindDirSpeed="233/037" Temp="-60" LST="17:10:32" Elev="44.5" ROF="255.1" ROFrt="-0.44" 
+    LosWV="34.7" SunEl="-37.4" SunHA="-32.9" />
+  </WayPoints>
+</Leg>
+
+
+<Leg id="8" type="Observation">
+  <Name>Sgr A</Name>
+  <Start>08:51:17</Start>
+  <Duration>00:54:00</Duration>
+  <Alt>43000 ft</Alt>
+  <Mach>0.85</Mach>
+
+  <ObsPlanID>71_0024</ObsPlanID>
+  <ObsBlkID>OB_71_0024_14</ObsBlkID>
+  <Priority>C</Priority>
+  <ObsDur>00:49:00</ObsDur>
+
+  <Target>Sgr A</Target>
+  <RA>17h45m40.04s</RA>
+  <Dec>-29d00m28.2s</Dec>
+  <Equinox>J2000.0</Equinox>
+
+  <Elev start="30.3" end="31.1"/>
+  <ROF start="355.5" end="0.9"/>
+  <ROFRT start="+0.10" end="+0.09" unit="deg/min"/>
+  <GuideStar>FPI:6</GuideStar>
+
+  <MoonAngle>112</MoonAngle>
+  <MoonIllum>21%</MoonIllum>
+  <THdg start="263.9" end="269.4"/>
+  <THdgRT start="+0.11" end="+0.10" unit="deg/min"/>
+
+  <Comment># 53 minutes requested in DCS&lt;br&gt;# 53 minutes planned in DCS&lt;br&gt;# 53 of 53 minutes in this series</Comment>
+
+  <WayPoints>
+    <WayPoint UTC="08:51:17" MHdg="251.8" THdg="263.9" Latitude="N30 15.6" Longitude="W127 29.4" 
+    WindDirSpeed="232/036" Temp="-60" LST="17:17:21" Elev="30.3" ROF="355.5" ROFrt="N/A" 
+    LosWV="48.0" SunEl="-36.9" SunHA="-32.4" />
+    <WayPoint UTC="08:56:17" MHdg="252.3" THdg="264.5" Latitude="N30 13.3" Longitude="W128 13.0" 
+    WindDirSpeed="233/034" Temp="-60" LST="17:19:27" Elev="30.4" ROF="356.0" ROFrt="+0.10" 
+    LosWV="47.5" SunEl="-36.9" SunHA="-32.3" />
+    <WayPoint UTC="09:01:17" MHdg="252.7" THdg="265.0" Latitude="N30 11.1" Longitude="W128 56.8" 
+    WindDirSpeed="238/029" Temp="-59" LST="17:21:33" Elev="30.5" ROF="356.5" ROFrt="+0.10" 
+    LosWV="46.6" SunEl="-36.8" SunHA="-32.3" />
+    <WayPoint UTC="09:06:17" MHdg="253.2" THdg="265.5" Latitude="N30 08.8" Longitude="W129 40.8" 
+    WindDirSpeed="246/024" Temp="-59" LST="17:23:37" Elev="30.5" ROF="357.0" ROFrt="+0.10" 
+    LosWV="45.6" SunEl="-36.8" SunHA="-32.3" />
+    <WayPoint UTC="09:11:17" MHdg="253.7" THdg="266.1" Latitude="N30 06.4" Longitude="W130 25.1" 
+    WindDirSpeed="261/019" Temp="-59" LST="17:25:41" Elev="30.6" ROF="357.5" ROFrt="+0.10" 
+    LosWV="45.1" SunEl="-36.8" SunHA="-32.3" />
+    <WayPoint UTC="09:16:17" MHdg="254.2" THdg="266.6" Latitude="N30 03.8" Longitude="W131 09.9" 
+    WindDirSpeed="285/016" Temp="-59" LST="17:27:43" Elev="30.7" ROF="358.0" ROFrt="+0.10" 
+    LosWV="45.2" SunEl="-36.8" SunHA="-32.2" />
+    <WayPoint UTC="09:21:17" MHdg="254.7" THdg="267.1" Latitude="N30 00.9" Longitude="W131 55.0" 
+    WindDirSpeed="316/015" Temp="-59" LST="17:29:43" Elev="30.8" ROF="358.5" ROFrt="+0.10" 
+    LosWV="45.6" SunEl="-36.7" SunHA="-32.2" />
+    <WayPoint UTC="09:26:17" MHdg="255.2" THdg="267.6" Latitude="N29 57.9" Longitude="W132 40.6" 
+    WindDirSpeed="341/016" Temp="-59" LST="17:31:42" Elev="30.9" ROF="359.0" ROFrt="+0.10" 
+    LosWV="46.3" SunEl="-36.7" SunHA="-32.2" />
+    <WayPoint UTC="09:31:17" MHdg="255.7" THdg="268.1" Latitude="N29 55.0" Longitude="W133 26.6" 
+    WindDirSpeed="360/018" Temp="-60" LST="17:33:38" Elev="30.9" ROF="359.5" ROFrt="+0.10" 
+    LosWV="47.5" SunEl="-36.7" SunHA="-32.2" />
+    <WayPoint UTC="09:36:17" MHdg="256.2" THdg="268.6" Latitude="N29 52.2" Longitude="W134 13.1" 
+    WindDirSpeed="014/020" Temp="-60" LST="17:35:33" Elev="31.0" ROF="0.0" ROFrt="+0.10" 
+    LosWV="49.5" SunEl="-36.6" SunHA="-32.1" />
+    <WayPoint UTC="09:41:17" MHdg="256.7" THdg="269.1" Latitude="N29 49.7" Longitude="W135 00.0" 
+    WindDirSpeed="027/022" Temp="-60" LST="17:37:26" Elev="31.1" ROF="0.5" ROFrt="+0.10" 
+    LosWV="51.9" SunEl="-36.6" SunHA="-32.1" />
+    <WayPoint UTC="09:45:17" MHdg="257.1" THdg="269.4" Latitude="N29 48.0" Longitude="W135 37.9" 
+    WindDirSpeed="034/023" Temp="-60" LST="17:38:56" Elev="31.1" ROF="0.9" ROFrt="+0.09" 
+    LosWV="53.3" SunEl="-36.5" SunHA="-32.0" />
+  </WayPoints>
+</Leg>
+
+
+<Leg id="9" type="Observation">
+  <Name>Mrk 0290</Name>
+  <Start>09:49:34</Start>
+  <Duration>01:35:00</Duration>
+  <Alt>43000 ft</Alt>
+  <Mach>0.85</Mach>
+
+  <ObsPlanID>08_0226</ObsPlanID>
+  <ObsBlkID>OB_08_0226_04</ObsBlkID>
+  <Priority>D</Priority>
+  <ObsDur>01:25:00</ObsDur>
+
+  <Target>Mrk 0290</Target>
+  <RA>15h35m52.36s</RA>
+  <Dec>57d54m09.2s</Dec>
+  <Equinox>J2000.0</Equinox>
+
+  <Elev start="54.8" end="42.1"/>
+  <ROF start="132.5" end="88.1"/>
+  <ROFRT start="-0.56" end="-0.39" unit="deg/min"/>
+  <GuideStar>FPI:0</GuideStar>
+
+  <MoonAngle>112</MoonAngle>
+  <MoonIllum>21%</MoonIllum>
+  <THdg start="64.6" end="50.5"/>
+  <THdgRT start="-0.26" end="-0.04" unit="deg/min"/>
+
+  <Comment>FFI guided&lt;br&gt;# 129 minutes requested in DCS&lt;br&gt;# 150 minutes planned in DCS&lt;br&gt;# 75 of 108 minutes in this series&lt;br&gt;# 75 on MAXINE (this flight)&lt;br&gt;# 33 on MILDRED</Comment>
+
+  <WayPoints>
+    <WayPoint UTC="09:49:34" MHdg="52.2" THdg="64.6" Latitude="N30 10.7" Longitude="W135 45.1" 
+    WindDirSpeed="031/024" Temp="-60" LST="17:42:45" Elev="54.8" ROF="132.5" ROFrt="N/A" 
+    LosWV="33.4" SunEl="-36.0" SunHA="-31.5" />
+    <WayPoint UTC="09:54:34" MHdg="50.8" THdg="63.2" Latitude="N30 26.7" Longitude="W135 04.4" 
+    WindDirSpeed="022/025" Temp="-60" LST="17:50:28" Elev="54.2" ROF="129.7" ROFrt="-0.56" 
+    LosWV="32.5" SunEl="-35.3" SunHA="-30.8" />
+    <WayPoint UTC="09:59:34" MHdg="49.5" THdg="62.0" Latitude="N30 43.2" Longitude="W134 23.8" 
+    WindDirSpeed="013/026" Temp="-60" LST="17:58:12" Elev="53.6" ROF="127.0" ROFrt="-0.55" 
+    LosWV="31.0" SunEl="-34.6" SunHA="-30.1" />
+    <WayPoint UTC="10:04:34" MHdg="48.2" THdg="60.8" Latitude="N31 00.3" Longitude="W133 43.1" 
+    WindDirSpeed="005/027" Temp="-59" LST="18:05:55" Elev="52.9" ROF="124.3" ROFrt="-0.53" 
+    LosWV="28.8" SunEl="-33.8" SunHA="-29.2" />
+    <WayPoint UTC="10:09:34" MHdg="47.1" THdg="59.7" Latitude="N31 18.1" Longitude="W133 02.5" 
+    WindDirSpeed="001/027" Temp="-59" LST="18:13:39" Elev="52.3" ROF="121.7" ROFrt="-0.52" 
+    LosWV="26.2" SunEl="-32.9" SunHA="-28.4" />
+    <WayPoint UTC="10:14:34" MHdg="46.0" THdg="58.7" Latitude="N31 36.6" Longitude="W132 21.9" 
+    WindDirSpeed="358/025" Temp="-58" LST="18:21:22" Elev="51.6" ROF="119.1" ROFrt="-0.51" 
+    LosWV="23.7" SunEl="-32.0" SunHA="-27.5" />
+    <WayPoint UTC="10:19:34" MHdg="44.9" THdg="57.7" Latitude="N31 56.0" Longitude="W131 41.5" 
+    WindDirSpeed="356/021" Temp="-58" LST="18:29:04" Elev="50.9" ROF="116.6" ROFrt="-0.50" 
+    LosWV="20.9" SunEl="-31.0" SunHA="-26.5" />
+    <WayPoint UTC="10:24:34" MHdg="44.0" THdg="56.8" Latitude="N32 16.4" Longitude="W131 01.3" 
+    WindDirSpeed="357/016" Temp="-57" LST="18:36:46" Elev="50.3" ROF="114.2" ROFrt="-0.49" 
+    LosWV="18.3" SunEl="-30.0" SunHA="-25.5" />
+    <WayPoint UTC="10:29:34" MHdg="43.1" THdg="56.0" Latitude="N32 37.8" Longitude="W130 21.5" 
+    WindDirSpeed="003/009" Temp="-57" LST="18:44:26" Elev="49.6" ROF="111.8" ROFrt="-0.48" 
+    LosWV="15.9" SunEl="-28.9" SunHA="-24.4" />
+    <WayPoint UTC="10:34:34" MHdg="42.3" THdg="55.2" Latitude="N33 00.3" Longitude="W129 41.9" 
+    WindDirSpeed="037/003" Temp="-57" LST="18:52:05" Elev="48.9" ROF="109.4" ROFrt="-0.47" 
+    LosWV="15.1" SunEl="-27.8" SunHA="-23.3" />
+    <WayPoint UTC="10:39:34" MHdg="41.5" THdg="54.4" Latitude="N33 23.8" Longitude="W129 02.7" 
+    WindDirSpeed="145/004" Temp="-58" LST="18:59:43" Elev="48.2" ROF="107.1" ROFrt="-0.46" 
+    LosWV="17.6" SunEl="-26.6" SunHA="-22.1" />
+    <WayPoint UTC="10:44:34" MHdg="40.8" THdg="53.8" Latitude="N33 48.0" Longitude="W128 23.8" 
+    WindDirSpeed="158/008" Temp="-58" LST="19:07:19" Elev="47.6" ROF="104.8" ROFrt="-0.45" 
+    LosWV="22.0" SunEl="-25.4" SunHA="-20.9" />
+    <WayPoint UTC="10:49:34" MHdg="40.1" THdg="53.2" Latitude="N34 12.8" Longitude="W127 45.1" 
+    WindDirSpeed="163/010" Temp="-59" LST="19:14:55" Elev="46.9" ROF="102.6" ROFrt="-0.45" 
+    LosWV="26.6" SunEl="-24.2" SunHA="-19.7" />
+    <WayPoint UTC="10:54:34" MHdg="39.5" THdg="52.6" Latitude="N34 38.0" Longitude="W127 06.5" 
+    WindDirSpeed="166/011" Temp="-59" LST="19:22:30" Elev="46.2" ROF="100.4" ROFrt="-0.44" 
+    LosWV="31.1" SunEl="-22.9" SunHA="-18.4" />
+    <WayPoint UTC="10:59:34" MHdg="39.0" THdg="52.1" Latitude="N35 03.4" Longitude="W126 28.0" 
+    WindDirSpeed="165/010" Temp="-60" LST="19:30:05" Elev="45.5" ROF="98.2" ROFrt="-0.43" 
+    LosWV="34.9" SunEl="-21.6" SunHA="-17.1" />
+    <WayPoint UTC="11:04:34" MHdg="38.5" THdg="51.7" Latitude="N35 29.0" Longitude="W125 49.6" 
+    WindDirSpeed="167/008" Temp="-60" LST="19:37:39" Elev="44.9" ROF="96.1" ROFrt="-0.42" 
+    LosWV="38.7" SunEl="-20.3" SunHA="-15.8" />
+    <WayPoint UTC="11:09:34" MHdg="38.1" THdg="51.3" Latitude="N35 54.7" Longitude="W125 11.1" 
+    WindDirSpeed="168/007" Temp="-60" LST="19:45:14" Elev="44.2" ROF="94.1" ROFrt="-0.41" 
+    LosWV="41.6" SunEl="-19.0" SunHA="-14.5" />
+    <WayPoint UTC="11:14:34" MHdg="37.8" THdg="51.0" Latitude="N36 20.4" Longitude="W124 32.6" 
+    WindDirSpeed="173/005" Temp="-60" LST="19:52:49" Elev="43.5" ROF="92.0" ROFrt="-0.41" 
+    LosWV="42.4" SunEl="-17.6" SunHA="-13.1" />
+    <WayPoint UTC="11:19:34" MHdg="37.5" THdg="50.8" Latitude="N36 46.2" Longitude="W123 53.9" 
+    WindDirSpeed="181/004" Temp="-60" LST="20:00:25" Elev="42.8" ROF="90.0" ROFrt="-0.40" 
+    LosWV="41.6" SunEl="-16.3" SunHA="-11.8" />
+    <WayPoint UTC="11:24:34" MHdg="37.3" THdg="50.5" Latitude="N37 12.1" Longitude="W123 15.0" 
+    WindDirSpeed="193/005" Temp="-60" LST="20:08:01" Elev="42.1" ROF="88.1" ROFrt="-0.39" 
+    LosWV="39.7" SunEl="-14.9" SunHA="-10.4" />
+  </WayPoints>
+</Leg>
+
+
+<Leg id="10" type="Arrival">
+  <Name>Approach via ETHER</Name>
+  <Start>11:26:29</Start>
+  <Duration>00:45:24</Duration>
+  <Alt>43000 ft</Alt>
+  <Mach>0.85</Mach>
+
+  <Airport>KPMD</Airport>
+  <EndLat>N34 39.8</EndLat>
+  <EndLon>W117 45.8</EndLon>
+  <Sunrise>12:39:30</Sunrise>
+  <SunriseAz>61</SunriseAz>
+  <SunAzDelta>119</SunAzDelta>
+
+  <Comment>sunrise 12:40&lt;br&gt;triggers Rule 12</Comment>
+
+  <WayPoints>
+    <WayPoint UTC="11:26:29" MHdg="107.2" THdg="120.4" Latitude="N37 13.4" Longitude="W122 56.8" 
+    WindDirSpeed="196/005" Temp="-60" LST="20:11:09" Elev="N/A" ROF="N/A" ROFrt="N/A" 
+    LosWV="N/A" SunEl="-14.5" SunHA="-9.9" />
+    <WayPoint UTC="12:03:27" MHdg="111.8" THdg="123.5" Latitude="N34 39.8" Longitude="W117 45.8" 
+    WindDirSpeed="206/006" Temp="-61" LST="21:08:57" Elev="N/A" ROF="N/A" ROFrt="N/A" 
+    LosWV="N/A" SunEl="-6.9" SunHA="-2.4" Status="TURN" />
+    <WayPoint UTC="12:03:38" MHdg="253.6" THdg="265.3" Latitude="N34 38.7" Longitude="W117 46.1" 
+    WindDirSpeed="281/005" Temp="26" LST="21:09:07" Elev="N/A" ROF="N/A" ROFrt="N/A" 
+    LosWV="N/A" SunEl="-6.9" SunHA="-5.2" />
+    <WayPoint UTC="12:07:09" MHdg="254.8" THdg="266.6" Latitude="N34 37.7" Longitude="W118 05.0" 
+    WindDirSpeed="284/005" Temp="25" LST="21:11:23" Elev="N/A" ROF="N/A" ROFrt="N/A" 
+    LosWV="N/A" SunEl="-6.5" SunHA="-4.8" />
+    <WayPoint UTC="12:11:53" MHdg="254.8" THdg="266.6" Latitude="N34 37.7" Longitude="W118 05.0" 
+    WindDirSpeed="283/005" Temp="25" LST="21:16:08" Elev="N/A" ROF="N/A" ROFrt="N/A" 
+    LosWV="N/A" SunEl="-5.7" SunHA="-4.0" />
+  </WayPoints>
+  <PotentialSUAIncursions>
+    <SUA ZoneSec="R2508" Type="Restricted" Ctrl="KZLA" Name="COMPLEX, CA" EffectiveTime="CONT" />
+    <SUA ZoneSec="R2515" Type="Restricted" Ctrl="KZLA" Name="MUROC LAKE, CA" EffectiveTime="CONT" />
+  </PotentialSUAIncursions>
+</Leg>
+
+</Legs>
+</FlightPlan>

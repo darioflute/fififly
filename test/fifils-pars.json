@@ -1,0 +1,18 @@
+{
+    "Focus Position (xml)": 372,
+    "Focus Relation": 4.3,
+    "Spexel size blue": 800,
+    "Spexel size red": 730,
+    "Instr_rotator_axis_x":-0.096,
+    "Instr_rotator_axis_y":-1.057,
+    "TO focus":"TBD",
+    "Setpoint X":"TBD",
+    "Setpoint Y":"TBD",
+    "BD130 Rx_cx": 0.90,
+    "BD130 Rx_cy": -0.74,
+    "BD105 Rx_cx": 1.41,
+    "BD105 Rx_cy":-0.60,
+    "Red Rx_cx": -0.77,
+    "Red Rx_cy":-0.69,
+    "K-mirror 0 Position":52
+}
