@@ -77,10 +77,16 @@ def startDescription(aorfile):
             obBlockID = str(obBlockID.text)
             if obBlockID != 'None':
                 print('obBlockID', obBlockID)
+                # Get comment
+                comment = str(leg.find('Comment').text)
+                print('comment ', comment)
+                comment.replace('<br>', '\\')
+                comment.replace('#','')
+                print('comment ', comment)
                 aorid = obBlockID[3:10]
                 # Grab info from aor file
                 aordata = readAOR(aorid, path)
-                abstract, PropID, PIname = aordata
+                title, abstract, PropID, PIname = aordata
                 
                 # Check if directory with images exist
                 imagefile = os.path.join(path, aorid, '1.png')
@@ -94,7 +100,9 @@ def startDescription(aorfile):
                     'obsBlock': obBlockID,
                     'propid': PropID,
                     'piname': PIname,
+                    'title': title,
                     'abstract': abstract,
+                    'comment': comment,
                     'imagefile': imagefile
                     }
     outfile = os.path.join(path,fname+'.json')
@@ -156,6 +164,7 @@ def readAOR(aorid, path):
     print('aorfile ', aorfile)
     #tree = ET(file=aorfile)
     tree = ET.parse(aorfile)
+    title = tree.find('list/ProposalInfo/ProposalTitle')
     abstract = tree.find('list/ProposalInfo/ProposalAbstract')
     print('abstract ', abstract.text[:20])
     # get Proposal ID
@@ -166,8 +175,21 @@ def readAOR(aorid, path):
     #PIname = PI.attrib['Honorific'] + ' ' + PI.attrib['FirstName'] + ' ' + PI.attrib['LastName']
     PIname = PI.attrib['FirstName'] + ' ' + PI.attrib['LastName']
     
-    return abstract.text, PropID, PIname
+    return title.text, abstract.text, PropID, PIname
         
+
+def createAorMap():
+    """
+    Create a map using a DSS field and FIFI-LS maps (blue/red)
+    Probably also guide stars
+
+    Returns
+    -------
+    None.
+
+    """
+    pass
+
         
 def flightTable(aorfile):
     """
@@ -353,13 +375,14 @@ def makeCover(aorfile, cycle):
         r'\begin{titlepage}',
         r'\begin{center}',
         r'\vspace*{1cm}',
-        r'\textbf{\Huge FIFI-LS\\}',
+        #r'\textbf{\Huge FIFI-LS\\}',
+        r'\includegraphics[width=0.35\textwidth]{../test/fifilogosmall}\\',
         r'\vspace{0.5cm}',
-        r'{\huge\sl Flight Description\\}',
-        r'\vspace{2.5cm}',
+        r'{\Huge\bf Flight Description\\}',
+        r'\vspace{1.cm}',
         r'\includegraphics[width=0.7\textwidth]{../test/sofia}\\',
-        r'\vspace{2.5cm}',
-        r'\textbf{\Large Obs Cycle: '+cycle+r'}\\',
+        r'\vspace{2.cm}',
+        r'\textbf{\sl\Large Obs Cycle: '+cycle+r'}\\',
         r'\vspace{0.5cm}',
         r'\textbf{\Large Flight name: '+names[2]+r'}\\',
         r'\vspace{0.5cm}',
@@ -391,7 +414,8 @@ def makePreamble():
         r'\pagestyle{fancy}',
         r'\fancyhf{}',
         r'\rhead{FIFI-LS Flight Description}',
-        r'\fancyhead[L]{\leftmark}',
+        #r'\fancyhead[L]{\leftmark}',
+        r'\fancyhead[L]{\itshape\nouppercase{\leftmark}}',
         r'\rfoot{Page \thepage / \pageref{LastPage}}',
         r'\begin{document}'
         ]
@@ -443,16 +467,27 @@ def writeLatex(aorfile, cycle):
         for obsBlock in obsBlocks:
             block = data[obsBlock]
             propid = block['propid']
+            comment = block['comment'].replace('<br>','; ').replace('#','')
+            
+            title = block['title']
             propid = propid.replace("_", "\_")
-            f.write(r'\section{'+propid+' PI: '+block['piname']+'}\n')
+            f.write(r'\section{'+title+'}\n')
+            if len(title) > 70:
+                f.write(r'\sectionmark{'+title[:70]+'...}\n')
+            f.write(r'{\large {\bf AOR ID:} '+propid+ r' {\bf PI:} '+block['piname']+r'}\\'+'\n')
+            f.write(r'{\bf Comments:} '+comment+r'\\'+'\n')
             # Insert Figure
             imagefile = block['imagefile']
             if imagefile is not None:
                 f.write(r'\begin{center}'+'\n')
-                f.write(r'\includegraphics[width=0.70\textwidth]{'+imagefile+'}'+'\n')
+                f.write(r'\includegraphics[width=0.60\textwidth]{'+imagefile+'}'+'\n')
                 f.write(r'\end{center}'+'\n')
-            # Insert abstract
-            f.write(block['abstract']+'\n')
+            else:
+                f.write(r'\newline'+'\n')    
+            # Insert abstract            
+            abstract = block['abstract']
+            abstract = abstract.replace('>','$>$').replace('<','$<$')
+            f.write(abstract+'\n')
         f.write(r'\end{document}')
 
 

@@ -1,0 +1,35 @@
+{% set name = "fififly" %}
+{% set version = "0.1" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  git_tag: master
+  git_url: https://github.com/darioflute/fififly.git
+
+build:
+  
+requirements:
+  build:
+    - setuptools
+    - python
+
+  run:
+    - python
+    - matplotlib >=3.0.2
+    - numpy >=1.11
+    - scipy
+    - astropy >=3.0
+    - lxml >=4.6
+        
+test:
+  imports:
+    - fififly
+
+about:
+  home: https://github.com/darioflute/fififly
+  license: GPL3
+  license_file: LICENSE
+  description: 'Library for preparing FIFI-LS flights.'
