@@ -1,0 +1,776 @@
+<AORs>
+  <list>
+    <AorMetaData>
+      <AorType>AORs</AorType>
+      <Version>9.0</Version>
+    </AorMetaData>
+    <ProposalInfo Status="Approved" TACQueue="US" SoftwareVersion="4.3.6  Final" CycleID="71" ObsPlanState="PENDING">
+      <ProposalID>71_0024</ProposalID>
+      <ProposalTitle>Instrument Characterization Request: OTF Mapping for FIFI-LS</ProposalTitle>
+      <AwardedTime>0.0</AwardedTime>
+      <Category>OPEN</Category>
+      <TACPanel>ISM</TACPanel>
+      <ScienceKeywords>IMAGING,SPECTROSCOPY</ScienceKeywords>
+      <ProposalAbstract>We propose to test the possibility of implementing an OTF raster mapping mode for FIFI-LS. This mode will be almost identical to that used by the GREAT instrument and to take full 
+advantage of the common KOSMA translator interface. We estimate this mode could increase the efficiency of large mapping done with FIFI-LS in total power mode by about 30%. In addition, it would result in much finer spatial sampling, which is clearly beneficial for FIFI-LS observations with its large (6” in the blue and 12” in the red) spaxels. In order to avoid undersampling the PSF with the large pixel scales, most FIFI-LS science observations are obtained in the chop-nod mode with multiple dither positions.  Such observations can be challenging for short 
+integrations on large maps. In addition, OTF mapping will result in better self-flat-fielding of the data, since more FIFI-LS spaxels will integrate on the same positions on the sky. In 
+summary, OTF mapping with FIFI-LS would greatly improve the data obtained with the instrument by improving the flat-fielding and spatial sampling, enable rapid mapping of large sources, avoid the difficulties of finding nearby chop positions without emission, and simultaneously increase observing efficiency by reducing the telescope overheads</ProposalAbstract>
+      <IsQueue>true</IsQueue>
+      <IsTOO>false</IsTOO>
+      <IsLongTerm>false</IsLongTerm>
+      <IsService>false</IsService>
+      <IsSurvey>false</IsSurvey>
+      <IsEpoRequested>false</IsEpoRequested>
+      <IsImpact>false</IsImpact>
+      <IsThesis>false</IsThesis>
+      <IsWaiveExclusiveUse>false</IsWaiveExclusiveUse>
+      <IsArchival>false</IsArchival>
+      <IsSmallArchival>false</IsSmallArchival>
+      <MultiObservatoryProposal>NONE</MultiObservatoryProposal>
+      <SpecialInstructions></SpecialInstructions>
+      <TotalObsDuration>13358.0</TotalObsDuration>
+      <SubmissionKey>yBXKMqD9r6D1wMmN</SubmissionKey>
+      <pdf></pdf>
+      <teampdf></teampdf>
+      <ObservationStatus></ObservationStatus>
+      <RelatedProposals></RelatedProposals>
+      <ResubmitProposal></ResubmitProposal>
+      <Investigator FirstName="Christian" LastName="Fischer" Honorific="NONE" JobTitle="" Institution="DSI" State="NONE" Street1="" City="" Postcode="" Phone="" Country="">
+        <DCSUserName>fischer@dsi.uni-stuttgart.de</DCSUserName>
+        <ContactEmail>fischer@dsi.uni-stuttgart.de</ContactEmail>
+        <Primary></Primary>
+      </Investigator>
+      <Investigator FirstName="Sebastian" LastName="Colditz" Honorific="NONE" JobTitle="" Institution="DSI" State="NONE" Street1="" City="" Postcode="" Phone="" Country="">
+        <DCSUserName></DCSUserName>
+        <ContactEmail>colditz@dsi.uni-stuttgart.de</ContactEmail>
+      </Investigator>
+      <Investigator FirstName="William" LastName="Vacca" Honorific="NONE" JobTitle="" Institution="USRA" State="CA" Street1="" City="" Postcode="" Phone="" Country="">
+        <DCSUserName>wvacca@sofia.usra.edu</DCSUserName>
+        <ContactEmail>wvacca@sofia.usra.edu</ContactEmail>
+      </Investigator>
+    </ProposalInfo>
+    <list>
+      <SofiaTargetFixedSingle>
+        <name>M82</name>
+        <targetAttributes/>
+        <locationAttributes/>
+        <position>
+          <lon>148.96845791666664</lon>
+          <lat>69.67970305555556</lat>
+          <pm>
+            <lonPm>0.0</lonPm>
+            <latPm>0.0</latPm>
+          </pm>
+          <coordSystem>
+            <jsys>0</jsys>
+            <equinoxYear>2000.0</equinoxYear>
+            <equinoxDesc>J2000</equinoxDesc>
+            <coodSysName>Equatorial</coodSysName>
+            <jsysDesc>Equatorial J</jsysDesc>
+            <equatorial>true</equatorial>
+            <ecliptic>false</ecliptic>
+            <galactic>false</galactic>
+          </coordSystem>
+          <epoch>2000.0</epoch>
+        </position>
+        <guideStarList class="vector">
+          <Guidestar Imager="FPI-TO" Catalog="UCAC4" Radius="144.097">
+            <GuideStarName>799-019119</GuideStarName>
+            <GuideStarRA>148.8956298828125</GuideStarRA>
+            <GuideStarDec>69.6486948</GuideStarDec>
+            <GuideStarMagnitude Type="V">9.941</GuideStarMagnitude>
+            <GuideStarMagnitude2 Type="r">9.883</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.015099999999999999</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.0211</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.6669999999999998</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="FPI-TO" Catalog="UCAC4" Radius="4.124">
+            <GuideStarName>799-019129</GuideStarName>
+            <GuideStarRA>148.96568298339844</GuideStarRA>
+            <GuideStarDec>69.6803195</GuideStarDec>
+            <GuideStarMagnitude Type="V">12.551</GuideStarMagnitude>
+            <GuideStarMagnitude2 Type="r">11.889</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.0555</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>0.0165</GuideStarProperMotionDec>
+            <GuideStarBminusV>1.1310000000000002</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="FPI-TO" Catalog="UCAC4" Radius="53.338">
+            <GuideStarName>799-019138</GuideStarName>
+            <GuideStarRA>149.00579833984375</GuideStarRA>
+            <GuideStarDec>69.6868712</GuideStarDec>
+            <GuideStarMagnitude Type="V">12.364</GuideStarMagnitude>
+            <GuideStarMagnitude2 Type="r">12.113</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-999.0</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-999.0</GuideStarProperMotionDec>
+            <GuideStarBminusV>-999.0</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="FPI-TO" Catalog="UCAC4" Radius="112.662">
+            <GuideStarName>799-019146</GuideStarName>
+            <GuideStarRA>149.05064392089844</GuideStarRA>
+            <GuideStarDec>69.6925628</GuideStarDec>
+            <GuideStarMagnitude Type="V">13.576</GuideStarMagnitude>
+            <GuideStarMagnitude2 Type="f">16.589</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-999.0</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-999.0</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.8449999999999989</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="FFI" Catalog="HIPPARCOS" Radius="1031.284">
+            <GuideStarName>HIP48486</GuideStarName>
+            <GuideStarRA>148.3218231201172</GuideStarRA>
+            <GuideStarDec>69.858761955</GuideStarDec>
+            <GuideStarMagnitude Type="V">7.92</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.00667</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.01188</GuideStarProperMotionDec>
+            <GuideStarBminusV>1.197</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="FFI" Catalog="HIPPARCOS" Radius="1301.291">
+            <GuideStarName>HIP48691</GuideStarName>
+            <GuideStarRA>148.94558715820312</GuideStarRA>
+            <GuideStarDec>70.0411439992</GuideStarDec>
+            <GuideStarMagnitude Type="V">8.46</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.00414</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>0.02334</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.717</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="WFI" Catalog="HIPPARCOS" Radius="6681.684">
+            <GuideStarName>HIP46977</GuideStarName>
+            <GuideStarRA>143.62025451660156</GuideStarRA>
+            <GuideStarDec>69.8303427762</GuideStarDec>
+            <GuideStarMagnitude Type="V">4.54</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.0639</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>0.07759</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.781</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="WFI" Catalog="HIPPARCOS" Radius="15091.948">
+            <GuideStarName>HIP52425</GuideStarName>
+            <GuideStarRA>160.76683044433594</GuideStarRA>
+            <GuideStarDec>69.0762139931</GuideStarDec>
+            <GuideStarMagnitude Type="V">5.01</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>2.8000000000000003E-4</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.01286</GuideStarProperMotionDec>
+            <GuideStarBminusV>1.406</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="WFI" Catalog="HIPPARCOS" Radius="10005.596">
+            <GuideStarName>HIP47654</GuideStarName>
+            <GuideStarRA>145.73828125</GuideStarRA>
+            <GuideStarDec>72.2526183039</GuideStarDec>
+            <GuideStarMagnitude Type="V">5.15</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.02671</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.027489999999999997</GuideStarProperMotionDec>
+            <GuideStarBminusV>1.029</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="WFI" Catalog="HIPPARCOS" Radius="4586.73">
+            <GuideStarName>HIP47594</GuideStarName>
+            <GuideStarRA>145.561767578125</GuideStarRA>
+            <GuideStarDec>69.2375373588</GuideStarDec>
+            <GuideStarMagnitude Type="V">5.72</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.06655</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.0694</GuideStarProperMotionDec>
+            <GuideStarBminusV>1.131</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="WFI" Catalog="HIPPARCOS" Radius="10979.241">
+            <GuideStarName>HIP47013</GuideStarName>
+            <GuideStarRA>143.7230224609375</GuideStarRA>
+            <GuideStarDec>72.2056792311</GuideStarDec>
+            <GuideStarMagnitude Type="V">5.77</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>0.07202</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.07606</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.53</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="WFI" Catalog="HIPPARCOS" Radius="11542.218">
+            <GuideStarName>HIP48893</GuideStarName>
+            <GuideStarRA>149.59487915039062</GuideStarRA>
+            <GuideStarDec>72.8795092153</GuideStarDec>
+            <GuideStarMagnitude Type="V">5.86</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.06992</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.036520000000000004</GuideStarProperMotionDec>
+            <GuideStarBminusV>1.155</GuideStarBminusV>
+          </Guidestar>
+        </guideStarList>
+      </SofiaTargetFixedSingle>
+      <SofiaTargetFixedSingle>
+        <name>irc+10216</name>
+        <targetAttributes/>
+        <locationAttributes/>
+        <position>
+          <lon>146.98928</lon>
+          <lat>13.27879</lat>
+          <pm>
+            <lonPm>0.0</lonPm>
+            <latPm>0.0</latPm>
+          </pm>
+          <coordSystem>
+            <jsys>0</jsys>
+            <equinoxYear>2000.0</equinoxYear>
+            <equinoxDesc>J2000</equinoxDesc>
+            <coodSysName>Equatorial</coodSysName>
+            <jsysDesc>Equatorial J</jsysDesc>
+            <equatorial>true</equatorial>
+            <ecliptic>false</ecliptic>
+            <galactic>false</galactic>
+          </coordSystem>
+          <epoch>2000.0</epoch>
+        </position>
+        <guideStarList class="vector">
+          <Guidestar Imager="FPI-TO" Catalog="UCAC4" Radius="140.756">
+            <GuideStarName>517-050278</GuideStarName>
+            <GuideStarRA>146.96395874023438</GuideStarRA>
+            <GuideStarDec>13.3091437</GuideStarDec>
+            <GuideStarMagnitude Type="V">10.6</GuideStarMagnitude>
+            <GuideStarMagnitude2 Type="r">10.348</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.09540000000000001</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.0293</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.8290000000000006</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="FPI-TO" Catalog="UCAC4" Radius="153.232">
+            <GuideStarName>517-050280</GuideStarName>
+            <GuideStarRA>146.98190307617188</GuideStarRA>
+            <GuideStarDec>13.2368364</GuideStarDec>
+            <GuideStarMagnitude Type="V">12.999</GuideStarMagnitude>
+            <GuideStarMagnitude2 Type="r">12.846</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>4.0E-4</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.0211</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.5609999999999999</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="FPI-TO" Catalog="UCAC4" Radius="210.886">
+            <GuideStarName>517-050277</GuideStarName>
+            <GuideStarRA>146.95640563964844</GuideStarRA>
+            <GuideStarDec>13.3278659</GuideStarDec>
+            <GuideStarMagnitude Type="V">16.397</GuideStarMagnitude>
+            <GuideStarMagnitude2 Type="r">16.357</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>0.0176</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.0127</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.6180000000000021</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="FFI" Catalog="HIPPARCOS" Radius="722.908">
+            <GuideStarName>HIP48060</GuideStarName>
+            <GuideStarRA>146.9617919921875</GuideStarRA>
+            <GuideStarDec>13.4777514293</GuideStarDec>
+            <GuideStarMagnitude Type="V">7.52</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>0.06302</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.015470000000000001</GuideStarProperMotionDec>
+            <GuideStarBminusV>1.118</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="FFI" Catalog="HIPPARCOS" Radius="1886.079">
+            <GuideStarName>HIP48152</GuideStarName>
+            <GuideStarRA>147.23374938964844</GuideStarRA>
+            <GuideStarDec>13.7442556653</GuideStarDec>
+            <GuideStarMagnitude Type="V">8.33</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>0.37381</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.77475</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.399</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="FFI" Catalog="HIPPARCOS" Radius="1782.898">
+            <GuideStarName>HIP47930</GuideStarName>
+            <GuideStarRA>146.5115966796875</GuideStarRA>
+            <GuideStarDec>13.4500583392</GuideStarDec>
+            <GuideStarMagnitude Type="V">8.92</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.02526</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.0025800000000000003</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.364</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="WFI" Catalog="HIPPARCOS" Radius="13587.016">
+            <GuideStarName>HIP47508</GuideStarName>
+            <GuideStarRA>145.2876434326172</GuideStarRA>
+            <GuideStarDec>9.8923079955</GuideStarDec>
+            <GuideStarMagnitude Type="V">3.52</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.14367</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.037450000000000004</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.516</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="WFI" Catalog="HIPPARCOS" Radius="9494.657">
+            <GuideStarName>HIP48883</GuideStarName>
+            <GuideStarRA>149.55572509765625</GuideStarRA>
+            <GuideStarDec>12.444800301</GuideStarDec>
+            <GuideStarMagnitude Type="V">5.26</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.02528</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.01607</GuideStarProperMotionDec>
+            <GuideStarBminusV>-0.035</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="WFI" Catalog="HIPPARCOS" Radius="4561.712">
+            <GuideStarName>HIP47723</GuideStarName>
+            <GuideStarRA>145.9329376220703</GuideStarRA>
+            <GuideStarDec>14.0216920607</GuideStarDec>
+            <GuideStarMagnitude Type="V">5.36</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>0.00518</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.00613</GuideStarProperMotionDec>
+            <GuideStarBminusV>1.61</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="WFI" Catalog="HIPPARCOS" Radius="5464.153">
+            <GuideStarName>HIP47959</GuideStarName>
+            <GuideStarRA>146.59719848632812</GuideStarRA>
+            <GuideStarDec>11.81004306</GuideStarDec>
+            <GuideStarMagnitude Type="V">5.67</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.015449999999999998</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>0.01728</GuideStarProperMotionDec>
+            <GuideStarBminusV>1.489</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="WFI" Catalog="HIPPARCOS" Radius="14814.001">
+            <GuideStarName>HIP47189</GuideStarName>
+            <GuideStarRA>144.26075744628906</GuideStarRA>
+            <GuideStarDec>16.437951804</GuideStarDec>
+            <GuideStarMagnitude Type="V">5.73</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.016989999999999998</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.0030099999999999997</GuideStarProperMotionDec>
+            <GuideStarBminusV>1.223</GuideStarBminusV>
+          </Guidestar>
+        </guideStarList>
+      </SofiaTargetFixedSingle>
+      <SofiaTargetFixedSingle>
+        <name>Sgr A</name>
+        <targetAttributes/>
+        <locationAttributes/>
+        <position>
+          <lon>266.4168166666667</lon>
+          <lat>-29.007825</lat>
+          <pm>
+            <lonPm>0.0</lonPm>
+            <latPm>0.0</latPm>
+          </pm>
+          <coordSystem>
+            <jsys>0</jsys>
+            <equinoxYear>2000.0</equinoxYear>
+            <equinoxDesc>J2000</equinoxDesc>
+            <coodSysName>Equatorial</coodSysName>
+            <jsysDesc>Equatorial J</jsysDesc>
+            <equatorial>true</equatorial>
+            <ecliptic>false</ecliptic>
+            <galactic>false</galactic>
+          </coordSystem>
+          <epoch>2000.0</epoch>
+        </position>
+        <guideStarList class="vector">
+          <Guidestar Imager="FPI-TO" Catalog="UCAC4" Radius="169.735">
+            <GuideStarName>305-142184</GuideStarName>
+            <GuideStarRA>266.4646301269531</GuideStarRA>
+            <GuideStarDec>-29.0296092</GuideStarDec>
+            <GuideStarMagnitude Type="V">11.713</GuideStarMagnitude>
+            <GuideStarMagnitude2 Type="r">11.551</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.0058</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.026600000000000002</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.6130000000000013</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="FPI-TO" Catalog="UCAC4" Radius="117.703">
+            <GuideStarName>306-136688</GuideStarName>
+            <GuideStarRA>266.3811340332031</GuideStarRA>
+            <GuideStarDec>-28.9980942</GuideStarDec>
+            <GuideStarMagnitude Type="V">11.897</GuideStarMagnitude>
+            <GuideStarMagnitude2 Type="r">11.748</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>0.009300000000000001</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.0033</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.5359999999999996</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="FPI-TO" Catalog="UCAC4" Radius="177.089">
+            <GuideStarName>305-142066</GuideStarName>
+            <GuideStarRA>266.3961181640625</GuideStarRA>
+            <GuideStarDec>-29.0535698</GuideStarDec>
+            <GuideStarMagnitude Type="V">12.606</GuideStarMagnitude>
+            <GuideStarMagnitude2 Type="r">12.215</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>0.0026</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>0.0014</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.9179999999999993</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="FPI-TO" Catalog="UCAC4" Radius="189.623">
+            <GuideStarName>306-136736</GuideStarName>
+            <GuideStarRA>266.4201354980469</GuideStarRA>
+            <GuideStarDec>-28.9552325</GuideStarDec>
+            <GuideStarMagnitude Type="V">12.464</GuideStarMagnitude>
+            <GuideStarMagnitude2 Type="r">12.281</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>0.0034</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-2.0E-4</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.484</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="FPI-TO" Catalog="UCAC4" Radius="147.889">
+            <GuideStarName>305-142175</GuideStarName>
+            <GuideStarRA>266.4595947265625</GuideStarRA>
+            <GuideStarDec>-29.0248059</GuideStarDec>
+            <GuideStarMagnitude Type="f">12.826</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.002</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.005</GuideStarProperMotionDec>
+            <GuideStarBminusV>-999.0</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="FPI-TO" Catalog="UCAC4" Radius="142.133">
+            <GuideStarName>306-136747</GuideStarName>
+            <GuideStarRA>266.43402099609375</GuideStarRA>
+            <GuideStarDec>-28.9713228</GuideStarDec>
+            <GuideStarMagnitude Type="V">13.1</GuideStarMagnitude>
+            <GuideStarMagnitude2 Type="r">12.923</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>7.0E-4</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>8.0E-4</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.5750000000000011</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="WFI" Catalog="HIPPARCOS" Radius="14681.8">
+            <GuideStarName>HIP85423</GuideStarName>
+            <GuideStarRA>261.8386535644531</GuideStarRA>
+            <GuideStarDec>-29.8670334026</GuideStarDec>
+            <GuideStarMagnitude Type="V">4.28</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>0.01438</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.13741</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.402</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="WFI" Catalog="HIPPARCOS" Radius="4494.576">
+            <GuideStarName>HIP87072</GuideStarName>
+            <GuideStarRA>266.8901062011719</GuideStarRA>
+            <GuideStarDec>-27.830788484</GuideStarDec>
+            <GuideStarMagnitude Type="V">4.53</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.00362</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.01067</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.6</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="WFI" Catalog="HIPPARCOS" Radius="10078.207">
+            <GuideStarName>HIP87220</GuideStarName>
+            <GuideStarRA>267.29364013671875</GuideStarRA>
+            <GuideStarDec>-31.7032035271</GuideStarDec>
+            <GuideStarMagnitude Type="V">4.79</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>0.00422</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.00789</GuideStarProperMotionDec>
+            <GuideStarBminusV>-0.028</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="WFI" Catalog="HIPPARCOS" Radius="11415.353">
+            <GuideStarName>HIP88060</GuideStarName>
+            <GuideStarRA>269.7720031738281</GuideStarRA>
+            <GuideStarDec>-30.2530249636</GuideStarDec>
+            <GuideStarMagnitude Type="V">5.0</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>0.0025099999999999996</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.0083</GuideStarProperMotionDec>
+            <GuideStarBminusV>1.654</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="WFI" Catalog="HIPPARCOS" Radius="9357.192">
+            <GuideStarName>HIP87836</GuideStarName>
+            <GuideStarRA>269.1743469238281</GuideStarRA>
+            <GuideStarDec>-28.0653935632</GuideStarDec>
+            <GuideStarMagnitude Type="V">5.76</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>0.03186</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.018170000000000002</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.207</GuideStarBminusV>
+          </Guidestar>
+          <Guidestar Imager="WFI" Catalog="HIPPARCOS" Radius="14382.994">
+            <GuideStarName>HIP85442</GuideStarName>
+            <GuideStarRA>261.9064636230469</GuideStarRA>
+            <GuideStarDec>-29.7245666972</GuideStarDec>
+            <GuideStarMagnitude Type="V">5.98</GuideStarMagnitude>
+            <GuideStarMagnitude2>999.0</GuideStarMagnitude2>
+            <GuideStarProperMotionRA>-0.0081</GuideStarProperMotionRA>
+            <GuideStarProperMotionDec>-0.03172</GuideStarProperMotionDec>
+            <GuideStarBminusV>0.01</GuideStarBminusV>
+          </Guidestar>
+        </guideStarList>
+      </SofiaTargetFixedSingle>
+    </list>
+    <vector/>
+    <ObsPlanObsBlockInfoList>
+      <PropID>71_0024</PropID>
+      <ObsBlockInfo>
+        <ObsBlockID>OB_71_0024_01</ObsBlockID>
+        <ObsBlockName>irc+10216</ObsBlockName>
+        <Instrument name="FIFI-LS">
+          <Config>DUAL-CHANNEL</Config>
+        </Instrument>
+        <ObservationCenter>
+          <Sidereal>
+            <RA>9.799285333333334</RA>
+            <Dec>13.27879</Dec>
+            <Equinox>2000.0</Equinox>
+          </Sidereal>
+        </ObservationCenter>
+        <RequestedDuration edited="no" totalAorsDuration="2428.0">2428.0</RequestedDuration>
+        <PlannedDuration>2160.0</PlannedDuration>
+        <ExecutedDuration>0.0</ExecutedDuration>
+        <ScienceFlightHours>2859.0</ScienceFlightHours>
+        <MinimumDuration>0.0</MinimumDuration>
+        <AORList>
+          <AOR executed="no">
+            <AORID>71_0024_1</AORID>
+          </AOR>
+        </AORList>
+      </ObsBlockInfo>
+      <ObsBlockInfo>
+        <ObsBlockID>OB_71_0024_02</ObsBlockID>
+        <ObsBlockName>M82</ObsBlockName>
+        <Instrument name="FIFI-LS">
+          <Config>DUAL-CHANNEL</Config>
+        </Instrument>
+        <ObservationCenter>
+          <Sidereal>
+            <RA>9.931230527777776</RA>
+            <Dec>69.67970305555556</Dec>
+            <Equinox>2000.0</Equinox>
+          </Sidereal>
+        </ObservationCenter>
+        <RequestedDuration edited="no" totalAorsDuration="775.0">775.0</RequestedDuration>
+        <PlannedDuration>2340.0</PlannedDuration>
+        <ExecutedDuration>0.0</ExecutedDuration>
+        <ScienceFlightHours>2247.6</ScienceFlightHours>
+        <MinimumDuration>0.0</MinimumDuration>
+        <AORList>
+          <AOR executed="no">
+            <AORID>71_0024_2</AORID>
+          </AOR>
+        </AORList>
+      </ObsBlockInfo>
+      <ObsBlockInfo>
+        <ObsBlockID>OB_71_0024_03</ObsBlockID>
+        <ObsBlockName>M82</ObsBlockName>
+        <Instrument name="FIFI-LS">
+          <Config>DUAL-CHANNEL</Config>
+        </Instrument>
+        <ObservationCenter>
+          <Sidereal>
+            <RA>9.931230527777776</RA>
+            <Dec>69.67970305555556</Dec>
+            <Equinox>2000.0</Equinox>
+          </Sidereal>
+        </ObservationCenter>
+        <RequestedDuration edited="no" totalAorsDuration="775.0">775.0</RequestedDuration>
+        <PlannedDuration>0.0</PlannedDuration>
+        <ExecutedDuration>0.0</ExecutedDuration>
+        <ScienceFlightHours>0.0</ScienceFlightHours>
+        <MinimumDuration>0.0</MinimumDuration>
+        <AORList>
+          <AOR executed="no">
+            <AORID>71_0024_3</AORID>
+          </AOR>
+        </AORList>
+      </ObsBlockInfo>
+      <ObsBlockInfo>
+        <ObsBlockID>OB_71_0024_04</ObsBlockID>
+        <ObsBlockName>M82</ObsBlockName>
+        <Instrument name="FIFI-LS">
+          <Config>DUAL-CHANNEL</Config>
+        </Instrument>
+        <ObservationCenter>
+          <Sidereal>
+            <RA>9.931230527777776</RA>
+            <Dec>69.67970305555556</Dec>
+            <Equinox>2000.0</Equinox>
+          </Sidereal>
+        </ObservationCenter>
+        <RequestedDuration edited="no" totalAorsDuration="775.0">775.0</RequestedDuration>
+        <PlannedDuration>0.0</PlannedDuration>
+        <ExecutedDuration>0.0</ExecutedDuration>
+        <ScienceFlightHours>0.0</ScienceFlightHours>
+        <MinimumDuration>0.0</MinimumDuration>
+        <AORList>
+          <AOR executed="no">
+            <AORID>71_0024_4</AORID>
+          </AOR>
+        </AORList>
+      </ObsBlockInfo>
+      <ObsBlockInfo>
+        <ObsBlockID>OB_71_0024_05</ObsBlockID>
+        <ObsBlockName>M82</ObsBlockName>
+        <Instrument name="FIFI-LS">
+          <Config>DUAL-CHANNEL</Config>
+        </Instrument>
+        <ObservationCenter>
+          <Sidereal>
+            <RA>9.931230527777776</RA>
+            <Dec>69.67970305555556</Dec>
+            <Equinox>2000.0</Equinox>
+          </Sidereal>
+        </ObservationCenter>
+        <RequestedDuration edited="no" totalAorsDuration="775.0">775.0</RequestedDuration>
+        <PlannedDuration>0.0</PlannedDuration>
+        <ExecutedDuration>0.0</ExecutedDuration>
+        <ScienceFlightHours>0.0</ScienceFlightHours>
+        <MinimumDuration>0.0</MinimumDuration>
+        <AORList>
+          <AOR executed="no">
+            <AORID>71_0024_5</AORID>
+          </AOR>
+        </AORList>
+      </ObsBlockInfo>
+      <ObsBlockInfo>
+        <ObsBlockID>OB_71_0024_06</ObsBlockID>
+        <ObsBlockName>M82</ObsBlockName>
+        <Instrument name="FIFI-LS">
+          <Config>DUAL-CHANNEL</Config>
+        </Instrument>
+        <ObservationCenter>
+          <Sidereal>
+            <RA>9.931230527777776</RA>
+            <Dec>69.67970305555556</Dec>
+            <Equinox>2000.0</Equinox>
+          </Sidereal>
+        </ObservationCenter>
+        <RequestedDuration edited="no" totalAorsDuration="775.0">775.0</RequestedDuration>
+        <PlannedDuration>0.0</PlannedDuration>
+        <ExecutedDuration>0.0</ExecutedDuration>
+        <ScienceFlightHours>0.0</ScienceFlightHours>
+        <MinimumDuration>0.0</MinimumDuration>
+        <AORList>
+          <AOR executed="no">
+            <AORID>71_0024_6</AORID>
+          </AOR>
+        </AORList>
+      </ObsBlockInfo>
+      <ObsBlockInfo>
+        <ObsBlockID>OB_71_0024_07</ObsBlockID>
+        <ObsBlockName>M82</ObsBlockName>
+        <Instrument name="FIFI-LS">
+          <Config>DUAL-CHANNEL</Config>
+        </Instrument>
+        <ObservationCenter>
+          <Sidereal>
+            <RA>9.931230527777776</RA>
+            <Dec>69.67970305555556</Dec>
+            <Equinox>2000.0</Equinox>
+          </Sidereal>
+        </ObservationCenter>
+        <RequestedDuration edited="no" totalAorsDuration="775.0">775.0</RequestedDuration>
+        <PlannedDuration>0.0</PlannedDuration>
+        <ExecutedDuration>0.0</ExecutedDuration>
+        <ScienceFlightHours>0.0</ScienceFlightHours>
+        <MinimumDuration>0.0</MinimumDuration>
+        <AORList>
+          <AOR executed="no">
+            <AORID>71_0024_7</AORID>
+          </AOR>
+        </AORList>
+      </ObsBlockInfo>
+      <ObsBlockInfo>
+        <ObsBlockID>OB_71_0024_08</ObsBlockID>
+        <ObsBlockName>M82</ObsBlockName>
+        <Instrument name="FIFI-LS">
+          <Config>DUAL-CHANNEL</Config>
+        </Instrument>
+        <ObservationCenter>
+          <Sidereal>
+            <RA>9.931230527777776</RA>
+            <Dec>69.67970305555556</Dec>
+            <Equinox>2000.0</Equinox>
+          </Sidereal>
+        </ObservationCenter>
+        <RequestedDuration edited="no" totalAorsDuration="775.0">775.0</RequestedDuration>
+        <PlannedDuration>0.0</PlannedDuration>
+        <ExecutedDuration>0.0</ExecutedDuration>
+        <ScienceFlightHours>0.0</ScienceFlightHours>
+        <MinimumDuration>0.0</MinimumDuration>
+        <AORList>
+          <AOR executed="no">
+            <AORID>71_0024_8</AORID>
+          </AOR>
+        </AORList>
+      </ObsBlockInfo>
+      <ObsBlockInfo>
+        <ObsBlockID>OB_71_0024_09</ObsBlockID>
+        <ObsBlockName>M82</ObsBlockName>
+        <Instrument name="FIFI-LS">
+          <Config>DUAL-CHANNEL</Config>
+        </Instrument>
+        <ObservationCenter>
+          <Sidereal>
+            <RA>9.931230527777776</RA>
+            <Dec>69.67970305555556</Dec>
+            <Equinox>2000.0</Equinox>
+          </Sidereal>
+        </ObservationCenter>
+        <RequestedDuration edited="no" totalAorsDuration="775.0">775.0</RequestedDuration>
+        <PlannedDuration>0.0</PlannedDuration>
+        <ExecutedDuration>0.0</ExecutedDuration>
+        <ScienceFlightHours>0.0</ScienceFlightHours>
+        <MinimumDuration>0.0</MinimumDuration>
+        <AORList>
+          <AOR executed="no">
+            <AORID>71_0024_9</AORID>
+          </AOR>
+        </AORList>
+      </ObsBlockInfo>
+      <ObsBlockInfo>
+        <ObsBlockID>OB_71_0024_10</ObsBlockID>
+        <ObsBlockName>M82</ObsBlockName>
+        <Instrument name="FIFI-LS">
+          <Config>DUAL-CHANNEL</Config>
+        </Instrument>
+        <ObservationCenter>
+          <Sidereal>
+            <RA>9.931230527777776</RA>
+            <Dec>69.67970305555556</Dec>
+            <Equinox>2000.0</Equinox>
+          </Sidereal>
+        </ObservationCenter>
+        <RequestedDuration edited="no" totalAorsDuration="775.0">775.0</RequestedDuration>
+        <PlannedDuration>0.0</PlannedDuration>
+        <ExecutedDuration>0.0</ExecutedDuration>
+        <ScienceFlightHours>0.0</ScienceFlightHours>
+        <MinimumDuration>0.0</MinimumDuration>
+        <AORList>
+          <AOR executed="no">
+            <AORID>71_0024_10</AORID>
+          </AOR>
+        </AORList>
+      </ObsBlockInfo>
+      <ObsBlockInfo>
+        <ObsBlockID>OB_71_0024_11</ObsBlockID>
+        <ObsBlockName>M82</ObsBlockName>
+        <Instrument name="FIFI-LS">
+          <Config>DUAL-CHANNEL</Config>
+        </Instrument>
+        <ObservationCenter>
+          <Sidereal>
+            <RA>9.931230527777776</RA>
+            <Dec>69.67970305555556</Dec>
+            <Equinox>2000.0</Equinox>
+          </Sidereal>
+        </ObservationCenter>
+        <RequestedDuration edited="no" totalAorsDuration="775.0">775.0</RequestedDuration>
+        <PlannedDuration>0.0</PlannedDuration>
+        <ExecutedDuration>0.0</ExecutedDuration>
+        <ScienceFlightHours>0.0</ScienceFlightHours>
+        <MinimumDuration>0.0</MinimumDuration>
+        <AORList>
+          <AOR executed="no">
+            <AORID>71_0024_11</AORID>
+          </AOR>
+        </AORList>
+      </ObsBlockInfo>
+      <ObsBlockInfo>
+        <ObsBlockID>OB_71_0024_14</ObsBlockID>
+        <ObsBlockName>Sgr A</ObsBlockName>
+        <Instrument name="FIFI-LS">
+          <Config>DUAL-CHANNEL</Config>
+        </Instrument>
+        <ObservationCenter>
+          <Sidereal>
+            <RA>17.761121111111112</RA>
+            <Dec>-29.007825</Dec>
+            <Equinox>2000.0</Equinox>
+          </Sidereal>
+        </ObservationCenter>
+        <RequestedDuration edited="no" totalAorsDuration="3180.0">3180.0</RequestedDuration>
+        <PlannedDuration>2700.0</PlannedDuration>
+        <ExecutedDuration>0.0</ExecutedDuration>
+        <ScienceFlightHours>2638.2</ScienceFlightHours>
+        <MinimumDuration>0.0</MinimumDuration>
+        <AORList>
+          <AOR executed="no">
+            <AORID>71_0024_13</AORID>
+          </AOR>
+        </AORList>
+      </ObsBlockInfo>
+      <Retval>SUCCESS</Retval>
+    </ObsPlanObsBlockInfoList>
+  </list>
+</AORs>
