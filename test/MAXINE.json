@@ -1,0 +1,63 @@
+{
+  "FlightName": "MAXINE",
+  "SofiaFlight": 0,
+  "FifiFlight": 0,
+  "FlightDate": "2021-06-05",
+  "ObsBlocks": [
+    "OB_70_0808_02",
+    "OB_08_0095_07",
+    "OB_09_0198_01",
+    "OB_71_0024_14",
+    "OB_08_0226_04"
+  ],
+  "OB_70_0808_02": {
+    "aorid": "70_0808",
+    "obsBlock": "OB_70_0808_02",
+    "propid": "70_0808",
+    "piname": "Alfred Krabbe",
+    "title": "FIFI-LS GTO Cycle 7",
+    "abstract": "FIFI-LS GTO Cycle 8",
+    "comment": "# 122 minutes requested in DCS<br># 120 minutes planned in DCS<br># 54 of 120 minutes in this series<br># 66 on MARIO<br># 54 on MAXINE (this flight)",
+    "imagefile": null
+  },
+  "OB_08_0095_07": {
+    "aorid": "08_0095",
+    "obsBlock": "OB_08_0095_07",
+    "propid": "08_0095",
+    "piname": "Jingzhe Ma",
+    "title": "Are local ULIRGs low in metals? Testing a new metallicity diagnostic with FIFI-LS.",
+    "abstract": "A comprehensive study of the physical properties of low-z ultra luminous infrared galaxies (ULIRGs), specifically their interstellar medium (ISM), is critical to understanding the evolution of >L* galaxies and active galactic nuclei across cosmic time. ULIRGs at low redshifts are central to this endeavor, as they establish a baseline from which to measure evolution with redshift in the ULIRG population. We propose FIFI-LS observations of the far-IR (FIR) fine structure lines of 11 ULIRGs selected by IRAS at 0.01 < z < 0.13, primarily targeting the [OIII]52 and [NIII]57 um lines, which are currently only accessible by FIFI-LS. The proposed observations will provide comprehensive diagnostics of the physical conditions of the ISM such as the gas density, radiation field intensity, and metallicity that is much less susceptible to extinction than traditionally used UV/optical transitions. We will be able to apply the excellent FIR metallicity diagnostic, ([OIII]52+2.2[OIII]88)/[NIII]57, for the first time, which breaks the density degeneracy and reduces the scatter in the correlation to within 0.2 dex. The unprecedentedly reliable metallicity measurements will address whether ULIRGs lie below the mass-metallicity relation of star-forming galaxies as previously thought based on optical metallicity diagnostics. Along with archival Herschel/PACS+SPIRE observations, we will be able to test all the line-ratio diagnostics by comparing to models (e.g. Cloudy) and identify the best pairs to optimize future observations with ALMA for high-z analogs. This pilot SOFIA program will open up the opportunity to increasing the sample of low-redshift (0.1 < z < 0.3) ULIRGs with the full set of FIR line observations by a factor of 2-3. This program will also demonstrate a key science program for the Origins Space Telescope that focusses on metallicity measurements out to z of 6 with results from Cycle 8 potentially making an impact in Astro2020 Discussions.",
+    "comment": "# 70 minutes requested in DCS<br># 70 minutes planned in DCS<br># 70 of 70 minutes in this series",
+    "imagefile": "../test/08_0095/1.png"
+  },
+  "OB_09_0198_01": {
+    "aorid": "09_0198",
+    "obsBlock": "OB_09_0198_01",
+    "propid": "09_0198",
+    "piname": "Cody Lamarche",
+    "title": "Securing Far-Infrared Metal Abundances in NGC 6946",
+    "abstract": "Elements heavier than helium contribute less than one percent to the total mass of the local Universe, yet they significantly affect the way in which stars and galaxies form and evolve. Therefore, understanding the chemical enrichment history of the Universe is an essential part of understanding galaxy evolution. The ground-state fine-structure levels of the abundant metals oxygen and nitrogen, accessible to SOFIA in the far-infrared, will play a major role in uncovering this history. With the ability to penetrate the significant dust columns present in galaxies during the peak epoch of cosmic star formation, and little sensitivity to the unknown temperature structure of ionized nebulae that has plagued traditional optical strong-line metal-abundances for decades, FIR abundances offer many powerful advantages. Yet substantial work is still needed locally before these FIR methods can be extended to high-redshift galaxies. We propose a program to study NGC 6946, a bright, metal-rich, nearby spiral galaxy, targeting 8 HII regions that will be observed in concert with the ongoing CHAOS program on the LBT -- the largest, deepest survey of direct spectroscopic optical auroral-line metal-abundances ever undertaken in the local Universe. Combining SOFIA/FIFI-LS with CHAOS spectroscopy, archival Herschel/PACS and Spitzer/IRS, and VLA free-free continuum observations of the targeted HII regions in NGC 6946, we will explore several interrelated temperature-insensitive infrared abundance tools, including direct [OIII] abundances normalized to hydrogen using recombination or free-free emission, and expand and validate the novel O3N3 pure FIR-line abundance diagnostic. Our ancillary data also include deep optical IFU spectral mapping data, which bridge the resolution divide between the SOFIA and ground-based optical surveys.\n",
+    "comment": "# 711 minutes requested in DCS<br># 406 minutes planned in DCS<br># 100 of 245 minutes in this series<br># 50 on MADDILYN<br># 50 on MATTHEW<br># 100 on MAXINE (this flight)<br># 45 on MIRIAM",
+    "imagefile": "../test/09_0198/1.png"
+  },
+  "OB_71_0024_14": {
+    "aorid": "71_0024",
+    "obsBlock": "OB_71_0024_14",
+    "propid": "71_0024",
+    "piname": "Christian Fischer",
+    "title": "Instrument Characterization Request: OTF Mapping for FIFI-LS",
+    "abstract": "We propose to test the possibility of implementing an OTF raster mapping mode for FIFI-LS. This mode will be almost identical to that used by the GREAT instrument and to take full \nadvantage of the common KOSMA translator interface. We estimate this mode could increase the efficiency of large mapping done with FIFI-LS in total power mode by about 30%. In addition, it would result in much finer spatial sampling, which is clearly beneficial for FIFI-LS observations with its large (6” in the blue and 12” in the red) spaxels. In order to avoid undersampling the PSF with the large pixel scales, most FIFI-LS science observations are obtained in the chop-nod mode with multiple dither positions.  Such observations can be challenging for short \nintegrations on large maps. In addition, OTF mapping will result in better self-flat-fielding of the data, since more FIFI-LS spaxels will integrate on the same positions on the sky. In \nsummary, OTF mapping with FIFI-LS would greatly improve the data obtained with the instrument by improving the flat-fielding and spatial sampling, enable rapid mapping of large sources, avoid the difficulties of finding nearby chop positions without emission, and simultaneously increase observing efficiency by reducing the telescope overheads",
+    "comment": "# 53 minutes requested in DCS<br># 53 minutes planned in DCS<br># 53 of 53 minutes in this series",
+    "imagefile": null
+  },
+  "OB_08_0226_04": {
+    "aorid": "08_0226",
+    "obsBlock": "OB_08_0226_04",
+    "propid": "08_0226",
+    "piname": "Andreea Petric",
+    "title": "Star-formation efficiencies in nearby, optically luminous Quasars",
+    "abstract": "Most bulge-dominated galaxies have at their centers black holes with masses that tightly correlate with the masses of their hosts' bulges. This may indicate that the black holes may regulate galaxy growth, or vice versa, or that they may grow in lock-step. The quest to understand how, when, and where those black-holes formed motivates much of extragalactic astronomy. The [CII] 157.74 micron fine structure line of singly ionzed carbon has been calibrated  both as a measure of star-formation rates and as a way to estimate the star-formation efficiencies. Recent SOFIA observations of  [CII] in nearby low-luminosity AGN suggest that: high ratios of [CII] to FIR may be associated with obscured AGN outflows and that the [CIII] may be at the interface between warm and cold gas in those outflows. The observations we propose here will test whether luminous, obscured AGN have higher [CII]/FIR ratios than luminous, non-obscured AGN.\n",
+    "comment": "FFI guided<br># 129 minutes requested in DCS<br># 150 minutes planned in DCS<br># 75 of 108 minutes in this series<br># 75 on MAXINE (this flight)<br># 33 on MILDRED",
+    "imagefile": "../test/08_0226/1.png"
+  }
+}

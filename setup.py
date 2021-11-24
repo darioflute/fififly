@@ -14,6 +14,7 @@ config = {
     'download_url': 'https://github.com/darioflute/fififly',
     'license': 'GPLv3+',
     'packages': ['fififly'],
+    'scripts': ['bin/scanmaker'],
     'include_package_data': True,
     'package_data': {'fifipy': ['test/*.aor','tes/*.misxml']},
     'install_requires': ['numpy', 'lxml', 'matplotlib', 'astropy']

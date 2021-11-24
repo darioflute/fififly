@@ -1,0 +1,79 @@
+#Time stamp at last update:  1165939158.947000
+#    ASTRONOMY
+AOR_ID          ""
+INSTMODE    "OTF_TP"
+OBJ_NAME	"M82"
+COORDSYS	"J2000"
+OBSLAM      148.968458  # in deg
+OBSBET      69.679703  # in deg
+DET_ANGL	11.3
+CRDSYSMP	"J2000"
+DLAM_MAP	-30
+DBET_MAP	90.
+SKYSPEED     6.0
+VELANGLE     180.
+TRK_DRTN    30.
+CRDSYSOF	"J2000"
+DLAM_OFF	0.
+DBET_OFF	0. 
+PRIMARAY	"BLUE"
+LOSF_UPD        1
+
+#    DICHROIC SETTING
+DICHROIC    130                 # Dichroic wavelength in um
+
+#    GRATING
+# Blue
+G_ORD_B     2              # Blue grating order to be used
+G_FLT_B     2              # Filter number for Blue
+G_WAVE_B    51.853         # Wavelength to be observed in um INFO ONLY
+RESTWAVB    51.815         # Reference wavelength in um
+G_CYC_B     1              # The number of grating cycles (up-down)
+G_STRT_B    735588        # absolute starting value in inductosyn units
+G_PSUP_B    1              # number of grating position up in one cycle
+G_SZUP_B    400            # step size on the way up; same unit as G_STRT
+G_PSDN_B    0              # number of grating position down in one cycle
+G_SZDN_B    0              # step size on the way down; same unit as G_STRT
+# Red
+G_WAVE_R    157.857        # Wavelength to be observed in um INFO ONLY
+RESTWAVR    157.741        # Reference wavelength in um
+G_CYC_R     1              # The number of grating cycles (up-down)
+G_STRT_R    735588         # absolute starting value in inductosyn units
+G_PSUP_R    1              # number of grating position up in one cycle
+G_SZUP_R    365            # step size on the way up; same unit as G_STRT
+G_PSDN_R    0              # number of grating position down in one cycle
+G_SZDN_R    0              # step size on the way down; same unit as G_STRT
+
+
+#    RAMP
+RAMPLN_B                 32
+RAMPLN_R                 32
+ 
+#    CHOPPER
+C_SCHEME	"2POINT"	# Chopper scheme; 2POINT or 4POINT
+C_CRDSYS	"TARF"
+C_AMP   	0.0 	# chop amplitude in arcsec
+C_TIP		0	# fraction
+C_BEAM  	+1	# nod phase
+C_POSANG	0.0  	# deg, E of N
+C_CYC_B 	200     	# chopping cycles per grating position
+C_CYC_R 	200    	# chopping cycles per grating position
+C_PHASE 	0.0  	# phase shift of chopper signal relative to R/O in degr
+C_CHOPLN	64   	# number of readouts per chop position
+ 
+#    CAPACITORS
+CAP_B   	1330	# Integrating capacitors in pF
+CAP_R   	1330 	# Integrating capacitors in pF
+
+#    CONVERTER
+# Blue
+ZBIAS_B 	75.000  	# Voltage in mV
+BIASR_B 	 0.000  	# Voltage in mV
+HEATER_B	 0.000  	# Voltage in mV
+# Red
+ZBIAS_R 	60.000  	# Voltage in mV
+BIASR_R 	 0.000  	# Voltage in mV
+HEATER_R	 0.000  	# Voltage in mV
+#CALIBRATION SOURCE
+CALSTMP		200.0          	#Kelvin
+HERE_COMETH_THE_END

@@ -6,6 +6,7 @@ Created on Thu Jun 24 14:51:35 2021
 @author: dfadda
 """
 import json
+import numpy as np
 class MyEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, np.integer):
