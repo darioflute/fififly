@@ -1,14 +1,14 @@
 QMainWindow {
-background-color: QLinearGradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 LemonChiffon, stop: 1 #F2D388);
+background-color: QLinearGradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #EEFFD4, stop: 1 #B0EDA4);
 }
 QMenu {
-background-color: #D8AB4E;
-background: '#FFF6BA';
+background-color: #aed663;
+background: #a3d166;
 color: 'black';
 }
 QMenuBar {
-background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1, stop:0 #FFF6BA, stop:1 #F2D388);
-background: #F2D388;
+background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1, stop:0 #d3ff9e, stop:1 #e1ffbd);
+background: #a3d166;
 color: 'black';
 }
 QMenuBar::item {
@@ -18,13 +18,13 @@ padding: 1px 4px;
 border-radius: 4px;
 }
 QMenuBar::item:selected { /* when selected using mouse or keyboard */
-background: #FFF6BA;
+background: #c9f774;
 }
 QMenuBar::item:pressed {
-background: #DCAE1D;
+background: #c8f06c;
 }
 QStatusBar {
-background-color: #FFF6BA;
+background-color: #c9f774;
 border: 1px solid black;
 border-radius: 3px;
 }
@@ -36,19 +36,19 @@ QToolBar::separator{
 background-color: transparent;
 }
 QToolButton:pressed {
-background-color: LemonChiffon;
+background-color: #a3d166;
 border-radius: 3px;
 }
 QToolButton:hover {
-background-color: LemonChiffon;
+background-color: #a3d166;
 border-radius: 3px;
 }
 QToolButton:focused {
-background-color: LemonChiffon;
+background-color: #a3d166;
 border-radius: 3px;
 }
 QToolButton:checked {
-background-color: LemonChiffon;
+background-color: #a3d166;
 border-radius: 3px;
 }
 QToolTip {
@@ -56,5 +56,5 @@ border: 1px solid black;
 padding: 2px;
 border-radius: 3px;
 opacity: 200;
-background-color: LemonChiffon;
+background-color: #a3d166;
 }
