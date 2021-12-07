@@ -51,226 +51,226 @@ def makeScans(folder, aor):
 def writeFile(filename, aor, i, off=False):
     """Generic scan taken from obsmaker, it should be updated"""
     import time
-    with open(filename, 'w') as file:
-        file.write('# Time stamp at last update: ' + str(time.time()) + '\n')
-        file.write('#    ASTRONOMY\n')
-        file.write('%s%s%s' % ("AOR_ID".ljust(12),  # adjust ljust param
-            ('"' + aor.aorID + '"').ljust(20), '# from DCS\n'))
-        file.write('%s%s%s' % ("OBSERVER".ljust(12),  # adjust ljust param
-            ('"' + aor.observer + '"').ljust(20), '# from DCS\n'))
-        file.write('%s%s%s' % ("FILEGP_R".ljust(12),
-            ('"' + aor.fileGroupIdR + '"').ljust(20),
-            '# file group id RED for DPS use\n'))
-        file.write('%s%s%s' % ("FILEGP_B".ljust(12),
-            ('"' + aor.fileGroupIdB + '"').ljust(20),
-            '# file group id BLUE for DPS use\n'))
-        file.write('%s%s%s' % ("OBSTYPE".ljust(12),
-            ('"' + aor.obsType + '"').ljust(20),
-            '# Observation type for DPS use\n'))
-        file.write('%s%s%s' % ("SRCTYPE".ljust(12),
-            ('"' + aor.sourceType + '"').ljust(20),
-            '# Source type for DPS use\n'))
-        file.write('%s%s%s' % ("INSTMODE".ljust(12),
-            ('"' + aor.obsPlanMode + '"').ljust(20),
-            '# Instrument mode\n'))
-        file.write('%s%s%s' % ("OBJ_NAME".ljust(12),
-            ('"' + aor.objName + '"').ljust(20),
-            '# Name of astronomical object observed\n'))
+    with open(filename, 'w') as f:
+        f.write('# Time stamp at last update: ' + str(time.time()) + '\n')
+        f.write('#    ASTRONOMY\n')
+        f.write('%s%s%s' % ("AOR_ID".ljust(12),  # adjust ljust param
+                              ('"' + aor.aorID + '"').ljust(20), '# from DCS\n'))
+        f.write('%s%s%s' % ("OBSERVER".ljust(12),  # adjust ljust param
+                              ('"' + aor.observer + '"').ljust(20), '# from DCS\n'))
+        f.write('%s%s%s' % ("FILEGP_R".ljust(12),
+                               ('"' + aor.fileGroupIdR + '"').ljust(20),
+                               '# file group id RED for DPS use\n'))
+        f.write('%s%s%s' % ("FILEGP_B".ljust(12),
+                               ('"' + aor.fileGroupIdB + '"').ljust(20),
+                               '# file group id BLUE for DPS use\n'))
+        f.write('%s%s%s' % ("OBSTYPE".ljust(12),
+                               ('"' + aor.obsType + '"').ljust(20),
+                               '# Observation type for DPS use\n'))
+        f.write('%s%s%s' % ("SRCTYPE".ljust(12),
+                               ('"' + aor.sourceType + '"').ljust(20),
+                               '# Source type for DPS use\n'))
+        f.write('%s%s%s' % ("INSTMODE".ljust(12),
+                               ('"' + aor.obsPlanMode + '"').ljust(20),
+                               '# Instrument mode\n'))
+        f.write('%s%s%s' % ("OBJ_NAME".ljust(12),
+                               ('"' + aor.objName + '"').ljust(20),
+                               '# Name of astronomical object observed\n'))
         if aor.naifId != "":
-            file.write('%s%s%s' % ("NAIF_ID".ljust(12),
-                (aor.naifId).ljust(20),
-                '# NAIF ID of object observed\n'))
-        file.write('%s%s%s' % ("REDSHIFT".ljust(12),
-            str(aor.redshift).ljust(20),
-            '# redshift of the source (z)\n'))
-        file.write('%s%s%s' % ("COORDSYS".ljust(12),
-            ('"' + aor.coordSys + '"').ljust(20),
-            '# Target coordinate system\n'))
-        file.write('%s%s%s' % ("OBSLAM".ljust(12),  # adjust ljust param
-            str(aor.posLonN).ljust(20), '# in deg\n'))
-        file.write('%s%s%s' % ("OBSBET".ljust(12),  # adjust ljust param
-            str(aor.posLatN).ljust(20), '# in deg\n'))
-        file.write('%s%s%s' % ("DET_ANGL".ljust(12),  # adjust ljust param
-            str("%.3f" % aor.detangle).ljust(20),
-            '# Detector y-axis EofN\n'))
-        file.write('%s%s%s' % ("CRDSYSMP".ljust(12),  # adjust ljust param
-            ('"' + aor.mapCoordSys + '"').ljust(20),
-            '# Mapping coordinate system\n'))
+            f.write('%s%s%s' % ("NAIF_ID".ljust(12),
+                                   (aor.naifId).ljust(20),
+                                   '# NAIF ID of object observed\n'))
+        f.write('%s%s%s' % ("REDSHIFT".ljust(12),
+                               str(aor.redshift).ljust(20),
+                               '# redshift of the source (z)\n'))
+        f.write('%s%s%s' % ("COORDSYS".ljust(12),
+                               ('"' + aor.coordSys + '"').ljust(20),
+                               '# Target coordinate system\n'))
+        f.write('%s%s%s' % ("OBSLAM".ljust(12),  # adjust ljust param
+                               str(aor.posLonN).ljust(20), '# in deg\n'))
+        f.write('%s%s%s' % ("OBSBET".ljust(12),  # adjust ljust param
+                               str(aor.posLatN).ljust(20), '# in deg\n'))
+        f.write('%s%s%s' % ("DET_ANGL".ljust(12),  # adjust ljust param
+                               str("%.3f" % aor.detangle).ljust(20),
+                               '# Detector y-axis EofN\n'))
+        f.write('%s%s%s' % ("CRDSYSMP".ljust(12),  # adjust ljust param
+                               ('"' + aor.mapCoordSys + '"').ljust(20),
+                               '# Mapping coordinate system\n'))
         if off:
-            file.write('%s%s%s' % ("DLAM_MAP".ljust(12),
+            f.write('%s%s%s' % ("DLAM_MAP".ljust(12),
                                    str("%.1f" % 0.).ljust(20), '# arcsec\n'))
-            file.write('%s%s%s' % ("DBET_MAP".ljust(12),
+            f.write('%s%s%s' % ("DBET_MAP".ljust(12),
                                    str("%.1f" % 0.).ljust(20), '# arcsec\n'))
         else:            
-            file.write('%s%s%s' % ("DLAM_MAP".ljust(12),
-                                   str("%.1f" % aor.dlam_map[i]).ljust(20), '# arcsec\n'))
-            file.write('%s%s%s' % ("DBET_MAP".ljust(12),
-                                   str("%.1f" % aor.dbet_map[i]).ljust(20), '# arcsec\n'))
+            f.write('%s%s%s' % ("DLAM_MAP".ljust(12),
+                                str("%.1f" % aor.dlam_map[i]).ljust(20), '# arcsec\n'))
+            f.write('%s%s%s' % ("DBET_MAP".ljust(12),
+                                str("%.1f" % aor.dbet_map[i]).ljust(20), '# arcsec\n'))
         if aor.instmode == "OTF_TP":
             if off:
-                file.write('%s%s%s' % ("SKYSPEED".ljust(12),
+                f.write('%s%s%s' % ("SKYSPEED".ljust(12),
                                        str("%.1f" % 0.0).ljust(20),
                                        '# OTF sky scan speed, arcsec/s\n'))                
             else:
-                file.write('%s%s%s' % ("SKYSPEED".ljust(12),
+                f.write('%s%s%s' % ("SKYSPEED".ljust(12),
                                        str("%.1f" % aor.scanspeed[i]).ljust(20),
                                        '# OTF sky scan speed, arcsec/s\n'))
-            file.write('%s%s%s' % ("VELANGLE".ljust(12),
+            f.write('%s%s%s' % ("VELANGLE".ljust(12),
                 str("%.1f" % aor.velangle[i]).ljust(20),
                 '# Angle of the velocity vector for OTF scan, EofN in deg\n'))
-            file.write('%s%s%s' % ("TRK_DRTN".ljust(12),
+            f.write('%s%s%s' % ("TRK_DRTN".ljust(12),
                 str("%.1f" % aor.timePerPoint).ljust(20),
                 '# Duration of OTF scan\n'))
-        file.write('%s%s%s' % ("CRDSYSOF".ljust(12),
+        f.write('%s%s%s' % ("CRDSYSOF".ljust(12),
             ('"' + aor.offCoordSys + '"').ljust(20),
             '# Off position coordinate system\n'))
         if off:
-            file.write('%s%s%s' % ("DLAM_OFF".ljust(12),
+            f.write('%s%s%s' % ("DLAM_OFF".ljust(12),
                                    str("%.1f" % aor.dlam_off).ljust(20), '# arcsec\n'))
-            file.write('%s%s%s' % ("DBET_OFF".ljust(12),
+            f.write('%s%s%s' % ("DBET_OFF".ljust(12),
                                    str("%.1f" % aor.dbet_off).ljust(20), '# arcsec\n'))
         else:
-            file.write('%s%s%s' % ("DLAM_OFF".ljust(12),
-                                   str("%.1f" % 0.).ljust(20), '# arcsec\n'))
-            file.write('%s%s%s' % ("DBET_OFF".ljust(12),
-                                   str("%.1f" % 0.).ljust(20), '# arcsec\n'))            
-        file.write('%s%s%s' % ("PRIMARAY".ljust(12),
+            f.write('%s%s%s' % ("DLAM_OFF".ljust(12),
+                                str("%.1f" % 0.).ljust(20), '# arcsec\n'))
+            f.write('%s%s%s' % ("DBET_OFF".ljust(12),
+                                str("%.1f" % 0.).ljust(20), '# arcsec\n'))            
+        f.write('%s%s%s' % ("PRIMARAY".ljust(12),
             ('"' + aor.primeArray + '"').ljust(20),
             '# Primary array\n'))
         if off:
-            file.write('%s%s%s' % ("LOSF_UPD".ljust(12),
-                str(0).ljust(20),
-                '# 0/1/2  block/allow/force updates\n'))
+            f.write('%s%s%s' % ("LOSF_UPD".ljust(12),
+                                str(0).ljust(20),
+                                '# 0/1/2  block/allow/force updates\n'))
         else:            
-            file.write('%s%s%s' % ("LOSF_UPD".ljust(12),
-                str(aor.losFocusUpdate).ljust(20),
-                '# 0/1/2  block/allow/force updates\n'))
+            f.write('%s%s%s' % ("LOSF_UPD".ljust(12),
+                                str(aor.losFocusUpdate).ljust(20),
+                                '# 0/1/2  block/allow/force updates\n'))
         if aor.nodType != 'OTF_MAP':
-            file.write('%s%s%s' % ("NODPATT".ljust(12),
-                                   ('"' + aor.nodPattern + '"').ljust(20),
-                                   '# Nod pattern\n'))
-        file.write('\n#    DICHROIC SETTING\n')
-        file.write('%s%s%s' % ("DICHROIC".ljust(12),
-            str(aor.dichroic).ljust(20),
-            '# Dichroic wavelength in um\n'))
-        file.write('\n#    GRATING\n# Blue\n')
-        file.write('%s%s%s' % ("G_ORD_B".ljust(12),
-            str(aor.orderBlue).ljust(15),
-            '# Blue grating order to be used\n'))
-        file.write('%s%s%s' % ("G_FLT_B".ljust(12),
-            str(aor.filterBlue).ljust(15),
-            '# Filter number for Blue\n'))
-        file.write('%s%s%s' % ("G_WAVE_B".ljust(12),
-            str("%.3f" % aor.waveBlue).ljust(15),
-            '# Wavelength to be observed in um INFO ONLY\n'))
-        file.write('%s%s%s' % ("RESTWAVB".ljust(12),
-            str("%.3f" % aor.restWaveBlue).ljust(15),
-            '# Reference wavelength in um\n'))
-        file.write('%s%s%s' % ("G_CYC_B".ljust(12),
-            str(aor.gratingCyclesB).ljust(15),
-            '# The number of grating cycles (up-down)\n'))
-        file.write('%s%s%s' % ("G_STRT_B".ljust(12),
-            str(aor.gratingBlue).ljust(15),
-            '# absolute starting value in inductosyn units\n'))
-        file.write('%s%s%s' % ("G_PSUP_B".ljust(12),
-            str(aor.gratingPosUpB).ljust(15),
-            '# number of grating position up in one cycle\n'))
-        file.write('%s%s%s' % ("G_SZUP_B".ljust(12),
-            str(aor.gratingStepSizeUpB).ljust(15),
-            '# step size on the way up; same unit as G_STRT\n'))
-        file.write('%s%s%s' % ("G_PSDN_B".ljust(12),
-            str(aor.gratingPosDownB).ljust(15),
-            '# number of grating position down in one cycle\n'))
-        file.write('%s%s%s' % ("G_SZDN_B".ljust(12),
-            str(aor.gratingStepSizeDownB).ljust(15),
-            '# step size on the way down; same unit as G_STRT\n'))
-        file.write('# Red\n')
-        file.write('%s%s%s' % ("G_WAVE_R".ljust(12),
-            str("%.3f" % aor.waveRed).ljust(15),
-            '# Wavelength to be observed in um INFO ONLY\n'))
-        file.write('%s%s%s' % ("RESTWAVR".ljust(12),
-            str("%.3f" % aor.restWaveRed).ljust(15),
-            '# Reference wavelength in um\n'))
-        file.write('%s%s%s' % ("G_CYC_R".ljust(12),
-            str(aor.gratingCyclesR).ljust(15),
-            '# The number of grating cycles (up-down)\n'))
-        file.write('%s%s%s' % ("G_STRT_R".ljust(12),
-            str(aor.gratingRed).ljust(15),
-            '# absolute starting value in inductosyn units\n'))
-        file.write('%s%s%s' % ("G_PSUP_R".ljust(12),
-            str(aor.gratingPosUpR).ljust(15),
-            '# number of grating position up in one cycle\n'))
-        file.write('%s%s%s' % ("G_SZUP_R".ljust(12),
-            str(aor.gratingStepSizeUpR).ljust(15),
-            '# step size on the way up; same unit as G_STRT\n'))
-        file.write('%s%s%s' % ("G_PSDN_R".ljust(12),
-            str(aor.gratingPosDownR).ljust(15),
-            '# number of grating position down in one cycle\n'))
-        file.write('%s%s%s' % ("G_SZDN_R".ljust(12),
-            str(aor.gratingStepSizeDownR).ljust(15),
-            '# step size on the way down; same unit as G_STRT\n'))
-        file.write('\n#    RAMP\n')
-        file.write('%s%s%s' % ("RAMPLN_B".ljust(12),
-            str(aor.rampLengthB).ljust(15),
-            '# number of readouts per blue ramp\n'))
-        file.write('%s%s%s' % ("RAMPLN_R".ljust(12),
-            str(aor.rampLengthR).ljust(15),
-            '# number of readouts per red ramp\n'))
-        file.write('\n#    CHOPPER\n')
-        file.write('%s%s%s' % ("C_SCHEME".ljust(12),
-            ('"' + aor.chopScheme + '"').ljust(15),
-            '# Chopper scheme; 2POINT or 4POINT\n'))
-        file.write('%s%s%s' % ("C_CRDSYS".ljust(12),
-            ('"' + aor.chopCoordSys + '"').ljust(15),
-            '# Chopper coodinate system\n'))
-        file.write('%s%s%s' % ("C_AMP".ljust(12),
-            str(aor.chopAmplitude).ljust(15),
-            '# chop amplitude in arcsec\n'))
-        file.write('%s%s%s' % ("C_TIP".ljust(12),
-            str(aor.chopTip).ljust(15), '# fraction\n'))
-        file.write('%s%s%s' % ("C_BEAM".ljust(12),
-            str("%.1f" % aor.chopBeam).ljust(15), '# nod phase\n'))
-        file.write('%s%s%s' % ("C_POSANG".ljust(12),
-            str(aor.chopPosAngle).ljust(15), '# deg, S of E\n'))
-        file.write('%s%s%s' % ("C_CYC_B".ljust(12),
-            str(aor.chopCyclesB).ljust(15),
-            '# chopping cycles per grating position\n'))
-        file.write('%s%s%s' % ("C_CYC_R".ljust(12),
-            str(aor.chopCyclesR).ljust(15),
-            '# chopping cycles per grating position\n'))
-        file.write('%s%s%s' % ("C_PHASE".ljust(12),
-            str("%.1f" % float(aor.chopPhase)).ljust(15),
-            '# chopper signal phase shift relative to R/O in deg\n'))
-        file.write('%s%s%s' % ("C_CHOPLN".ljust(12),
-            str(aor.chopLength).ljust(15),
-            '# number of readouts per chop position\n'))
-        file.write('\n#    CAPACITORS\n')
-        file.write('%s%s%s' % ("CAP_B".ljust(12),
-            str(aor.capB).ljust(15),
-            '# Integrating capacitors in pF\n'))
-        file.write('%s%s%s' % ("CAP_R".ljust(12),
-            str(aor.capR).ljust(15),
-            '# Integrating capacitors in pF\n'))
-        file.write('\n#    CONVERTER\n# Blue\n')
-        file.write('%s%s%s' % ("ZBIAS_B".ljust(12),
-            str("%.3f" % aor.zbiasB).ljust(15),
-                '# Voltage in mV\n'))
-        file.write('%s%s%s' % ("BIASR_B".ljust(12),
-            str("%.3f" % aor.biasrB).ljust(15), '# Voltage in mV\n'))
-        file.write('%s%s%s' % ("HEATER_B".ljust(12),
-            str("%.3f" % aor.heaterB).ljust(15), '# Voltage in mV\n'))
-        file.write('# Red\n')
-        file.write('%s%s%s' % ("ZBIAS_R".ljust(12),
-            str("%.3f" % aor.zbiasR).ljust(15),
-                '# Voltage in mV\n'))
-        file.write('%s%s%s' % ("BIASR_R".ljust(12),
-            str("%.3f" % aor.biasrR).ljust(15), '# Voltage in mV\n'))
-        file.write('%s%s%s' % ("HEATER_R".ljust(12),
-            str("%.3f" % aor.heaterR).ljust(15), '# Voltage in mV\n'))
-        file.write('\n#    CALIBRATION SOURCE\n')
-        file.write('%s%s%s' % ("CALSTMP".ljust(12),
-            str(aor.calstmp).ljust(15), '# Kelvin\n'))
-        file.write('\nHERE_COMETH_THE_END\n')
+            f.write('%s%s%s' % ("NODPATT".ljust(12),
+                                ('"' + aor.nodPattern + '"').ljust(20),
+                                '# Nod pattern\n'))
+        f.write('\n#    DICHROIC SETTING\n')
+        f.write('%s%s%s' % ("DICHROIC".ljust(12),
+                            str(aor.dichroic).ljust(20),
+                            '# Dichroic wavelength in um\n'))
+        f.write('\n#    GRATING\n# Blue\n')
+        f.write('%s%s%s' % ("G_ORD_B".ljust(12),
+                            str(aor.orderBlue).ljust(15),
+                            '# Blue grating order to be used\n'))
+        f.write('%s%s%s' % ("G_FLT_B".ljust(12),
+                            str(aor.filterBlue).ljust(15),
+                            '# Filter number for Blue\n'))
+        f.write('%s%s%s' % ("G_WAVE_B".ljust(12),
+                            str("%.3f" % aor.waveBlue).ljust(15),
+                            '# Wavelength to be observed in um INFO ONLY\n'))
+        f.write('%s%s%s' % ("RESTWAVB".ljust(12),
+                            str("%.3f" % aor.restWaveBlue).ljust(15),
+                            '# Reference wavelength in um\n'))
+        f.write('%s%s%s' % ("G_CYC_B".ljust(12),
+                            str(aor.gratingCyclesB).ljust(15),
+                            '# The number of grating cycles (up-down)\n'))
+        f.write('%s%s%s' % ("G_STRT_B".ljust(12),
+                            str(aor.gratingBlue).ljust(15),
+                            '# absolute starting value in inductosyn units\n'))
+        f.write('%s%s%s' % ("G_PSUP_B".ljust(12),
+                            str(aor.gratingPosUpB).ljust(15),
+                            '# number of grating position up in one cycle\n'))
+        f.write('%s%s%s' % ("G_SZUP_B".ljust(12),
+                            str(aor.gratingStepSizeUpB).ljust(15),
+                            '# step size on the way up; same unit as G_STRT\n'))
+        f.write('%s%s%s' % ("G_PSDN_B".ljust(12),
+                            str(aor.gratingPosDownB).ljust(15),
+                            '# number of grating position down in one cycle\n'))
+        f.write('%s%s%s' % ("G_SZDN_B".ljust(12),
+                            str(aor.gratingStepSizeDownB).ljust(15),
+                            '# step size on the way down; same unit as G_STRT\n'))
+        f.write('# Red\n')
+        f.write('%s%s%s' % ("G_WAVE_R".ljust(12),
+                            str("%.3f" % aor.waveRed).ljust(15),
+                            '# Wavelength to be observed in um INFO ONLY\n'))
+        f.write('%s%s%s' % ("RESTWAVR".ljust(12),
+                            str("%.3f" % aor.restWaveRed).ljust(15),
+                            '# Reference wavelength in um\n'))
+        f.write('%s%s%s' % ("G_CYC_R".ljust(12),
+                            str(aor.gratingCyclesR).ljust(15),
+                            '# The number of grating cycles (up-down)\n'))
+        f.write('%s%s%s' % ("G_STRT_R".ljust(12),
+                            str(aor.gratingRed).ljust(15),
+                            '# absolute starting value in inductosyn units\n'))
+        f.write('%s%s%s' % ("G_PSUP_R".ljust(12),
+                            str(aor.gratingPosUpR).ljust(15),
+                            '# number of grating position up in one cycle\n'))
+        f.write('%s%s%s' % ("G_SZUP_R".ljust(12),
+                            str(aor.gratingStepSizeUpR).ljust(15),
+                            '# step size on the way up; same unit as G_STRT\n'))
+        f.write('%s%s%s' % ("G_PSDN_R".ljust(12),
+                            str(aor.gratingPosDownR).ljust(15),
+                            '# number of grating position down in one cycle\n'))
+        f.write('%s%s%s' % ("G_SZDN_R".ljust(12),
+                            str(aor.gratingStepSizeDownR).ljust(15),
+                            '# step size on the way down; same unit as G_STRT\n'))
+        f.write('\n#    RAMP\n')
+        f.write('%s%s%s' % ("RAMPLN_B".ljust(12),
+                            str(aor.rampLengthB).ljust(15),
+                            '# number of readouts per blue ramp\n'))
+        f.write('%s%s%s' % ("RAMPLN_R".ljust(12),
+                            str(aor.rampLengthR).ljust(15),
+                            '# number of readouts per red ramp\n'))
+        f.write('\n#    CHOPPER\n')
+        f.write('%s%s%s' % ("C_SCHEME".ljust(12),
+                            ('"' + aor.chopScheme + '"').ljust(15),
+                            '# Chopper scheme; 2POINT or 4POINT\n'))
+        f.write('%s%s%s' % ("C_CRDSYS".ljust(12),
+                            ('"' + aor.chopCoordSys + '"').ljust(15),
+                            '# Chopper coodinate system\n'))
+        f.write('%s%s%s' % ("C_AMP".ljust(12),
+                            str(aor.chopAmplitude).ljust(15),
+                            '# chop amplitude in arcsec\n'))
+        f.write('%s%s%s' % ("C_TIP".ljust(12),
+                            str(aor.chopTip).ljust(15), '# fraction\n'))
+        f.write('%s%s%s' % ("C_BEAM".ljust(12),
+                            str("%.1f" % aor.chopBeam).ljust(15), '# nod phase\n'))
+        f.write('%s%s%s' % ("C_POSANG".ljust(12),
+                            str(aor.chopPosAngle).ljust(15), '# deg, S of E\n'))
+        f.write('%s%s%s' % ("C_CYC_B".ljust(12),
+                            str(aor.chopCyclesB).ljust(15),
+                            '# chopping cycles per grating position\n'))
+        f.write('%s%s%s' % ("C_CYC_R".ljust(12),
+                            str(aor.chopCyclesR).ljust(15),
+                            '# chopping cycles per grating position\n'))
+        f.write('%s%s%s' % ("C_PHASE".ljust(12),
+                            str("%.1f" % float(aor.chopPhase)).ljust(15),
+                            '# chopper signal phase shift relative to R/O in deg\n'))
+        f.write('%s%s%s' % ("C_CHOPLN".ljust(12),
+                            str(aor.chopLength).ljust(15),
+                            '# number of readouts per chop position\n'))
+        f.write('\n#    CAPACITORS\n')
+        f.write('%s%s%s' % ("CAP_B".ljust(12),
+                            str(aor.capB).ljust(15),
+                            '# Integrating capacitors in pF\n'))
+        f.write('%s%s%s' % ("CAP_R".ljust(12),
+                            str(aor.capR).ljust(15),
+                            '# Integrating capacitors in pF\n'))
+        f.write('\n#    CONVERTER\n# Blue\n')
+        f.write('%s%s%s' % ("ZBIAS_B".ljust(12),
+                            str("%.3f" % aor.zbiasB).ljust(15),
+                            '# Voltage in mV\n'))
+        f.write('%s%s%s' % ("BIASR_B".ljust(12),
+                            str("%.3f" % aor.biasrB).ljust(15), '# Voltage in mV\n'))
+        f.write('%s%s%s' % ("HEATER_B".ljust(12),
+                            str("%.3f" % aor.heaterB).ljust(15), '# Voltage in mV\n'))
+        f.write('# Red\n')
+        f.write('%s%s%s' % ("ZBIAS_R".ljust(12),
+                            str("%.3f" % aor.zbiasR).ljust(15),
+                            '# Voltage in mV\n'))
+        f.write('%s%s%s' % ("BIASR_R".ljust(12),
+                            str("%.3f" % aor.biasrR).ljust(15), '# Voltage in mV\n'))
+        f.write('%s%s%s' % ("HEATER_R".ljust(12),
+                            str("%.3f" % aor.heaterR).ljust(15), '# Voltage in mV\n'))
+        f.write('\n#    CALIBRATION SOURCE\n')
+        f.write('%s%s%s' % ("CALSTMP".ljust(12),
+                            str(aor.calstmp).ljust(15), '# Kelvin\n'))
+        f.write('\nHERE_COMETH_THE_END\n')
 
 class AOR(object):
     """AOR from a list of AORs"""

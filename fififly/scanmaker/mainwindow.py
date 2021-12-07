@@ -14,8 +14,9 @@ from PyQt5 import QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-from PyQt5.QtWidgets import (QWidget, QMainWindow, QMessageBox,QToolBar,QAction,QStatusBar,
-                             QHBoxLayout, QVBoxLayout, QApplication, QListWidget,QSplitter,QMenu)
+from PyQt5.QtWidgets import (QWidget, QMainWindow, QMessageBox,QToolBar,QAction,
+                             QStatusBar,QHBoxLayout, QVBoxLayout, QApplication, 
+                             QListWidget,QSplitter,QMenu,QFileDialog)
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt, QTimer, QThread, pyqtSignal, QObject
 
@@ -38,16 +39,6 @@ class MplCanvas(FigureCanvas):
     def compute_initial_figure(self):
         pass
 
-class myListWidget(QListWidget):
-
-    def Clicked(self,item):
-        mw = self.parent().parent()
-        # 2000 means message erased after 2 seconds
-        #mw.sb.showMessage("You selected the FileGroupID: "+item.text(),2000)
-        #mw.lf.setVisible(False)
-        # Trigger event related to item list ....
-        #mw.addObs(item.text(),False)
-
 class GUI(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
@@ -59,28 +50,32 @@ class GUI(QMainWindow):
             self.setStyleSheet(fh.read())
 
         # Menu
-        self.file_menu = self.menuBar().addMenu('&File')
-        self.quit_program = QAction('Quit',self,shortcut='Ctrl+q',triggered=self.fileQuit)
-        self.file_menu.addAction(self.quit_program)
-        
-        self.help_menu = self.menuBar().addMenu('&Help')
-        self.about_code = QAction('About',self,shortcut='Ctrl+h',triggered=self.about)
-        self.help_menu.addAction(self.about_code)
-
-        self.menuBar().setNativeMenuBar(False)
+        self.createMenu()
         
         # Main widget
         self.main_widget = QWidget(self)
         
         # Actions
+        openAction = QAction(QIcon(os.path.join(path0,'icons','open.png')), 'Open an AOR file', self)
+        openAction.setShortcut('Ctrl+N')
+        openAction.triggered.connect(self.newAOR)
+        
+        scanAction = QAction(QIcon(os.path.join(path0,'icons','stripes.png')), 'Make the scans', self)
+        scanAction.setShortcut('Ctrl+S')
+        scanAction.triggered.connect(self.saveScans)
+
         exitAction = QAction(QIcon(os.path.join(path0,'icons','exit.png')), 'Exit the program', self)
         exitAction.setShortcut('Ctrl+Q')
         exitAction.triggered.connect(self.fileQuit)
+        
+        
         
         # Toolbar
         self.tb = QToolBar()
         self.tb.setOrientation(Qt.Vertical)
         self.tb.setMovable(True)
+        self.tb.addAction(openAction)
+        self.tb.addAction(scanAction)
         self.tb.addAction(exitAction)
         self.tb.setObjectName('tb')
         
@@ -106,8 +101,9 @@ class GUI(QMainWindow):
         toolWidget.setLayout(toolLayout)
         toolLayout.addWidget(self.tb)
         # Data table
-        self.lf = myListWidget()
+        self.lf = QListWidget()
         self.lf.setWindowTitle('List of titles')
+        self.lf.itemClicked.connect(self.listClicked)
         # Table       
         tableWidget = QWidget()
         tableLayout = QVBoxLayout()
@@ -127,6 +123,67 @@ class GUI(QMainWindow):
         self.main_widget.setFocus()
         self.setCentralWidget(self.main_widget)
 
+    def createMenu(self):
+        
+        bar = self.menuBar()
+        self.file_menu = bar.addMenu('&File')
+        self.quit_program = QAction('Quit',self,shortcut='Ctrl+q',triggered=self.fileQuit)
+        self.file_menu.addAction(self.quit_program)
+        self.open_aor = QAction("Open AOR", self, shortcut='Ctrl+n', triggered=self.newAOR)
+        self.file_menu.addAction(self.open_aor)
+        
+        self.help_menu = self.menuBar().addMenu('&Help')
+        self.about_code = QAction('About',self,shortcut='Ctrl+h',triggered=self.about)
+        self.help_menu.addAction(self.about_code)
+
+        self.menuBar().setNativeMenuBar(False)
+
+    def newAOR(self):
+        """Select files."""
+        from fififly.scanmaker.io import loadTitles
+        
+        fd = QFileDialog()
+        fd.setLabelText(QFileDialog.Accept, "Import")
+        fd.setNameFilters(["AOR files (*.aor)", "All Files (*)"])
+        fd.setOptions(QFileDialog.DontUseNativeDialog)
+        fd.setViewMode(QFileDialog.List)
+        fd.setFileMode(QFileDialog.ExistingFile)
+        if (fd.exec()):
+            fileName= fd.selectedFiles()
+            print('Reading file ', fileName[0])
+            # Save the file path for future reference
+            self.pathFile, self.AORfile = os.path.split(fileName[0])
+            self.titles = loadTitles(fileName[0])
+            print('Directory ', self.pathFile)
+            print('AOR file ', self.AORfile)
+            try:
+                print('initialize')
+                print('Titles: ', self.titles)
+                for item in self.titles:
+                    self.lf.addItem(item); 
+                self.lf.itemClicked.connect(self.lf.Clicked)
+            except:
+                print('No AOR is defined')
+                pass
+            
+    def listClicked(self, item):
+        from fififly.scanmaker.io import AOR
+        print('Clicked on ',item.text())
+        self.aor = AOR(os.path.join(self.pathFile, self.AORfile), item.text())
+        
+    def saveScans(self):
+        """Create a directory with scan"""
+        from fififly.scanmaker.io import makeScans
+        # First create a directory
+        folderpath = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select Folder')
+        if not os.path.exists(folderpath):
+            os.mkdir(folderpath)
+        else:
+            files = os.listdir(folderpath)
+            for f in files:
+                os.remove(os.path.join(folderpath, f))
+        makeScans(folderpath, self.aor)
+        
         
     def fileQuit(self):
         #self.saveData()
