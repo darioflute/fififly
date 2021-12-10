@@ -47,6 +47,9 @@ def makeScans(folder, aor):
         j+=1
     print('All files written')
     
+    # Write table
+    
+    
     
 def writeFile(filename, aor, i, off=False):
     """Generic scan taken from obsmaker, it should be updated"""
@@ -271,6 +274,190 @@ def writeFile(filename, aor, i, off=False):
         f.write('%s%s%s' % ("CALSTMP".ljust(12),
                             str(aor.calstmp).ljust(15), '# Kelvin\n'))
         f.write('\nHERE_COMETH_THE_END\n')
+        
+def saveTable(filename, aor):
+    """ Write tex table to insert into the flight description """
+        
+    import re
+    import os
+    from astropy import units as u
+    from astropy.coordinates import SkyCoord
+        
+    # Main lines
+    lines = {
+          51.814:'[OIII]',
+          54.311:'[FeI]',
+          56.311:'[SI]',
+          57.317:'[NIII]',
+    	  60.640:'[PII]',
+    	  63.184:'[OI]',
+    	  67.200:'[FII]',
+    	  68.473:'[SiI]',
+    	  87.384:'[FeII]',
+    	  88.356:'[OIII]',
+    	  89.237:'[AlI]',
+    	 105.370:'[FeIII]',
+    	 111.183:'[FeI]',
+    	 121.898:'[NII]',
+    	 129.682:'[SiI]',
+    	 145.525:'[OI]',
+    	 157.741:'[CII]',
+    	 177.431:'[CIII]',
+    	 205.178:'[NII]'
+    }        
+    
+    for key in lines.keys():
+        if np.abs(aor.restWaveBlue - key) < 0.01:
+            blueline = ' '+lines[key]
+        if np.abs(aor.restWaveRed - key) < 0.01:
+            redline = ' '+lines[key]
+
+    aorlabel = '1'
+    aorid = aor.aorID.replace('_','\_')
+    objname = aor.objName.replace('_','\_')
+    instmode = aor.instmode.replace('_','\_')
+    target =  SkyCoord(ra=float(aor.posLonN), dec=float(aor.posLatN), unit='deg')
+    objra = target.ra.to_string(sep=':', precision=2, pad=True, unit=u.hourangle)
+    objdec = target.dec.to_string(sep=':', precision=1, pad=True, alwayssign=True)
+    c = 299792.458
+    cz = '{0:.1f}'.format(float(aor.redshift) * c)
+    ngratpos = '1'
+    gratstep = ''
+    ngratnod = '1'
+    gratingMode = 'Fixed'
+    
+    obstime = 'Unknown'
+    comments =  'Comments: None'
+    offmode = 'Relative to source'
+    nscans = np.size(aor.dlam_map)    
+    
+    with open(filename, 'w') as f:
+        f.write(r'%\documentclass{article}'+'\n')
+        f.write(r'%\begin{document}'+'\n')
+        f.write(r'\begin{table}'+'\n'+r'\centering'+'\n')
+        f.write(r'\begin{tabular}{llll}'+'\n')
+        f.write(r'\hline'+'\n')
+        f.write(r'\hline'+'\n')
+        f.write(r'\multicolumn{2}{l}{\bf Act '+aorlabel+'}&{\sl AOR ID:}   '+ aorid +
+                '&{\sl P.I.:} '+aor.observer+r'\\'+'\n')
+        f.write(r'\multicolumn{2}{l}{'+objname + '}& ' +
+                objra + ' '+objdec + '& ' + cz + r' km/s\\'+'\n')
+        f.write(r'\hline'+'\n')
+        f.write(r'\hline'+'\n')
+        f.write(r'\multicolumn{2}{l}{\sl Grating} & Blue & Red\\'+'\n')
+        f.write(r'\hline'+'\n')
+        f.write(r'\multicolumn{2}{l}{\sl Reference Wavelength:} & '+
+                '{0:.2f}'.format(aor.restWaveBlue)+r'$\mu$m'+blueline+' &'+
+                '{0:.2f}'.format(aor.restWaveRed)+r'$\mu$m'+redline+r'\\'+'\n')
+        f.write(r'\multicolumn{2}{l}{\sl Grating Steps:} & '+ngratpos+r' $\times$ '+gratstep +
+                '& '+ngratpos+r' $\times$ '+gratstep+r'\\'+'\n')
+        f.write(r'\multicolumn{2}{l}{\sl Grating Steps per Nod:} &'+ngratnod+'&'+ngratnod+r'\\'+'\n')
+        f.write(r'\multicolumn{2}{l}{\sl Grating mode: }&  \multicolumn{2}{l}{'+gratingMode+r'}\\'+'\n')
+        f.write(r'\hline'+'\n')
+        f.write(r'\hline'+'\n')
+        f.write('{\sl Dichroic: } '+aor.dichroic+
+                '&{\sl Blue order: } M'+ str(aor.orderBlue) +
+                '&{\sl Primary array: } '+aor.primeArray+
+                '&{\sl FOV angle: } '+'{0:.1f}'.format(aor.detangle)+r'$^o$ J2000'+r'\\'+'\n')
+        f.write(r'\hline'+'\n')
+        f.write(r'\hline'+'\n')
+        if aor.instmode == 'SYMMETRIC_CHOP':
+            #f.write(r'{\sl Chop}&{\sl Mode}&{\sl Throw}&{\sl Angle}\\'+'\n')
+            #f.write(r'\hline'+'\n')
+            #f.write('&'+sctPars['OBSMODE']+' '+sctPars['NODPATTERN']+
+            #        '&'+sctPars['CHOP_AMP']+r'"'+
+            #        '&'+sctPars['CHOP_POSANG']+'$^o$ J2000'+r'\\'+'\n')
+            pass
+        elif aor.instmode == 'OTF_TP':
+            f.write(r'{\sl Mode}&{\sl Off mode}&{\sl Off RA}&{\sl Off Dec}\\'+'\n')
+            f.write(r'\hline'+'\n')
+            f.write(instmode+' &'+offmode+'&'+str(aor.dlam_off)+'&'+str(aor.dbet_off)+r'\\'+'\n')
+        else:
+            #f.write(r'{\sl Mode}&{\sl Nod pattern}&{\sl Offset}&{\sl Coords}\\'+'\n')
+            #f.write(r'\hline'+'\n')
+            #f.write(sctPars['INSTMODE']+' &'+sctPars['NODPATTERN']+
+            #        '&'+sctPars['OFFPOS']+
+            #        #'&'+ sra +' '+sdec+r'\\'+'\n')
+            #        '&'+ sctPars['OFFPOS_LAMBDA'] +' '+sctPars['OFFPOS_BETA']+r'\\'+'\n')
+            pass
+            
+        f.write(r'\hline'+'\n')
+        f.write(r'\hline'+'\n')
+        f.write(r'\multicolumn{2}{l}{{\sl Map}: '+str(nscans)+' OTF scans}'+
+                r'&{\sl Time planned: } '+aor.totalTime+
+                r'&{\sl Time running: } '+obstime+r'\\'+'\n')
+        f.write(r'\hline'+'\n')
+        f.write(r'\hline'+'\n')
+        f.write(r'\multicolumn{4}{l}{'+comments+r'}\\'+'\n')
+        f.write(r'\hline'+'\n')
+        f.write(r'\hline'+'\n')
+        f.write(r'\end{tabular}'+'\n')
+        f.write(r'\end{table}'+'\n')
+        f.write(r'%\end{document}')
+    print(' Table written ')
+    
+def scanDir(velangle):
+    if velangle == 90:
+        sc = '+X'
+    elif velangle == 270:
+        sc = '-X'
+    elif velangle == 0:
+        sc = '+Y'
+    elif velangle == 180:
+        sc = '-Y'
+    else:
+        sc = ' '
+        print('Wrong velocity angle')
+    return sc
+    
+def saveMapTable(filename, aor):
+    """Export a latex file with the map positions to be used in the flight description"""
+    
+    # Check number of positions and divide them in three columns
+    nscans = np.size(aor.dlam_map)
+    nscanscol = nscans // 3
+    if nscans % 3 != 0:
+        nscanscol += 1
+    
+    with open(filename, 'w') as f:
+        f.write(r'%\documentclass{article}'+'\n')
+        f.write(r'%\begin{document}'+'\n')
+        f.write(r'\begin{table}'+'\n'+r'\centering'+'\n')
+        f.write(r'\setlength{\tabcolsep}{2pt}'+'\n')
+        f.write(r'\begin{tabular}{rrrcc|rrrcc|rrrcc}'+'\n')
+        f.write(r'\hline'+'\n')
+        f.write(r'\hline'+'\n')
+        f.write(r'\# & $\Delta\alpha$ & $\Delta\beta$ & Speed & Dir &'+
+                r'\# & $\Delta\alpha$ & $\Delta\beta$ & Speed & Dir &'+
+                r'\# & $\Delta\alpha$ & $\Delta\beta$ & Speed & Dir\\'+'\n')
+        f.write(r' & " & " & "/s && & " & " & "/s && & " & " & "/s &\\'+'\n')
+        f.write(r'\hline'+'\n')
+        for i in range(nscanscol):
+            ra1, dec1 = aor.dlam_map[i], aor.dbet_map[i]
+            v1 = aor.scanspeed[i]
+            sc1 = scanDir(aor.velangle[i])
+            ra2, dec2 = aor.dlam_map[i+nscanscol], aor.dbet_map[i+nscanscol]
+            v2 = aor.scanspeed[i+nscanscol]
+            sc2 = scanDir(aor.velangle[i+nscanscol])
+            if i+2*nscanscol < nscans:
+                ra3, dec3 = aor.dlam_map[i+2*nscanscol], aor.dbet_map[i+2*nscanscol]
+                v3 = aor.scanspeed[i+2*nscanscol]
+                sc3 = scanDir(aor.velangle[i+2*nscanscol])
+            else:
+                ra3=dec3=v3=sc3=''
+            i1, i2, i3 = i+1, i+nscanscol+1, i+2*nscanscol+1
+            fmt = '{0:d} & {1:.1f} & {2:.1f} & {3:.0f} & {4:s} &{5:d} & {6:.1f}'+\
+                ' & {7:.1f} & {8:.0f} & {9:s} &{10:d} & {11:.1f} & {12:.1f} &{13:.0f} & {14:s}\\\\\n'
+            line = fmt.format(i1,ra1,dec1,v1,sc1,i2,ra2,dec2,v2,sc2,i3,ra3,dec3,v3,sc3)
+            print(line)
+            f.write(line)
+        f.write(r'\hline'+'\n')
+        f.write(r'\hline'+'\n')
+        f.write(r'\end{tabular}'+'\n')
+        f.write(r'\end{table}'+'\n')
+        f.write(r'%\end{document}')
+    print(' Table written ')
+        
 
 class AOR(object):
     """AOR from a list of AORs"""
@@ -313,6 +500,7 @@ class AOR(object):
         self.dlam_off = float(self.request.findall('instrument/data/RAOffset')[0].text)
         self.dbet_off = float(self.request.findall('instrument/data/DecOffset')[0].text)
         self.primeArray = self.request.findall('instrument/data/PrimeArray')[0].text
+        self.totalTime = self.request.findall('instrument/data/TotalTime')[0].text
         # Nod
         self.nodType = self.request.findall('instrument/data/NodType')[0].text
         # Dichroic

@@ -64,6 +64,10 @@ class GUI(QMainWindow):
         scanAction.setShortcut('Ctrl+S')
         scanAction.triggered.connect(self.saveScans)
 
+        tablesAction = QAction(QIcon(os.path.join(path0,'icons','tables.png')), 'Export latex tables', self)
+        tablesAction.setShortcut('Ctrl+T')
+        tablesAction.triggered.connect(self.exportTables)
+
         exitAction = QAction(QIcon(os.path.join(path0,'icons','exit.png')), 'Exit the program', self)
         exitAction.setShortcut('Ctrl+Q')
         exitAction.triggered.connect(self.fileQuit)
@@ -76,6 +80,7 @@ class GUI(QMainWindow):
         self.tb.setMovable(True)
         self.tb.addAction(openAction)
         self.tb.addAction(scanAction)
+        self.tb.addAction(tablesAction)
         self.tb.addAction(exitAction)
         self.tb.setObjectName('tb')
         
@@ -122,6 +127,9 @@ class GUI(QMainWindow):
         
         self.main_widget.setFocus()
         self.setCentralWidget(self.main_widget)
+        
+        # Initiate variables
+        self.aor = None
 
     def createMenu(self):
         
@@ -131,6 +139,10 @@ class GUI(QMainWindow):
         self.file_menu.addAction(self.quit_program)
         self.open_aor = QAction("Open AOR", self, shortcut='Ctrl+n', triggered=self.newAOR)
         self.file_menu.addAction(self.open_aor)
+        self.make_scans = QAction("Make Scans", self, shortcut='Ctrl+s', triggered=self.saveScans)
+        self.file_menu.addAction(self.make_scans)
+        self.export_tables = QAction("Latex tables", self, shortcut='Ctrl+t', triggered=self.exportTables)
+        self.file_menu.addAction(self.export_tables)
         
         self.help_menu = self.menuBar().addMenu('&Help')
         self.about_code = QAction('About',self,shortcut='Ctrl+h',triggered=self.about)
@@ -174,6 +186,10 @@ class GUI(QMainWindow):
     def saveScans(self):
         """Create a directory with scan"""
         from fififly.scanmaker.io import makeScans
+        # Check
+        if self.aor is None:
+           print('Please, select an AOR') 
+        
         # First create a directory
         folderpath = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select Folder')
         if not os.path.exists(folderpath):
@@ -184,7 +200,30 @@ class GUI(QMainWindow):
                 os.remove(os.path.join(folderpath, f))
         makeScans(folderpath, self.aor)
         
-        
+    def exportTables(self):
+        """Export latex tables for flight description document"""
+        from fififly.scanmaker.io import saveTable, saveMapTable
+        # Check
+        if self.aor is None:
+           print('Please, select an AOR') 
+        # Open a dialog
+        fd = QFileDialog()
+        fd.setLabelText(QFileDialog.Accept, "Export as")
+        fd.setNameFilters(["Tex Files (*.tex)","All Files (*)"])
+        fd.setOptions(QFileDialog.DontUseNativeDialog)
+        fd.setViewMode(QFileDialog.List)
+        if (fd.exec()):
+            filenames= fd.selectedFiles()
+            filename = filenames[0]
+            if filename[-4:] != '.tex':
+                filename += '.tex'               
+            saveTable(filename, self.aor)
+            # If map available, export also the map
+            # If condition to be added
+            if self.aor.instmode == 'OTF_TP':
+                filename = filename[:-4]+'_map.tex'
+                saveMapTable(filename, self.aor)
+            
     def fileQuit(self):
         #self.saveData()
         self.close()
