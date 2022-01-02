@@ -22,6 +22,7 @@ def loadTitles(aorfile):
 def makeScans(folder, aor):
     """Export AOR into scans for observation"""
     from fififly.scanmaker.grating import wavelength2inductosyn as w2i
+    from PyQt5.QtWidgets import QMessageBox
     
     print('Folder is ', folder)
     # Case of OTF MAP
@@ -34,6 +35,16 @@ def makeScans(folder, aor):
     aor.gratingBlue = w2i(float(aor.waveBlue), aor.dichroic, 'BLUE', aor.order)
     aor.gratingRed = w2i(float(aor.waveRed), aor.dichroic,'RED', 1)
     
+    # Move by half grating ?
+    msg = QMessageBox()
+    msg.setInformativeText("Do you want to move the grating half step ?")
+    flags = QMessageBox.Yes| QMessageBox.No
+    msg.setStandardButtons(flags)
+    ret = msg.exec()
+    if ret == QMessageBox.Yes:
+        aor.gratingBlue += 800/2.
+        aor.gratingRed  += 730/2.
+    
     # Go through all the files (on and off)
     # Special case for OTF
     # Write all the scans (on and off)
@@ -43,7 +54,7 @@ def makeScans(folder, aor):
         writeFile(filename, aor, i, off=True)
         j+=1
         filename = os.path.join(folder,'{0:05d}_{1:s}_scan.scn'.format(j,aor.objName))
-        writeFile(filename, aor, i, off=True)
+        writeFile(filename, aor, i, off=False)
         j+=1
     print('All files written')
     
@@ -278,8 +289,6 @@ def writeFile(filename, aor, i, off=False):
 def saveTable(filename, aor):
     """ Write tex table to insert into the flight description """
         
-    import re
-    import os
     from astropy import units as u
     from astropy.coordinates import SkyCoord
         
@@ -424,31 +433,35 @@ def saveMapTable(filename, aor):
         f.write(r'%\begin{document}'+'\n')
         f.write(r'\begin{table}'+'\n'+r'\centering'+'\n')
         f.write(r'\setlength{\tabcolsep}{2pt}'+'\n')
-        f.write(r'\begin{tabular}{rrrcc|rrrcc|rrrcc}'+'\n')
+        f.write(r'\begin{tabular}{rcccc|rcccc|rcccc}'+'\n')
         f.write(r'\hline'+'\n')
         f.write(r'\hline'+'\n')
         f.write(r'\# & $\Delta\alpha$ & $\Delta\beta$ & Speed & Dir &'+
                 r'\# & $\Delta\alpha$ & $\Delta\beta$ & Speed & Dir &'+
                 r'\# & $\Delta\alpha$ & $\Delta\beta$ & Speed & Dir\\'+'\n')
-        f.write(r' & " & " & "/s && & " & " & "/s && & " & " & "/s &\\'+'\n')
+        f.write(r' &$\prime\prime$&$\prime\prime$ &$\prime\prime$/s &&'+
+                r'&$\prime\prime$&$\prime\prime$&$\prime\prime$/s &&'+
+                r'&$\prime\prime$&$\prime\prime$&$\prime\prime$/s &\\'+'\n')
         f.write(r'\hline'+'\n')
         for i in range(nscanscol):
             ra1, dec1 = aor.dlam_map[i], aor.dbet_map[i]
             v1 = aor.scanspeed[i]
-            sc1 = scanDir(aor.velangle[i])
+            sc1 = aor.velangle[i]
             ra2, dec2 = aor.dlam_map[i+nscanscol], aor.dbet_map[i+nscanscol]
             v2 = aor.scanspeed[i+nscanscol]
-            sc2 = scanDir(aor.velangle[i+nscanscol])
+            sc2 = aor.velangle[i+nscanscol]
+            i1, i2, i3 = i+1, i+nscanscol+1, i+2*nscanscol+1
             if i+2*nscanscol < nscans:
                 ra3, dec3 = aor.dlam_map[i+2*nscanscol], aor.dbet_map[i+2*nscanscol]
                 v3 = aor.scanspeed[i+2*nscanscol]
-                sc3 = scanDir(aor.velangle[i+2*nscanscol])
+                sc3 = aor.velangle[i+2*nscanscol]
+                fmt = '{0:d} & {1:.1f} & {2:.1f} & {3:.0f} & {4:.1f}$^o$ &{5:d} & {6:.1f}'+\
+                    ' & {7:.1f} & {8:.0f} & {9:.1f}$^o$ &{10:d} & {11:.1f} & {12:.1f} &{13:.0f} & {14:.1f}$^o$\\\\\n'
+                line = fmt.format(i1,ra1,dec1,v1,sc1,i2,ra2,dec2,v2,sc2,i3,ra3,dec3,v3,sc3)
             else:
-                ra3=dec3=v3=sc3=''
-            i1, i2, i3 = i+1, i+nscanscol+1, i+2*nscanscol+1
-            fmt = '{0:d} & {1:.1f} & {2:.1f} & {3:.0f} & {4:s} &{5:d} & {6:.1f}'+\
-                ' & {7:.1f} & {8:.0f} & {9:s} &{10:d} & {11:.1f} & {12:.1f} &{13:.0f} & {14:s}\\\\\n'
-            line = fmt.format(i1,ra1,dec1,v1,sc1,i2,ra2,dec2,v2,sc2,i3,ra3,dec3,v3,sc3)
+                fmt = '{0:d} & {1:.1f} & {2:.1f} & {3:.0f} & {4:.1f}$^o$ &{5:d} & {6:.1f}'+\
+                    ' & {7:.1f} & {8:.0f} & {9:.1f}$^o$ &&  && & \\\\\n'
+                line = fmt.format(i1,ra1,dec1,v1,sc1,i2,ra2,dec2,v2,sc2)
             print(line)
             f.write(line)
         f.write(r'\hline'+'\n')
@@ -578,7 +591,30 @@ class AOR(object):
         dlam_map = [item.text for item in self.request.findall(scanpath+'deltaX')]
         dbet_map = [item.text for item in self.request.findall(scanpath+'deltaY')]
         scanspeed = [item.text for item in self.request.findall(scanpath+'scanSpeed')]
-        scandirection = [item.text for item in self.request.findall(scanpath+'scanDirection')]
+        self.scanspeed = np.array(scanspeed, dtype=float)
+        scandirection = np.array([item.text for item in self.request.findall(scanpath+'scanDirection')])
+        detangle = float(self.request.findall('instrument/data/MapRotationAngle')[0].text)
+        self.dlam_map = np.array(dlam_map, dtype='float')
+        self.dbet_map = np.array(dbet_map, dtype='float')
+        # Scan distance
+        self.scantime = float(self.request.findall('instrument/data/TimePerPoint')[0].text)
+        distance = self.scanspeed * self.scantime
+        # Compute the last position of the scan
+        dlam_end = self.dlam_map.copy()
+        dbet_end = self.dbet_map.copy()
+        idx = scandirection == '+X'
+        if np.sum(idx) > 0:
+            dlam_end[idx] += distance[idx]
+        idx = scandirection == '-X'
+        if np.sum(idx) > 0:
+            dlam_end[idx] -= distance[idx]
+        idx = scandirection == '+Y'
+        if np.sum(idx) > 0:
+            dbet_end[idx] += distance[idx]
+        idx = scandirection == '-Y'
+        if np.sum(idx) > 0:
+            dbet_end[idx] -= distance[idx]
+
         velangle = []
         for sc in scandirection:
             if sc == '+X': 
@@ -589,53 +625,42 @@ class AOR(object):
                 va = 0
             elif sc == '-Y':
                 va = 180
+            va = (va + detangle + 360) % 360 # Angle normalized to 0-360
             velangle.append(va)
         self.velangle = np.array(velangle, dtype=float)
-        self.scanspeed = np.array(scanspeed, dtype=float)
-        
-        detangle = float(self.request.findall('instrument/data/MapRotationAngle')[0].text)
-        self.detangle = (((detangle + 11.3) + 180 + 360) % 360) - 180
         
         # Rotation matrix
-        detang = self.detangle * np.pi / 180.0
-        cosa = np.cos(detang)
-        sina = np.sin(detang)
+        cosa = np.cos(detangle * np.pi/180.0)
+        sina = np.sin(detangle * np.pi/180.0)
         r = np.array([[cosa, -sina], [sina, cosa]])
-        self.dlam_map = np.array(dlam_map, dtype='float')
-        self.dbet_map = np.array(dbet_map, dtype='float')
-
-        self.scantime = float(self.request.findall('instrument/data/TimePerPoint')[0].text)
-        distance = self.scanspeed * self.scantime
         
-        # Compute the last position of the scan
-        dlam_end = self.dlam_map.copy()
-        dbet_end = self.dbet_map.copy()
+        # Magic angle (to cover an indipendent strip with each detector)
+        magicAngle = np.arctan(1/5) * 180/np.pi
+        #magicAngle = 11.31
+        # Detector angle augmented by the magic angle to scan each detector independently
+        self.detangle = (((detangle + magicAngle) + 180 + 360) % 360) - 180
 
-        idx = self.velangle == 90
-        if np.sum(idx) > 0:
-            dlam_end[idx] += distance[idx]
-        idx = self.velangle == 270
-        if np.sum(idx) > 0:
-            dlam_end[idx] -= distance[idx]
-        idx = self.velangle == 0
-        if np.sum(idx) > 0:
-            dbet_end[idx] += distance[idx]
-        idx = self.velangle == 180
-        if np.sum(idx) > 0:
-            dbet_end[idx] -= distance[idx]
         x1, y1 = self.dlam_map.copy(), self.dbet_map.copy()
         x2, y2 = self.dlam_map.copy(), self.dbet_map.copy()
         x3, y3 = dlam_end.copy(), dbet_end.copy()
         x4, y4 = dlam_end.copy(), dbet_end.copy()
 
         mapoffsets = np.array([self.dlam_map, self.dbet_map])
-        rot_mapoffsets = np.dot(np.transpose(r), mapoffsets)
+        #rot_mapoffsets = np.dot(np.transpose(r), mapoffsets)
+        rot_mapoffsets = np.dot(r, mapoffsets)
+        # Recomputed offsets taking into account the field rotation
+        self.dlam_map = rot_mapoffsets[0,:]
+        self.dbet_map = rot_mapoffsets[1,:]
+        
         mapends = np.array([dlam_end, dbet_end])
-        rot_mapends = np.dot(np.transpose(r), mapends)
+        #rot_mapends = np.dot(np.transpose(r), mapends)
+        rot_mapends = np.dot(r, mapends)
+        self.dlam_end = rot_mapends[0,:]
+        self.dbet_end = rot_mapends[1,:]
 
         # Find the corners of the scan
         dr = 30 # case of red array, half side is 30 arcsec
-        idx = velangle == 90
+        idx = scandirection == '+X'
         if np.sum(idx) > 0:
             x1[idx] -= dr
             x2[idx] -= dr
@@ -645,7 +670,7 @@ class AOR(object):
             y2[idx] -= dr
             y3[idx] -= dr
             y4[idx] += dr
-        idx = velangle == 270
+        idx = scandirection == '-X'
         if np.sum(idx) > 0:
             x1[idx] += dr
             x2[idx] += dr
@@ -655,7 +680,7 @@ class AOR(object):
             y2[idx] -= dr
             y3[idx] -= dr
             y4[idx] += dr
-        idx = velangle == 0
+        idx = scandirection == '+Y'
         if np.sum(idx) > 0:
             x1[idx] -= dr
             x2[idx] += dr
@@ -665,7 +690,7 @@ class AOR(object):
             y2[idx] -= dr
             y3[idx] += dr
             y4[idx] += dr
-        idx = velangle == 180
+        idx = scandirection == '-Y'
         if np.sum(idx) > 0:
             x1[idx] -= dr
             x2[idx] += dr
@@ -676,12 +701,15 @@ class AOR(object):
             y3[idx] -= dr
             y4[idx] -= dr
         
-        
         xy1 = np.array([x1, y1])
         xy2 = np.array([x2, y2])
         xy3 = np.array([x3, y3])
         xy4 = np.array([x4, y4])
-        self.rxy1 = np.dot(np.transpose(r), xy1)
-        self.rxy2 = np.dot(np.transpose(r), xy2)
-        self.rxy3 = np.dot(np.transpose(r), xy3)
-        self.rxy4 = np.dot(np.transpose(r), xy4)
+        #self.rxy1 = np.dot(np.transpose(r), xy1)
+        #self.rxy2 = np.dot(np.transpose(r), xy2)
+        #self.rxy3 = np.dot(np.transpose(r), xy3)
+        #self.rxy4 = np.dot(np.transpose(r), xy4)
+        self.rxy1 = np.dot(r, xy1)
+        self.rxy2 = np.dot(r, xy2)
+        self.rxy3 = np.dot(r, xy3)
+        self.rxy4 = np.dot(r, xy4)

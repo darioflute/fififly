@@ -377,11 +377,11 @@ def makeCover(aorfile, cycle):
         r'\begin{center}',
         r'\vspace*{1cm}',
         #r'\textbf{\Huge FIFI-LS\\}',
-        r'\includegraphics[width=0.35\textwidth]{../test/fifilogosmall}\\',
+        r'\includegraphics[width=0.35\textwidth]{fifilogosmall}\\',
         r'\vspace{0.5cm}',
         r'{\Huge\bf Flight Description\\}',
         r'\vspace{1.cm}',
-        r'\includegraphics[width=0.7\textwidth]{../test/sofia}\\',
+        r'\includegraphics[width=0.7\textwidth]{sofia}\\',
         r'\vspace{2.cm}',
         r'\textbf{\sl\Large Obs Cycle: '+cycle+r'}\\',
         r'\vspace{0.5cm}',
@@ -440,6 +440,13 @@ def writeLatex(aorfile, cycle):
     filedescription = os.path.join(path,names[2]+'.json')
     filename =  os.path.join(path,names[2]+'.tex')
     
+    # Save flight table
+    flighttablefile = os.path.join(path, 'fifils-pars-'+cycle+'.tex')
+    with open(flighttablefile, 'w') as f:
+        for t in fifiparstable:
+            f.write(t+'\n')
+        
+    
     with open(filename, 'w') as f:
         # Preamble
         for p in preamble:
@@ -450,8 +457,9 @@ def writeLatex(aorfile, cycle):
         # Definitions & Parameters
         f.write(r'\section{Definitions \& Parameters}'+'\n')
         # Insert Table
-        for t in fifiparstable:
-            f.write(t+'\n')
+        #for t in fifiparstable:
+        #    f.write(t+'\n')
+        f.write(r'\input{"'+'fifils-pars-'+cycle+'.tex'+r'"}' + '\n')   
         # Flight Plan
         f.write(r'\section{Flight Plan}'+'\n')
         # Insert Figure
@@ -503,8 +511,12 @@ def runLatex(aorfile):
     names = fname.split('_')    
     tex_filename =  os.path.join(path, names[2]+'.tex')
     pdf_filename =  os.path.join(path, names[2]+'.pdf')
-    
+    print('path ', path)
+    print('tex file ',tex_filename)
+    print('pdf file ',pdf_filename)
     # compile TeX file
+    if path == '':
+        path = './'
     subprocess.run(['pdflatex', '-interaction=nonstopmode', 
                     '-output-directory='+path, tex_filename])
 
