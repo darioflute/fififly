@@ -50,11 +50,17 @@ def makeScans(folder, aor):
     # Write all the scans (on and off)
     j = 0
     for i, lam in enumerate(aor.dlam_map):
-        filename = os.path.join(folder,'{0:05d}_{1:s}_scan_off.scn'.format(j,aor.objName))
-        writeFile(filename, aor, i, off=True)
-        j+=1
         filename = os.path.join(folder,'{0:05d}_{1:s}_scan.scn'.format(j,aor.objName))
+        aor.chopBeam = +1
+        aor.chopCyclesB = 200
+        aor.chopCyclesR = 200
         writeFile(filename, aor, i, off=False)
+        j+=1
+        filename = os.path.join(folder,'{0:05d}_{1:s}_scan_off.scn'.format(j,aor.objName))
+        aor.chopBeam = 0
+        aor.chopCyclesB = 16
+        aor.chopCyclesR = 16
+        writeFile(filename, aor, i, off=True)
         j+=1
     print('All files written')
     
@@ -85,7 +91,7 @@ def writeFile(filename, aor, i, off=False):
                                ('"' + aor.sourceType + '"').ljust(20),
                                '# Source type for DPS use\n'))
         f.write('%s%s%s' % ("INSTMODE".ljust(12),
-                               ('"' + aor.obsPlanMode + '"').ljust(20),
+                               ('"' + aor.instmode + '"').ljust(20),
                                '# Instrument mode\n'))
         f.write('%s%s%s' % ("OBJ_NAME".ljust(12),
                                ('"' + aor.objName + '"').ljust(20),
@@ -501,7 +507,8 @@ class AOR(object):
         self.objName = self.request.findall('target/name')[0].text
         # Take out blanks out of object name
         self.objName = self.objName.replace(" ", "")
-        self.sourceType = self.request.findall('instrument/data/SourceType')[0].text
+        # source type has to be all uppercase
+        self.sourceType = self.request.findall('instrument/data/SourceType')[0].text.upper()
         # Check if equatorial is true
         self.redshift = self.request.findall('instrument/data/Redshift')[0].text
         self.coordSys = self.request.findall('target/position/coordSystem/equinoxDesc')[0].text
@@ -576,10 +583,10 @@ class AOR(object):
             self.chopLength = 64
             self.chopAmplitude = 0.0
             self.chopTip = 0.0
-            self.chopBeam = 0.0
+            self.chopBeam = 1.0
             self.chopPhase = 0.0
-            self.chopCyclesB = 16
-            self.chopCyclesR = 16
+            self.chopCyclesB = 200
+            self.chopCyclesR = 200
             self.obsType = 'OBJECT'
             self.naifId = ''
             self.read_OTF()
@@ -646,8 +653,8 @@ class AOR(object):
         x4, y4 = dlam_end.copy(), dbet_end.copy()
 
         mapoffsets = np.array([self.dlam_map, self.dbet_map])
-        #rot_mapoffsets = np.dot(np.transpose(r), mapoffsets)
-        rot_mapoffsets = np.dot(r, mapoffsets)
+        rot_mapoffsets = np.dot(np.transpose(r), mapoffsets)
+        #rot_mapoffsets = np.dot(r, mapoffsets)
         # Recomputed offsets taking into account the field rotation
         self.dlam_map = rot_mapoffsets[0,:]
         self.dbet_map = rot_mapoffsets[1,:]
