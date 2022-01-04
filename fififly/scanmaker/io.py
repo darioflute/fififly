@@ -48,7 +48,15 @@ def makeScans(folder, aor):
     # Go through all the files (on and off)
     # Special case for OTF
     # Write all the scans (on and off)
+    # First OFF
     j = 0
+    filename = os.path.join(folder,'{0:05d}_{1:s}_scan_off.scn'.format(j,aor.objName))
+    aor.chopBeam = 0
+    aor.chopCyclesB = 16
+    aor.chopCyclesR = 16
+    writeFile(filename, aor, 0, off=True)
+    j+=1
+    # Alternate scan and off    
     for i, lam in enumerate(aor.dlam_map):
         filename = os.path.join(folder,'{0:05d}_{1:s}_scan.scn'.format(j,aor.objName))
         aor.chopBeam = +1
@@ -334,8 +342,10 @@ def saveTable(filename, aor):
     target =  SkyCoord(ra=float(aor.posLonN), dec=float(aor.posLatN), unit='deg')
     objra = target.ra.to_string(sep=':', precision=2, pad=True, unit=u.hourangle)
     objdec = target.dec.to_string(sep=':', precision=1, pad=True, alwayssign=True)
-    c = 299792.458
-    cz = '{0:.1f}'.format(float(aor.redshift) * c)
+    #c = 299792.458
+    #cz = '{0:.1f}'.format(float(aor.redshift) * c)
+    # The keyword contains cz, not redshift
+    cz = '{0:.1f}'.format(float(aor.redshift))
     ngratpos = '1'
     gratstep = ''
     ngratnod = '1'
