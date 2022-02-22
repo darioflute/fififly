@@ -27,6 +27,9 @@ def writescanfile(filename, lon, lat, dic, gb, gr, ord, i, j, step, l0, b0):
         f.write('%s%s%s' % ("OBJ_NAME".ljust(12),
                                ('"TELSIM"').ljust(20),
                                '# Name of astronomical object observed\n'))
+        f.write('%s%s%s' % ("COORDSYS".ljust(12),
+                               ('"J2000"').ljust(20),
+                               '# Target coordinate system\n'))
         f.write('%s%s%s' % ("OBSLAM".ljust(12),  # adjust ljust param
                             '{0:d}'.format(lon).ljust(20), '# in deg\n'))
         f.write('%s%s%s' % ("OBSBET".ljust(12),  # adjust ljust param
