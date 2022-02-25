@@ -1,0 +1,79 @@
+
+#Time stamp at last update:  1633476068.255000
+#    ASTRONOMY
+AOR_ID	"NONE"	# from DCS
+OBJ_NAME	"TELSIM"	# Name of astronomical object observed
+COORDSYS	"J2000"	# Name of astronomical object observed
+OBSLAM	8.00000000      	# in deg
+OBSBET	-4.00000000      	# in deg
+DET_ANGL	0.0   	# Detector y-axis EofN
+CRDSYSMP	"J2000"	# 
+DLAM_MAP	0.0     	# arcsec
+DBET_MAP	0.0     	# arcsec
+CRDSYSOF	"J2000"	# 
+DLAM_OFF	0.0     	# arcsec
+DBET_OFF	0.0     	# arcesec
+PRIMARAY	"RED"	# 
+LOSF_UPD	0 	# 0/1/2  block/allow/force updates
+#    DICHROIC SETTING
+DICHROIC	105	# Dichroic wavelength in um
+
+#    GRATING
+# Blue
+G_ORD_B 	2	# Blue grating order to be used
+G_WAVE_B	64.000 	# Wavelength to be observed in um INFO ONLY
+G_CYC_B 	1   	# The number of grating cycles (up-down)
+G_STRT_B	734000    	# absolute starting value in inductosyn units
+G_PSUP_B	1     	# number of grating position up in one cycle
+G_SZUP_B	0         	# step size on the way up; same unit as G_STRT
+G_PSDN_B	0     	#  number of grating position down in one cycle
+G_SZDN_B	0         	# step size on the way down; same unit as G_STRT
+# Red
+G_WAVE_R	158.000	# Wavelength to be observed in um INFO ONLY
+G_CYC_R 	1   	# The number of grating cycles (up-down)
+G_STRT_R	640000    	# absolute starting value in inductosyn units
+G_PSUP_R	1     	# number of grating position up in one cycle
+G_SZUP_R	0         	# step size on the way up; same unit as G_STRT
+G_PSDN_R	0     	#  number of grating position down in one cycle
+G_SZDN_R	0         	# step size on the way down; same unit as G_STRT
+
+#    RAMP
+RAMPLN_B	32    	# number of readouts per blue ramp
+RAMPLN_R	32    	# number of readouts per red ramp
+
+#    CHOPPER
+C_SCHEME	"4POINT"	# Chopper scheme; 2POINT or 4POINT
+C_CRDSYS	"HORIZON"
+C_AMP   	60.0    	# chop amplitude in arcsec
+C_TIP   	1.000 	# fraction
+C_BEAM  	-1.0  	# nod phase
+C_POSANG	0.0   	# deg, E of N
+C_CYC_B 	2     	# chopping cycles per grating position
+C_CYC_R 	2     	# chopping cycles per grating position
+C_PHASE 	130.0   	# phase shift of chopper signal relative to R/O in degr
+C_CHOPLN	64    	# number of readouts per chop position
+
+#    CAPACITORS
+CAP_B   	1330	# Integrating capacitors in pF
+CAP_R   	1330	# Integrating capacitors in pF
+
+#    CONVERTER
+# Blue
+ZBIAS_B 	60.000  	# Voltage in mV
+BIASR_B 	0.000   	# Voltage in mV
+HEATER_B	0.000   	# Voltage in mV
+# Red
+ZBIAS_R 	50.000  	# Voltage in mV
+BIASR_R 	0.000   	# Voltage in mV
+HEATER_R	0.000   	# Voltage in mV
+#CALIBRATION SOURCE
+CALSTMP 	0.000   	#Kelvin
+ 
+# ###############################################################################
+## OBSLAM and OBSBET set by Make_Spiral; other settings from ..\manual.scn       
+## point #[-1,-4] of a 25x25 around [30,2] Step 12 dmm 
+# ###############################################################################
+        
+OBSLAM   +18.00000000  # Stage X from Center, aka Right Ascension 
+OBSBET  -46.00000000  # Stage Y from Center, aka Declination     
+HERE_COMETH_THE_END     

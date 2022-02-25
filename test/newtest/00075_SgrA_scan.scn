@@ -1,0 +1,86 @@
+# Time stamp at last update: 1639079011.892941
+#    ASTRONOMY
+AOR_ID      "71_0024_13"        # from DCS
+OBSERVER    "Christian Fischer" # from DCS
+FILEGP_R    "SgrA_R_157.7"      # file group id RED for DPS use
+FILEGP_B    "SgrA_B_88.4"       # file group id BLUE for DPS use
+OBSTYPE     "OBJECT"            # Observation type for DPS use
+SRCTYPE     "Point_Source"      # Source type for DPS use
+INSTMODE    "OTF_MAP"           # Instrument mode
+OBJ_NAME    "SgrA"              # Name of astronomical object observed
+REDSHIFT    0.0                 # redshift of the source (z)
+COORDSYS    "J2000"             # Target coordinate system
+OBSLAM      266.4168166666667   # in deg
+OBSBET      -29.007825          # in deg
+DET_ANGL    11.300              # Detector y-axis EofN
+CRDSYSMP    "J2000"             # Mapping coordinate system
+DLAM_MAP    0.0                 # arcsec
+DBET_MAP    0.0                 # arcsec
+SKYSPEED    0.0                 # OTF sky scan speed, arcsec/s
+VELANGLE    0.0                 # Angle of the velocity vector for OTF scan, EofN in deg
+TRK_DRTN    30.0                # Duration of OTF scan
+CRDSYSOF    "J2000"             # Off position coordinate system
+DLAM_OFF    -900.0              # arcsec
+DBET_OFF    200.0               # arcsec
+PRIMARAY    "Red"               # Primary array
+LOSF_UPD    0                   # 0/1/2  block/allow/force updates
+
+#    DICHROIC SETTING
+DICHROIC    105                 # Dichroic wavelength in um
+
+#    GRATING
+# Blue
+G_ORD_B     1              # Blue grating order to be used
+G_FLT_B     1              # Filter number for Blue
+G_WAVE_B    88.358         # Wavelength to be observed in um INFO ONLY
+RESTWAVB    88.358         # Reference wavelength in um
+G_CYC_B     1              # The number of grating cycles (up-down)
+G_STRT_B    431002.893881826# absolute starting value in inductosyn units
+G_PSUP_B    1              # number of grating position up in one cycle
+G_SZUP_B    600            # step size on the way up; same unit as G_STRT
+G_PSDN_B    0              # number of grating position down in one cycle
+G_SZDN_B    0              # step size on the way down; same unit as G_STRT
+# Red
+G_WAVE_R    157.741        # Wavelength to be observed in um INFO ONLY
+RESTWAVR    157.741        # Reference wavelength in um
+G_CYC_R     1              # The number of grating cycles (up-down)
+G_STRT_R    822591.6981650353# absolute starting value in inductosyn units
+G_PSUP_R    1              # number of grating position up in one cycle
+G_SZUP_R    547            # step size on the way up; same unit as G_STRT
+G_PSDN_R    0              # number of grating position down in one cycle
+G_SZDN_R    0              # step size on the way down; same unit as G_STRT
+
+#    RAMP
+RAMPLN_B    32             # number of readouts per blue ramp
+RAMPLN_R    32             # number of readouts per red ramp
+
+#    CHOPPER
+C_SCHEME    "2POINT"       # Chopper scheme; 2POINT or 4POINT
+C_CRDSYS    "TARF"         # Chopper coodinate system
+C_AMP       0.0            # chop amplitude in arcsec
+C_TIP       0.0            # fraction
+C_BEAM      0.0            # nod phase
+C_POSANG    0              # deg, S of E
+C_CYC_B     16             # chopping cycles per grating position
+C_CYC_R     16             # chopping cycles per grating position
+C_PHASE     0.0            # chopper signal phase shift relative to R/O in deg
+C_CHOPLN    64             # number of readouts per chop position
+
+#    CAPACITORS
+CAP_B       1330           # Integrating capacitors in pF
+CAP_R       1330           # Integrating capacitors in pF
+
+#    CONVERTER
+# Blue
+ZBIAS_B     75.000         # Voltage in mV
+BIASR_B     0.000          # Voltage in mV
+HEATER_B    0.000          # Voltage in mV
+# Red
+ZBIAS_R     60.000         # Voltage in mV
+BIASR_R     0.000          # Voltage in mV
+HEATER_R    0.000          # Voltage in mV
+
+#    CALIBRATION SOURCE
+CALSTMP     0.0            # Kelvin
+
+HERE_COMETH_THE_END
