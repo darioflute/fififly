@@ -106,5 +106,7 @@ def wavelength2inductosyn(wave, dichroic, array, order, obsdate=''):
 
     grating = np.arange(0, 3000, 10) * 1000.
     w, dw = inductosyn2wavelength(grating, dichroic, array, order, obsdate)
+    
+    print('w, dw ',array,np.nanmean(w), np.nanmean(dw))
 
     return np.interp(wave, np.mean(w, axis=(1, 2)), grating)

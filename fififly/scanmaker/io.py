@@ -8,6 +8,7 @@ Created on Thu Nov 25 10:53:41 2021
 from xml.etree.ElementTree import ElementTree as ET
 import numpy as np
 import os
+from unidecode import unidecode
 
 
 def loadTitles(aorfile):
@@ -31,9 +32,10 @@ def makeScans(folder, aor):
     # The difference is 
     
     # Compute grating positions
-    print('wave, dichroic, order ', aor.waveBlue, aor.dichroic, aor.order)
-    aor.gratingBlue = w2i(float(aor.waveBlue), aor.dichroic, 'BLUE', aor.order)
-    aor.gratingRed = w2i(float(aor.waveRed), aor.dichroic,'RED', 1)
+    print('wave, dichroic, order ', aor.waveBlue, aor.dichroic, aor.orderBlue)
+    aor.gratingBlue = int(w2i(float(aor.waveBlue), aor.dichroic, 'BLUE', aor.orderBlue))
+    print('wave red', aor.waveRed)
+    aor.gratingRed = int(w2i(float(aor.waveRed), aor.dichroic,'RED', 1))
     
     # Move by half grating ?
     msg = QMessageBox()
@@ -109,7 +111,7 @@ def writeFile(filename, aor, i, off=False):
                                    (aor.naifId).ljust(20),
                                    '# NAIF ID of object observed\n'))
         f.write('%s%s%s' % ("REDSHIFT".ljust(12),
-                               str(aor.redshift).ljust(20),
+                               str("%.8f" % aor.redshift).ljust(20),
                                '# redshift of the source (z)\n'))
         f.write('%s%s%s' % ("COORDSYS".ljust(12),
                                ('"' + aor.coordSys + '"').ljust(20),
@@ -498,7 +500,7 @@ class AOR(object):
         requests = [item for item in vector.findall('Request')]
         titles = [item.text for item in vector.findall('Request/title')]
         PI = tree.find('list/ProposalInfo/Investigator')
-        self.observer = PI.attrib['FirstName'] + ' ' + PI.attrib['LastName']
+        self.observer = unidecode(PI.attrib['FirstName'] + ' ' + PI.attrib['LastName'])
         # Select the requested title
         titles = np.array(titles)
         idx = np.argwhere(titles==title)
@@ -520,7 +522,10 @@ class AOR(object):
         # source type has to be all uppercase
         self.sourceType = self.request.findall('instrument/data/SourceType')[0].text.upper()
         # Check if equatorial is true
-        self.redshift = self.request.findall('instrument/data/Redshift')[0].text
+        self.cz = float(self.request.findall('instrument/data/Redshift')[0].text)
+        print('cz ',self.cz)
+        c = 299792.458
+        self.redshift = self.cz/c
         self.coordSys = self.request.findall('target/position/coordSystem/equinoxDesc')[0].text
         self.mapCoordSys = 'J2000'
         self.offCoordSys = 'J2000'
@@ -538,14 +543,16 @@ class AOR(object):
         self.dichroic = self.dichroic[:3]
         # Grating
         # Central wavelengths
-        self.waveRed = float(self.request.findall('instrument/data/WavelengthRed')[0].text)
-        self.restWaveRed = self.waveRed
-        self.waveBlue = float(self.request.findall('instrument/data/WavelengthBlue')[0].text)
-        self.restWaveBlue = self.waveBlue
+        self.restWaveRed = float(self.request.findall('instrument/data/WavelengthRed')[0].text)
+        self.restWaveBlue = float(self.request.findall('instrument/data/WavelengthBlue')[0].text)
+        # Redshifted wavelengths
+        self.waveRed = self.restWaveRed * (1+self.redshift)
+        self.waveBlue = self.restWaveBlue * (1+self.redshift)
         # Choose order and filter for the blue channel
-        bluewave = float(self.waveBlue) * (1 + float(self.redshift))
+        #bluewave = float(self.waveBlue) * (1 + float(self.redshift))
         # Default values
-        if bluewave < 70:
+        #print('Blue wave ',bluewave)
+        if self.waveBlue < 70:
             self.orderBlue = 2
             self.filterBlue = 2
         else:
