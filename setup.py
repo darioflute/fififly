@@ -22,7 +22,7 @@ config = {
     'scripts': ['bin/scanmaker'],
     'include_package_data': True,
     'package_data': {'fififly': ['data/*png','scanmaker/data/*txt']},
-    'install_requires': ['numpy', 'matplotlib', 'astropy']
+    'install_requires': ['numpy', 'matplotlib', 'astropy','lxml','unidecode']
 }
 
 setup(**config)
