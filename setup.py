@@ -10,10 +10,10 @@ with open('fififly/version.json') as fp:
 
 config = {
     'name': 'fififly',
-    'version':_info['version'],
+    'version': _info['version'],
     'description': 'FIFI-LS flight Python library',
     'long_description': 'Collection of programs to prepare FIFI-LS data',
-    'author': 'Dario Fadda',
+    'author': _info['author'],
     'author_email': 'darioflute@gmail.com',
     'url': 'https://github.com/darioflute/fififly.git',
     'download_url': 'https://github.com/darioflute/fififly',
