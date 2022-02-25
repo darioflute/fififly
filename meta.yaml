@@ -6,7 +6,7 @@ package:
   version: "{{ version }}"
 
 source:
-  git_tag: master
+  git_tag: main
   git_url: https://github.com/darioflute/fififly.git
 
 build:
