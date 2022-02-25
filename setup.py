@@ -2,10 +2,15 @@
 """Setup script fo installing the fififly library."""
 
 from distutils.core import setup
+import json
+
+with open('fififly/version.json') as fp:
+    _info = json.load(fp)
+
 
 config = {
     'name': 'fififly',
-    'version': '0.1',
+    'version':_info['version'],
     'description': 'FIFI-LS flight Python library',
     'long_description': 'Collection of programs to prepare FIFI-LS data',
     'author': 'Dario Fadda',
@@ -16,8 +21,8 @@ config = {
     'packages': ['fififly'],
     'scripts': ['bin/scanmaker'],
     'include_package_data': True,
-    'package_data': {'fifipy': ['test/*.aor','tes/*.misxml']},
-    'install_requires': ['numpy', 'lxml', 'matplotlib', 'astropy']
+    'package_data': {'fififly': ['data/*png','scanmaker/data/*txt']},
+    'install_requires': ['numpy', 'matplotlib', 'astropy']
 }
 
 setup(**config)
