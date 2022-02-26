@@ -12,18 +12,19 @@ source:
 build:
   noarch: python
   number: 0
-  script: python -m pip install --no-deps --ignore-installed .
+  script: python -m pip install . --no-deps
   
 requirements:
-  host:
-    - python
-    - pip
   build:
+    - pip
+    - python
     - setuptools
-    - python
-
+    - setuptools_scm
+  host:
+    - pip
+    - python>=3.7
   run:
-    - python
+    - python>=3.7
     - matplotlib >=3.0.2
     - numpy >=1.11
     - scipy
