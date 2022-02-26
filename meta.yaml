@@ -15,14 +15,10 @@ build:
   script: python -m pip install . --no-deps
   
 requirements:
-  build:
+  host:
     - pip
     - python
     - setuptools
-    - setuptools_scm
-  host:
-    - pip
-    - python>=3.7
   run:
     - python>=3.7
     - matplotlib >=3.0.2
