@@ -28,6 +28,8 @@ requirements:
 test:
   imports:
     - fififly
+  commands:
+    - scanmaker
 
 about:
   home: https://github.com/darioflute/fififly
