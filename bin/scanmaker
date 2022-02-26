@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 if __name__ == '__main__':
     import sys
-    from fififly.scanmaker.start import main
+    from fififly.scanmaker import start
 
-    sys.exit(main())
+    sys.exit(start.main())
