@@ -10,8 +10,14 @@ source:
   git_url: https://github.com/darioflute/fififly.git
 
 build:
+  noarch: python
+  number: 0
+  script: python -m pip install --no-deps --ignore-installed .
   
 requirements:
+  host:
+    - python
+    - pip
   build:
     - setuptools
     - python
