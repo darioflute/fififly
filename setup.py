@@ -5,7 +5,7 @@ from distutils.core import setup
 
 config = {
     'name': 'fififly',
-    'version': '1.0.28',
+    'version': '1.0.29',
     'description': 'FIFI-LS Python library',
     'long_description': 'Collection of programs to reduce FIFI-LS data',
     'author': 'Dario Fadda',
