@@ -8,11 +8,14 @@ package:
 source:
   git_tag: main
   git_url: https://github.com/darioflute/fififly.git
+
+build:
   
 requirements:
   build:
     - python
     - setuptools
+    
   run:
     - python>=3.7
     - matplotlib >=3.0.2
