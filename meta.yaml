@@ -1,27 +1,28 @@
 {% set name = "fififly" %}
-{% set data = load_setup_py_data() %}
+{% set version = "1.0.28" %}
 
 package:
   name: "{{ name|lower }}"
-  version: "{{ data.get('version') }}"
+  version: "{{ version }}"
 
 source:
   git_tag: main
   git_url: https://github.com/darioflute/fififly.git
 
+build:
+  
 requirements:
-  host:
+  build:
     - setuptools
-    - python>=3.7
+    - python
 
   run:
-    - python>=3.7
-    - matplotlib>=3.0.2
-    - numpy>=1.11
+    - python
+    - matplotlib >=3.0.2
+    - numpy >=1.11
     - scipy
-    - astropy>=3.0
-    - pyqt>=5.9.2
-    - unidecode>=1.2
+    - astropy >=3.0
+    - pyqt
         
 test:
   imports:
@@ -33,4 +34,4 @@ about:
   home: https://github.com/darioflute/fififly
   license: GPL3
   license_file: LICENSE
-  description: 'Library for preparing FIFI-LS flights.'
+  description: 'Library for reduction of non-standard FIFI-LS data.'

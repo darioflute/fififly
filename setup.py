@@ -1,18 +1,14 @@
 #!/usr/bin/env python
-"""Setup script fo installing the fififly library."""
+"""Setup script fo installing the fifipy library."""
 
 from distutils.core import setup
-import json
-
-with open('fififly/version.json') as fp:
-    _info = json.load(fp)
 
 config = {
     'name': 'fififly',
-    'version': _info['version'],
-    'description': 'FIFI-LS flight Python library',
-    'long_description': 'Collection of programs to prepare FIFI-LS data',
-    'author': _info['author'],
+    'version': '1.0.28',
+    'description': 'FIFI-LS Python library',
+    'long_description': 'Collection of programs to reduce FIFI-LS data',
+    'author': 'Dario Fadda',
     'author_email': 'darioflute@gmail.com',
     'url': 'https://github.com/darioflute/fififly.git',
     'download_url': 'https://github.com/darioflute/fififly',
@@ -22,8 +18,8 @@ config = {
     'include_package_data': True,
     'package_data': {'fififly': ['data/*png','version.json'],
                      'fififly.scanmaker':['data/*txt','greenstylesheet.css',
-                                          'icons/*png','copyright.txt']},
-    'install_requires': ['numpy', 'matplotlib', 'astropy','lxml','unidecode']
+                                          'icons/*png','copyright.txt']}
+    'install_requires': ['numpy', 'matplotlib', 'astropy']
 }
 
 setup(**config)
