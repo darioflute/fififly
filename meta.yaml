@@ -1,9 +1,9 @@
 {% set name = "fififly" %}
-{% set version = "1.0.32" %}
+{% set version = load_setup_py_data() %}
 
 package:
   name: "{{ name|lower }}"
-  version: "{{ version }}"
+  version: "{{ data.get('version') }}"
 
 source:
   git_tag: main

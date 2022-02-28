@@ -2,10 +2,14 @@
 """Setup script fo installing the fififly library."""
 
 from distutils.core import setup
+import json
+
+with open('fififly/version.json') as fp:
+    _info = json.load(fp)
 
 config = {
     'name': 'fififly',
-    'version': '1.0.32',
+    'version': _info['version'],
     'description': 'FIFI-LS Python library',
     'long_description': 'Collection of programs to reduce FIFI-LS data',
     'author': 'Dario Fadda',
