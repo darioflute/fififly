@@ -3,7 +3,7 @@
 
 package:
   name: "{{ name|lower }}"
-  version: "{{ data.get('version') }}"
+  version: "{{ data.get('version') }"
 
 source:
   git_tag: main
@@ -13,16 +13,16 @@ build:
   
 requirements:
   build:
-    - python
     - setuptools
-    
+    - python
+
   run:
     - python>=3.7
     - matplotlib >=3.0.2
     - numpy >=1.11
     - scipy
     - astropy >=3.0
-    - lxml >=4.6
+    - pyqt >=5.9.2
     - unidecode >=1.2
         
 test:

@@ -7,7 +7,6 @@ import json
 with open('fififly/version.json') as fp:
     _info = json.load(fp)
 
-
 config = {
     'name': 'fififly',
     'version': _info['version'],
@@ -22,7 +21,7 @@ config = {
     'scripts': ['bin/scanmaker'],
     'include_package_data': True,
     'package_data': {'fififly': ['data/*png','scanmaker/data/*txt','version.json','scanmaker/greenstylesheet.css','scanmaker/icons/*png','scanmaker/copyright.txt']},
-    'install_requires': ['numpy', 'matplotlib', 'astropy','lxml','unidecode']
+    'install_requires': ['numpy', 'matplotlib', 'astropy','lxml','unidecode','pyqt']
 }
 
 setup(**config)
