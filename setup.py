@@ -20,7 +20,9 @@ config = {
     'packages': ['fififly','fififly.scanmaker'],
     'scripts': ['bin/scanmaker'],
     'include_package_data': True,
-    'package_data': {'fififly': ['data/*png','scanmaker/data/*txt','version.json','scanmaker/greenstylesheet.css','scanmaker/icons/*png','scanmaker/copyright.txt']},
+    'package_data': {'fififly': ['data/*png','version.json'],
+                     'fififly.scanmaker':['data/*txt','greenstylesheet.css',
+                                          'icons/*png','copyright.txt']},
     'install_requires': ['numpy', 'matplotlib', 'astropy','lxml','unidecode']
 }
 
