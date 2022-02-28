@@ -8,15 +8,9 @@ package:
 source:
   git_tag: main
   git_url: https://github.com/darioflute/fififly.git
-
-build:
-  noarch: python
-  number: 0
-  script: python -m pip install . -vv
   
 requirements:
-  host:
-    - pip
+  build:
     - python
     - setuptools
   run:
