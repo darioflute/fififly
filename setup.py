@@ -5,7 +5,7 @@ from distutils.core import setup
 
 config = {
     'name': 'fififly',
-    'version': '1.0.29',
+    'version': '1.0.30',
     'description': 'FIFI-LS Python library',
     'long_description': 'Collection of programs to reduce FIFI-LS data',
     'author': 'Dario Fadda',
@@ -16,9 +16,11 @@ config = {
     'packages': ['fififly','fififly.scanmaker'],
     'scripts': ['bin/scanmaker'],
     'include_package_data': True,
-    'package_data': {'fififly': ['data/*png','version.json'],
-                     'fififly.scanmaker':['data/*txt','greenstylesheet.css',
-                                          'icons/*png','copyright.txt']}
+    'package_data': {'fififly': ['data/*png','version.json',
+                                 'scanmaker/data/*txt',
+                                 'scanmaker/greenstylesheet.css',
+                                 'scanmaker/icons/*png',
+                                 'scanmaker/copyright.txt']}
     'install_requires': ['numpy', 'matplotlib', 'astropy']
 }
 
