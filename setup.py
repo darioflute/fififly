@@ -18,7 +18,7 @@ config = {
     'url': 'https://github.com/darioflute/fififly.git',
     'download_url': 'https://github.com/darioflute/fififly',
     'license': 'GPLv3+',
-    'packages': ['fififly'],
+    'packages': ['fififly','fififly.scanmaker'],
     'scripts': ['bin/scanmaker'],
     'include_package_data': True,
     'package_data': {'fififly': ['data/*png','scanmaker/data/*txt','version.json','scanmaker/greenstylesheet.css','scanmaker/icons/*png','scanmaker/copyright.txt']},
