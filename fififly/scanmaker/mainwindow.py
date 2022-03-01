@@ -195,9 +195,15 @@ class GUI(QMainWindow):
         if not os.path.exists(folderpath):
             os.mkdir(folderpath)
         else:
+            # If the directory exists, remove pre-existing scan files
             files = os.listdir(folderpath)
             for f in files:
-                os.remove(os.path.join(folderpath, f))
+                file = os.path.join(folderpath, f)
+                if file.endswith('.scn'):
+                    try:
+                        os.remove(file)
+                    except:
+                        print('Warum ist windows so Scheisse!')
         makeScans(folderpath, self.aor)
         
     def exportTables(self):
