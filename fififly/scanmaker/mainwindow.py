@@ -203,7 +203,7 @@ class GUI(QMainWindow):
                     try:
                         os.remove(file)
                     except:
-                        print('Warum ist windows so Scheisse!')
+                        print('Cannot remove file: ', file)
         makeScans(folderpath, self.aor)
         
     def exportTables(self):
