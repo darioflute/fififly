@@ -61,8 +61,8 @@ def startDescription(aorfile):
                 obsBlocks.append(obBlockID)
     info = [
         ('FlightName', fname),
-        ('SofiaFlight', 0),
-        ('FifiFlight', 0),
+        ('SofiaFlight', 9999),
+        ('FifiFlight', 999),
         ('FlightDate', date),
         ('ObsBlocks', obsBlocks)
         ]
@@ -86,11 +86,12 @@ def startDescription(aorfile):
                 print('comment ', comment)
                 aorid = obBlockID[3:10]
                 # Grab info from aor file
-                aordata = readAOR(aorid, path)
+                aorpath =  os.path.join(path, 'Proposals')
+                aordata = readAOR(aorid, aorpath)
                 title, abstract, PropID, PIname = aordata
                 
                 # Check if directory with images exist
-                imagefile = os.path.join(path, aorid, '1.png')
+                imagefile = os.path.join(aorpath, aorid, '1.png')
                 if os.path.isfile(imagefile):
                     pass
                 else:
@@ -99,6 +100,7 @@ def startDescription(aorfile):
                 data[obBlockID] = {
                     'aorid': aorid,
                     'obsBlock': obBlockID,
+                    'target': name,
                     'propid': PropID,
                     'piname': PIname,
                     'title': title,
@@ -112,6 +114,11 @@ def startDescription(aorfile):
         str_= json.dumps(data, indent=2, separators=(',', ': '),
                                 ensure_ascii=False, cls=MyEncoder)
         f.write(str_)
+        
+#def titleCase(string):
+#    return string.split(' ').map(item => item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()).join(' '))
+    
+
         
 def readAOR(aorid, path):
     """
@@ -134,7 +141,7 @@ def readAOR(aorid, path):
     import xml.etree.ElementTree as ET
 
     aorfile = os.path.join(path, aorid+'.aor')
-    attachment = os.path.join(path, aorid+'_attachment.pdf')
+    attachment = os.path.join(path, aorid+'_propDoc.pdf')
     
     # Extract figures from the AOR attachment
     # Check if attachment exists
@@ -149,7 +156,7 @@ def readAOR(aorid, path):
             for img in doc.getPageImageList(i):
                 xref = img[0]
                 pix = fitz.Pixmap(doc, xref)
-                print(os.path.join(directory,"%s.png") % (image_no))
+                #print(os.path.join(directory,"%s.png") % (image_no))
                 if pix.n < 5:       # this is GRAY or RGB
                     #pix.writePNG(os.path.join(directory,"p%s-%s.png") % (i, xref))
                     pix.writePNG(os.path.join(directory, "%s.png") % (image_no))
@@ -167,6 +174,8 @@ def readAOR(aorid, path):
     tree = ET.parse(aorfile)
     title = tree.find('list/ProposalInfo/ProposalTitle')
     abstract = tree.find('list/ProposalInfo/ProposalAbstract')
+    
+    
     print('abstract ', abstract.text[:20])
     # get Proposal ID
     PropID = tree.find('list/ProposalInfo/ProposalID').text
@@ -175,8 +184,28 @@ def readAOR(aorid, path):
     PI = tree.find('list/ProposalInfo/Investigator')
     #PIname = PI.attrib['Honorific'] + ' ' + PI.attrib['FirstName'] + ' ' + PI.attrib['LastName']
     PIname = PI.attrib['FirstName'] + ' ' + PI.attrib['LastName']
+ 
+    abstract = abstract.text    
+    # In abstract, substitute & with \&, μ (U+03BC) with $\mu$
+    abstract = abstract.replace('$','')
+    abstract = abstract.replace('&','\&')
+    abstract = abstract.replace('μ','$\mu$')
+    abstract = abstract.replace('>','$>$')
+    abstract = abstract.replace('<','$<$')
+    abstract = abstract.replace('^','\^')
+    abstract = abstract.replace('_','\_')
     
-    return title.text, abstract.text, PropID, PIname
+    title = title.text
+    #title = title.lower()
+    #title = title[0].upper() + title[1:].lower()
+    #title = title.replace('pah', 'PAH')
+    #title = title.replace('pdr', 'PDR')
+    #title = title.replace('fir ', 'FIR ')
+    #title = title.replace('far ir ', 'FIR ')
+    #title = title.replace('ngc', 'NGC')
+
+
+    return title, abstract, PropID, PIname
         
 
 def createAorMap():
@@ -214,8 +243,8 @@ def flightTable(aorfile):
     
     for flightplan in root.iter('FlightPlan'):
         flightTime = flightplan.attrib['FltTime']
-        flightName = flightplan.attrib['Id']
-        departure = flightplan.attrib['DepartureTime']
+        #flightName = flightplan.attrib['Id']
+        #departure = flightplan.attrib['DepartureTime']
         arrival = flightplan.attrib['ArrivalTime']
 
         
@@ -349,6 +378,7 @@ def parsTable(fifiparsfile):
         r'\hspace{3cm} Red   &' + 'Rx\_cx[0] = {0:5.2f},  Rx\_cy[0] = {1:5.2f}'.format(fifipars['Red Rx_cx'],fifipars['Red Rx_cy'])+r'\\',
         r'\noalign{\vskip 2mm}',
         r'K-Mirror 0 Position: &'+str(fifipars['K-mirror 0 Position'])+r'~steps\\',
+        r'Autofocus Threshold: & $\pm$ 10$\mu$m\\',
         r'\hline',
         r'\hline',
         r'\end{tabular}',
@@ -358,8 +388,148 @@ def parsTable(fifiparsfile):
 
     return table
 
+def boresightTable():
+    
+    boresight = [
+        r'%\documentclass[10pt]{article}',
+        r'%\begin{document}',
+        r'\subsection{Goals of observation}',
+        r'\begin{itemize}',
+        r'\item \large Establish boresight',
+        r'\item \large Recheck K-mirror parameters',
+        r'\item \large Establish focus',
+        r'\item \large Calibration if time',
+        r'\end{itemize}'
+        r'\subsection{Instrument Configuration}',
+        r'\begin{table}[ht]',
+        r'\large',
+        r'\begin{center}'
+        r'\begin{tabular}{lllll}',
+        r'\hline',
+        r'\hline',
+        r'\noalign{\vskip 2mm}',
+        r'Act & Blue Grating & Red Grating & Dichroic& Blue order\\',
+        r'&Positions&Positions&&filter\\',
+        r'\hline',
+        r'\hline',
+        r'\noalign{\vskip 2mm}',
+        r'1-3,10,5&1$\times$86.9$\mu$m/62.1$\mu$m& 1$\times$157.741$\mu$m&D105&M1\\'
+        r'4&1$\times$86.9$\mu$m/62.1$\mu$m& 1$\times$157.741$\mu$m&D130&M1\\'
+        r'\hline',
+        r'\hline',
+        r'\end{tabular}',
+        r'\end{center}',
+        r'\end{table}',
+        r'\subsection{Observing Modes}',
+        r'\begin{table}[ht]',
+        r'\large',
+        r'\begin{center}'
+        r'\begin{tabular}{lllllll}',
+        r'\hline',
+        r'\hline',
+        r'\noalign{\vskip 2mm}',
+        r'\# & Mode & Total& f [Hz]& Angle& Nod& Dither/offset/maps\\',
+        r' &  &  throw& & & & \\',
+        r'\hline',
+        r'\hline',
+        r'\noalign{\vskip 2mm}',
+        r'1&symmetric&2$^\prime$&2&horizontal&YES&n.a.\\',
+        r'2&symmetric&2$^\prime$&2&horizontal&NO&Kmirror circle in SIRF 60$^o$ step size\\',
+        r'3&symmetric&2$^\prime$&2&horizontal&NO&9-point raster map (spiral) 8" step\\',
+        r' &         &          & &          &  &size center of source, total raster size: 16"\\',
+        r'4&symmetric&2$^\prime$&2&horizontal&YES&n.a.\\',
+        r'6&symmetric&2$^\prime$&2&horizontal&NO&9-point raster map (spiral) 15" step\\',
+        r' &         & &        &            &  &size center of source, total raster size: 30"\\',
+        r'\hline',
+        r'\hline',
+        r'\end{tabular}',
+        r'\end{center}',
+        r'\end{table}',
+        r'\newpage',
+        r'\subsection{Observing Procedure}',
+        r'\begin{table}[ht]',
+        r'\large',
+        r'\begin{center}'
+        r'\begin{tabular}{llllll}',
+        r'\hline',
+        r'\hline',
+        r'\noalign{\vskip 2mm}',
+        r'\# & Activity & Duration & Detector& Obs.& Comment\\',
+        r' &  &  & angle&mode& \\',
+        r'\hline',
+        r'\hline',
+        r'\noalign{\vskip 2mm}',
+        r'&&&&&Set Rx\_cx[1]$ = 0$ and  Rx\_cy[1]$ = 0$\\',
+        r'1&Kmirror circle&4 min&SIRF&2&\\',
+        r'&5s on source per nod&&&&Check offset 0$^o$ Kmirror measurement\\',
+        r'&(10s total per nod) &&&&to center of circle "relative boresight\\',
+        r'&&&&                    &correction". Use setpoint to correct\\',
+        r'&&&&                    &until Kmirror circle is gone.\\',
+        r'1&Kmirror circle&4 min&SIRF&2&Repeat until circle is gone\\',
+        r'&If centered:&&&        &Return to Rx-values. Preflight estimates.\\',
+        r'1&Kmirror circle&4 min&SIRF&2&\\',
+        r'&&&&                    & Check if no offset\\',
+        r'&&&&                    & from array center and no circle\\',
+        r'&&&&                    & If no good: get vector from Kmirror\\',
+        r'&&&&                    & center to spaxel 13. Try with those.\\',
+        r'2&9 point spiral&5 min&0$^o$ J2000&3&\\',
+        r'&5s on source per nod&&&&Point source sequence:\\',
+        r'&(10s total per nod)&&&& 0 0\\',
+        r'&&&&&-8 0\\',
+        r'&&&&&-8 -8\\',
+        r'&&&&&0 -8\\',
+        r'&&&&&8 -8\\',
+        r'&&&&&8 0\\',
+        r'&&&&&8 8\\',
+        r'&&&&&0 8\\',
+        r'&&&&&-8 8\\',
+        r'3&Focus test&10 min&0$^o$ J2000&1&Use PFI delay line to adjust\\',
+        r'&&&&&focus for each position\\',
+        r'4&Kmirror circle D130&4 min&&&\\',
+        r'10&9 point spiral&6 min&&&\\',
+        r'&15 arcmin step size&&&&\\'
+        r'\hline',
+        r'\hline',
+        r'\end{tabular}',
+        r'\end{center}',
+        r'\end{table}',
+        r'\newpage',
+        r'{\large Positions are absolute offsets from current focus position from xml file}\\',
+        r'\begin{table}[ht]',
+        r'\large',
+        r'\begin{center}'
+        r'\begin{tabular}{lll}',
+        r'\hline',
+        r'\hline',
+        r'\noalign{\vskip 2mm}',
+        r'Pos [$\mu$m] & Scan ID + Folder & Comment\\'
+        r'\hline',
+        r'\hline',
+        r'\noalign{\vskip 2mm}',
+        r'-500&&\\',        
+        r'-400&&\\',        
+        r'-300&&\\',        
+        r'-150&&\\',        
+        r'-100&&\\',        
+        r'-50&&\\',        
+        r' 0&&\\',
+        r'+50&&\\',
+        r'+100&&\\',
+        r'+150&&\\',        
+        r'+300&&\\',        
+        r'+400&&\\',        
+        r'+500&&\\',        
+        r'\hline',
+        r'\hline',
+        r'\end{tabular}',
+        r'\end{center}',
+        r'\end{table}',
+        r'%\end{document}'
+        ]
+    return boresight
+
 def makeCover(aorfile, cycle):
-    import xml.etree.ElementTree as ET
+    #import xml.etree.ElementTree as ET
     import json
     import os
     
@@ -418,18 +588,50 @@ def makePreamble():
         #r'\fancyhead[L]{\leftmark}',
         r'\fancyhead[L]{\itshape\nouppercase{\leftmark}}',
         r'\rfoot{Page \thepage / \pageref{LastPage}}',
+        r'\graphicspath{{./}{Figures/}}',
         r'\begin{document}'
         ]
     
     return preamble
     
+def skydips():
+    
+    skydiplist = [
+        r'\begin{itemize}',
+        r'\large',
+        r'\item 3s integration per Grating position/file',
+        r'\item 3 integrations per nod',
+        r'\item D105M2: 36 scans; 50$\mu$m 35 pixel steps blue; 115$\mu$m 35 pixel steps red',
+        r'\item D105M1: 24 scans; 70$\mu$m 35 pixel steps blue; 176$\mu$m 35 pixel steps red',
+        r'\item D130M2: 30 scans; 50$\mu$m 44 pixel steps blue; 115$\mu$m 35 pixel steps red',
+        r'\item D130M1: 33 scans; 70$\mu$m 44 pixel steps blue; 164$\mu$m 35 pixel steps red',
+        r'\item D105M2: 15 scans; 67$\mu$m 35 pixel steps blue; 142$\mu$m 35 pixel steps red (M1 filter)',
+        r'\end{itemize}'
+        ]
+    return skydiplist
 
-def writeLatex(aorfile, cycle):
+def tellurics():
+    
+    telluriclist = [
+        r'\begin{itemize}',
+        r'\large',
+        r'\item Total power, (0,0) offset from source, tracking off',
+        r'\item 0.5 pixel dither',
+        r'\item Between scans 16 pixel steps',
+        r'\item Blue order filter: M2',
+        r'\item Dichroic: D105 or D130',
+        r'\item Blue Grating Positions:  $2\times 2\times 61.8\mu$m and $3\times 2\times 63.4\mu$m',
+        r'\item Red Grating Positions:  $5\times 2\times 147.7\mu$m',
+        r'\end{itemize}'        
+        ]
+    return telluriclist
+
+def writeLatex(aorfile, cycle, boresight=False):
     import os
     
     preamble = makePreamble()
     cover = makeCover(aorfile, cycle)
-    ftable = flightTable(aorfile)
+    #ftable = flightTable(aorfile)
     path, fname = os.path.split(aorfile)
     flighttable = flightTable(aorfile)
     fifiparstable = parsTable(os.path.join(path, 'fifils-pars-'+cycle+'.json'))
@@ -445,8 +647,16 @@ def writeLatex(aorfile, cycle):
     with open(flighttablefile, 'w') as f:
         for t in fifiparstable:
             f.write(t+'\n')
-        
+            
+    # Save boresight section
+    boresightfile = os.path.join(path, 'boresight.tex')
+    with open(boresightfile, 'w') as f:
+        for t in boresightTable():
+            f.write(t+'\n')
     
+    # Avoid repetitions (same AOR in several legs)
+    propids = []
+
     with open(filename, 'w') as f:
         # Preamble
         for p in preamble:
@@ -469,6 +679,19 @@ def writeLatex(aorfile, cycle):
         # Insert Table
         for t in flighttable:
             f.write(t+'\n')
+        f.write(r'\newpage' + '\n')
+        f.write(r'\section{Sky dips and tellurics}'+'\n')
+        f.write(r'\subsection{Sky dips}'+'\n')
+        for s in skydips():
+            f.write(s+'\n')
+        f.write(r'\subsection{Telluric check}'+'\n')
+        for t in tellurics():
+            f.write(t+'\n')
+        f.write(r'\newpage' + '\n')            
+        if boresight:
+            f.write(r'\section{Boresight}'+'\n')
+            f.write(r'\input{"'+'boresight.tex'+r'"}' + '\n')   
+            f.write(r'\newpage' + '\n')
         # Write a page for each obs-block
         with open(filedescription,'r') as jf:
             data = json.load(jf)
@@ -483,20 +706,25 @@ def writeLatex(aorfile, cycle):
             f.write(r'\section{'+title+'}\n')
             if len(title) > 70:
                 f.write(r'\sectionmark{'+title[:70]+'...}\n')
-            f.write(r'{\large {\bf AOR ID:} '+propid+ r' {\bf PI:} '+block['piname']+r'}\\'+'\n')
+            f.write(r'{\large {\bf AOR ID:} '+propid+ r' {\bf PI:} '+
+                    block['piname']+ r' {\bf Target:} '+block['target']+r'}\\'+'\n')
             f.write(r'{\bf Comments:} '+comment+r'\\'+'\n')
-            # Insert Figure
-            imagefile = block['imagefile']
-            if imagefile is not None:
-                f.write(r'\begin{center}'+'\n')
-                f.write(r'\includegraphics[width=0.60\textwidth]{'+imagefile+'}'+'\n')
-                f.write(r'\end{center}'+'\n')
+            
+            if propid in propids:
+                pass
             else:
-                f.write(r'\newline'+'\n')    
-            # Insert abstract            
-            abstract = block['abstract']
-            abstract = abstract.replace('>','$>$').replace('<','$<$')
-            f.write(abstract+'\n')
+                propids.append(propid)
+                # Insert Figure
+                imagefile = block['imagefile']
+                if imagefile is not None:
+                    f.write(r'\begin{center}'+'\n')
+                    f.write(r'\includegraphics[width=0.60\textwidth]{'+imagefile+'}'+'\n')
+                    f.write(r'\end{center}'+'\n')
+                else:
+                    f.write(r'\newline'+'\n')    
+                # Insert abstract            
+                abstract = block['abstract']
+                f.write(abstract+'\n')
         f.write(r'\end{document}')
 
 
