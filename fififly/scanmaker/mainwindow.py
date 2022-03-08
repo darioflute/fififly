@@ -204,7 +204,7 @@ class GUI(QMainWindow):
                         os.remove(file)
                     except:
                         print('Cannot remove file: ', file)
-        makeScans(folderpath, self.aor)
+        self.tiles = makeScans(self, folderpath, self.aor)
         
     def exportTables(self):
         """Export latex tables for flight description document"""
@@ -227,8 +227,8 @@ class GUI(QMainWindow):
             # If map available, export also the map
             # If condition to be added
             if self.aor.instmode == 'OTF_TP':
-                filename = filename[:-4]+'_map.tex'
-                saveMapTable(filename, self.aor)
+                filename = filename[:-4]
+                saveMapTable(filename, self.aor, self.tiles)
             
     def fileQuit(self):
         #self.saveData()

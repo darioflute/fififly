@@ -20,10 +20,10 @@ def loadTitles(aorfile):
 
     return titles
 
-def makeScans(folder, aor):
+def makeScans(self, folder, aor):
     """Export AOR into scans for observation"""
     from fififly.scanmaker.grating import wavelength2inductosyn as w2i
-    from PyQt5.QtWidgets import QMessageBox
+    from PyQt5.QtWidgets import QMessageBox, QInputDialog
     
     print('Folder is ', folder)
     # Case of OTF MAP
@@ -47,6 +47,19 @@ def makeScans(folder, aor):
         aor.gratingBlue += 800/2.
         aor.gratingRed  += 730/2.
     
+    # Move by half grating ?
+    msg = QMessageBox()
+    msg.setInformativeText("Do you want to define tiles ?")
+    flags = QMessageBox.Yes| QMessageBox.No
+    msg.setStandardButtons(flags)
+    ret = msg.exec()
+    if ret == QMessageBox.Yes:
+        numpertile,ok = QInputDialog.getInt(self,"Files per tile",
+                                     "Enter number of files per tile",12,1,100,1)
+        tiles = True
+    else:
+        tiles = False
+
     # Go through all the files (on and off)
     # Special case for OTF
     # Write all the scans (on and off)
@@ -60,13 +73,19 @@ def makeScans(folder, aor):
     j+=1
     # Alternate scan and off    
     for i, lam in enumerate(aor.dlam_map):
-        filename = os.path.join(folder,'{0:05d}_{1:s}_scan.scn'.format(j,aor.objName))
+        if tiles:
+            ntile = (j // 2) % numpertile + 1
+            tile = (j // 2) // numpertile + 1
+            sformat = '{0:05d}_{1:s}_{2:02}_tile_{3:03}.scn' 
+            filename = os.path.join(folder,sformat.format(j,aor.objName,ntile,tile))
+        else:
+            filename = os.path.join(folder,'{0:05d}_{1:s}_scan.scn'.format(j,aor.objName))
         aor.chopBeam = +1
         aor.chopCyclesB = 200
         aor.chopCyclesR = 200
         writeFile(filename, aor, i, off=False)
         j+=1
-        filename = os.path.join(folder,'{0:05d}_{1:s}_scan_off.scn'.format(j,aor.objName))
+        filename = os.path.join(folder,'{0:05d}_{1:s}_off.scn'.format(j,aor.objName))
         aor.chopBeam = 0
         aor.chopCyclesB = 16
         aor.chopCyclesR = 16
@@ -74,7 +93,10 @@ def makeScans(folder, aor):
         j+=1
     print('All files written')
     
-    # Write table
+    if tiles:
+        return numpertile
+    else:
+        return None
     
     
     
@@ -437,7 +459,7 @@ def scanDir(velangle):
         print('Wrong velocity angle')
     return sc
     
-def saveMapTable(filename, aor):
+def saveMapTable(filename, aor, tiles):
     """Export a latex file with the map positions to be used in the flight description"""
     
     # Check number of positions and divide them in three columns
@@ -445,49 +467,79 @@ def saveMapTable(filename, aor):
     nscanscol = nscans // 3
     if nscans % 3 != 0:
         nscanscol += 1
+        
+    if tiles is None:
+        pass
+    else:
+        numpertile = tiles
     
-    with open(filename, 'w') as f:
-        f.write(r'%\documentclass{article}'+'\n')
-        f.write(r'%\begin{document}'+'\n')
-        f.write(r'\begin{table}'+'\n'+r'\centering'+'\n')
-        f.write(r'\setlength{\tabcolsep}{2pt}'+'\n')
-        f.write(r'\begin{tabular}{rcccc|rcccc|rcccc}'+'\n')
-        f.write(r'\hline'+'\n')
-        f.write(r'\hline'+'\n')
-        f.write(r'\# & $\Delta\alpha$ & $\Delta\beta$ & Speed & Dir &'+
-                r'\# & $\Delta\alpha$ & $\Delta\beta$ & Speed & Dir &'+
-                r'\# & $\Delta\alpha$ & $\Delta\beta$ & Speed & Dir\\'+'\n')
-        f.write(r' &$\prime\prime$&$\prime\prime$ &$\prime\prime$/s &&'+
-                r'&$\prime\prime$&$\prime\prime$&$\prime\prime$/s &&'+
-                r'&$\prime\prime$&$\prime\prime$&$\prime\prime$/s &\\'+'\n')
-        f.write(r'\hline'+'\n')
-        for i in range(nscanscol):
-            ra1, dec1 = aor.dlam_map[i], aor.dbet_map[i]
-            v1 = aor.scanspeed[i]
-            sc1 = aor.velangle[i]
-            ra2, dec2 = aor.dlam_map[i+nscanscol], aor.dbet_map[i+nscanscol]
-            v2 = aor.scanspeed[i+nscanscol]
-            sc2 = aor.velangle[i+nscanscol]
-            i1, i2, i3 = i+1, i+nscanscol+1, i+2*nscanscol+1
-            if i+2*nscanscol < nscans:
-                ra3, dec3 = aor.dlam_map[i+2*nscanscol], aor.dbet_map[i+2*nscanscol]
-                v3 = aor.scanspeed[i+2*nscanscol]
-                sc3 = aor.velangle[i+2*nscanscol]
-                fmt = '{0:d} & {1:.1f} & {2:.1f} & {3:.0f} & {4:.1f}$^o$ &{5:d} & {6:.1f}'+\
-                    ' & {7:.1f} & {8:.0f} & {9:.1f}$^o$ &{10:d} & {11:.1f} & {12:.1f} &{13:.0f} & {14:.1f}$^o$\\\\\n'
-                line = fmt.format(i1,ra1,dec1,v1,sc1,i2,ra2,dec2,v2,sc2,i3,ra3,dec3,v3,sc3)
-            else:
-                fmt = '{0:d} & {1:.1f} & {2:.1f} & {3:.0f} & {4:.1f}$^o$ &{5:d} & {6:.1f}'+\
-                    ' & {7:.1f} & {8:.0f} & {9:.1f}$^o$ &&  && & \\\\\n'
-                line = fmt.format(i1,ra1,dec1,v1,sc1,i2,ra2,dec2,v2,sc2)
-            print(line)
-            f.write(line)
-        f.write(r'\hline'+'\n')
-        f.write(r'\hline'+'\n')
-        f.write(r'\end{tabular}'+'\n')
-        f.write(r'\end{table}'+'\n')
-        f.write(r'%\end{document}')
-    print(' Table written ')
+    if nscans > 144:
+        print('Multiple tables')
+        ntables = np.int(np.ceil(nscans / 144))
+    ncol = 48
+    
+    for ntable in range(ntables):
+        istart = ntable * 144
+        iend   = istart + ncol
+        if nscans - istart < 144:
+            iend = np.int(np.ceil((nscans - istart) // 3))
+        with open(filename+'_map_{0:d}.tex'.format(ntable+1), 'w') as f:
+            f.write(r'%\documentclass{article}'+'\n')
+            f.write(r'%\begin{document}'+'\n')
+            f.write(r'\begin{table}'+'\n'+r'\centering'+'\n')
+            f.write(r'\setlength{\tabcolsep}{2pt}'+'\n')
+            f.write(r'\begin{tabular}{rccrrr|rccrrr|rccrrr}'+'\n')
+            f.write(r'\hline'+'\n')
+            f.write(r'\hline'+'\n')
+            f.write(r'\# & $\Delta\alpha$ & $\Delta\beta$ & V & Dir & Tile &'+
+                    r'\# & $\Delta\alpha$ & $\Delta\beta$ & V & Dir & Tile &'+
+                    r'\# & $\Delta\alpha$ & $\Delta\beta$ & V & Dir & Tile \\'+'\n')
+            f.write(r' &$\prime\prime$&$\prime\prime$ &$\prime\prime$/s &&&'+
+                    r'&$\prime\prime$&$\prime\prime$&$\prime\prime$/s &&&'+
+                    r'&$\prime\prime$&$\prime\prime$&$\prime\prime$/s &&\\'+'\n')
+            f.write(r'\hline'+'\n')
+            print('table , istart', ntable, istart, iend)
+            for i in range(istart, iend):
+                ra1, dec1 = aor.dlam_map[i], aor.dbet_map[i]
+                v1 = aor.scanspeed[i]
+                sc1 = aor.velangle[i]
+                ra2, dec2 = aor.dlam_map[i+ncol], aor.dbet_map[i+ncol]
+                v2 = aor.scanspeed[i+ncol]
+                sc2 = aor.velangle[i+ncol]
+                i1, i2, i3 = i+1, i+ncol+1, i+2*ncol+1
+                if tiles:
+                    t1 = (i1 - 1) // numpertile + 1
+                    it1 = (i1 - 1) % numpertile + 1
+                    t2 = (i2 - 1) // numpertile + 1
+                    it2 = (i2 - 1) % numpertile + 1
+                    t3 = (i3 - 1) // numpertile + 1
+                    it3 = (i3 - 1) % numpertile + 1
+                    st1 = '{0:d}/{1:d}'.format(it1,t1)
+                    st2 = '{0:d}/{1:d}'.format(it2,t2)
+                    st3 = '{0:d}/{1:d}'.format(it3,t3)
+                else:
+                    st1=st2=st3=''
+                if i+2*ncol < nscans:
+                    ra3, dec3 = aor.dlam_map[i+2*ncol], aor.dbet_map[i+2*ncol]
+                    v3 = aor.scanspeed[i+2*ncol]
+                    sc3 = aor.velangle[i+2*ncol]
+                    fmt = '{0:d} & {1:.1f} & {2:.1f} & {3:.0f} & {4:.1f}$^o$ &'+st1+\
+                        '&{5:d} & {6:.1f} & {7:.1f} & {8:.0f} & {9:.1f}$^o$ &'+st2+\
+                        ' &{10:d} & {11:.1f} & {12:.1f} &{13:.0f} & {14:.1f}$^o$&'+st3+'\\\\\n'
+                    line = fmt.format(i1,ra1,dec1,v1,sc1,i2,ra2,dec2,v2,sc2,i3,ra3,dec3,v3,sc3)
+                else:
+                    fmt = '{0:d} & {1:.1f} & {2:.1f} & {3:.0f} & {4:.1f}$^o$ &'+st1+\
+                        '&{5:d} & {6:.1f} & {7:.1f} & {8:.0f} & {9:.1f}$^o$ &'+st2+\
+                        '&&  && && \\\\\n'
+                    line = fmt.format(i1,ra1,dec1,v1,sc1,i2,ra2,dec2,v2,sc2)
+                print(line)
+                f.write(line)
+            f.write(r'\hline'+'\n')
+            f.write(r'\hline'+'\n')
+            f.write(r'\end{tabular}'+'\n')
+            f.write(r'\end{table}'+'\n')
+            f.write(r'%\end{document}')
+    print(' Map tables written ')
         
 
 class AOR(object):
