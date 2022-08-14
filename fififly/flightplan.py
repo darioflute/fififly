@@ -79,7 +79,10 @@ def startDescription(aorfile):
             if obBlockID != 'None':
                 print('obBlockID', obBlockID)
                 # Get comment
-                comment = str(leg.find('Comment').text)
+                try:
+                    comment = str(leg.find('Comment').text)
+                except:
+                    comment = ''
                 print('comment ', comment)
                 comment.replace('<br>', '\\')
                 comment.replace('#','')

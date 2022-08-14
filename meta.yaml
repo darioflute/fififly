@@ -15,14 +15,18 @@ requirements:
   build:
     - setuptools
     - python
+    - pandas
+    - unidecode
 
   run:
     - python
-    - matplotlib >=3.0.2
+    - matplotlib >=3.5
     - numpy >=1.11
     - scipy
-    - astropy >=3.0
+    - astropy >=5.0
     - pyqt
+    - pandas
+    - unidecode
         
 test:
   imports:
